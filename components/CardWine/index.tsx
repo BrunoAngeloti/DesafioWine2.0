@@ -2,6 +2,12 @@ import React, { FunctionComponent, useEffect, useState } from 'react'
 
 import { ContainerCard, ContentCard, Discount, Member, NotMember } from './style'
 
+export function addToCart(qtdRequested:number){
+    const aux = localStorage.getItem('shoppingCart')
+    var qtd = (aux? parseInt(aux)+qtdRequested : 1);
+    localStorage.setItem('shoppingCart', qtd.toString());
+}
+
 export const CardWine: FunctionComponent = () => {
     return(
         <ContainerCard>
@@ -15,7 +21,7 @@ export const CardWine: FunctionComponent = () => {
                 <Member>SÓCIO WINE <strong> R$ <span>30</span>,00</strong></Member>  
                 <NotMember>NÃO SÓCIO R$ 37,40</NotMember>
             </ContentCard>
-            <button>
+            <button onClick={() => addToCart(1)}>
                 ADICIONAR
             </button>
         </ContainerCard>  

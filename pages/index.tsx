@@ -16,7 +16,7 @@ const App: NextPage = () => {
       </Head>
       <Header />
       
-      <Home />
+      <WineInfo />
     </div>
   )
 }

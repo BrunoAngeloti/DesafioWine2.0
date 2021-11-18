@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 
-import { Container, ContentHeader, LeftContent, RightContent, ShoppingCart, Button } from './style'
+import { Container, ContentHeader, LeftContent, RightContent, ShoppingCart, Button, Profile } from './style'
 
 export const Header: FunctionComponent = () => {
     const [qtdProducts, setQtdProducts] = useState<Number>(0)
@@ -15,6 +15,7 @@ export const Header: FunctionComponent = () => {
         <Container>
             <ContentHeader>
                 <LeftContent>
+                    <img src="ic-line.svg" alt="Icone para o menu" />
                     <img src="LogoWine.svg" alt="Logo da Wine" />   
                     <div>     
                         <Button>Clube</Button>
@@ -27,7 +28,7 @@ export const Header: FunctionComponent = () => {
                 
                 <RightContent>
                     <img src="Busca.svg" alt="Icone de buscar" />
-                    <img src="conta.svg" alt="Icone de perfil" />
+                    <Profile src="conta.svg" alt="Icone de perfil" />
                     <ShoppingCart>
                         <img src="winebox.svg" alt="Icone do carrinho de compras" />
                         <span>{qtdProducts}</span>

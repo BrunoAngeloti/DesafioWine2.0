@@ -16,6 +16,11 @@ export const ContentHeader = styled.div`
     align-items: center;
     margin: 0 auto;
     height: 100%;
+
+    @media(max-width: 420px){
+        justify-content: space-evenly; 
+        gap: 20px;
+    }
 `
 
 export const LeftContent = styled.div`
@@ -24,9 +29,31 @@ export const LeftContent = styled.div`
     gap: 80px;
     height:100%;
     margin: 0;
-
+    
     img {
         width: 100px;
+        @media(max-width: 420px){
+             width: 60px;  
+        }
+
+        &:first-child{
+            width: 30px;
+            display: none;
+
+            @media(max-width: 1020px){
+                display: flex;
+            }
+            @media(max-width: 420px){
+                width: 20px;  
+            }
+        }
+    }
+
+    @media(max-width: 1020px){
+        gap: 30px;
+    }
+    @media(max-width: 420px){
+        gap: 20px; 
     }
 
     div {
@@ -34,6 +61,10 @@ export const LeftContent = styled.div`
         flex-direction: row;
         gap: 40px;
         height:100% !important;
+
+        @media(max-width: 1020px){
+            display: none;
+        }
     }
 `
 
@@ -55,9 +86,24 @@ export const RightContent = styled.div`
     display: flex;
     flex-direction: row;
     gap: 40px;
-
+    
     img{
-        width: 60px;
+        width: 60px;   
+        @media(max-width: 420px){
+            width: 50px;  
+        }
+    }
+
+    @media(max-width: 1020px){
+        gap: 20px;
+        margin-left: 20px;
+    }
+   
+    
+`
+export const Profile = styled.img`
+    @media(max-width: 1020px){
+        display: none;
     }
 `
 
