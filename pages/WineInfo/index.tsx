@@ -61,7 +61,7 @@ export const WineInfo: NextPage = () => {
                                 <ReactStars
                                     count={5}
                                     value={4}
-                                    size={24}                          
+                                    size={20}                          
                                     color2={'#ffd700'} 
                                     edit={false}
                                 />

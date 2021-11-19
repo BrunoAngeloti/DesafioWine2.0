@@ -4,7 +4,7 @@ import { ContainerCard, ContentCard, Discount, Member, NotMember } from './style
 
 export function addToCart(qtdRequested:number){
     const aux = localStorage.getItem('shoppingCart')
-    var qtd = (aux? parseInt(aux)+qtdRequested : 1);
+    var qtd = (aux? parseInt(aux)+qtdRequested : qtdRequested);
     localStorage.setItem('shoppingCart', qtd.toString());
 }
 

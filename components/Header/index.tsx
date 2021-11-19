@@ -1,15 +1,17 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent } from 'react'
 
-import { Container, ContentHeader, LeftContent, RightContent, ShoppingCart, Button, Profile } from './style'
+import { 
+    Container, 
+    ContentHeader, 
+    LeftContent, 
+    RightContent, 
+    Button, 
+    Profile 
+} from './style'
+
+import { ShoppingCart } from '../ShoppingCart'
 
 export const Header: FunctionComponent = () => {
-    const [qtdProducts, setQtdProducts] = useState<Number>(0)
-
-    useEffect(()=>{
-        const aux = localStorage.getItem('shoppingCart')
-        setQtdProducts(aux !== null ? JSON.parse(aux) : 0)
-        console.log(aux)
-    }, [])
 
     return(
         <Container>
@@ -29,10 +31,7 @@ export const Header: FunctionComponent = () => {
                 <RightContent>
                     <img src="Busca.svg" alt="Icone de buscar" />
                     <Profile src="conta.svg" alt="Icone de perfil" />
-                    <ShoppingCart>
-                        <img src="winebox.svg" alt="Icone do carrinho de compras" />
-                        <span>{qtdProducts}</span>
-                    </ShoppingCart>  
+                    <ShoppingCart /> 
                 </RightContent>
             </ContentHeader>
         </Container>  
