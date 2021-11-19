@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { Home } from './Home'
 import { Header } from '../components/Header'
 import { WineInfo } from './WineInfo'
-import { Pagination } from '../components/Pagination'
 
 const App: NextPage = () => {
   return (
@@ -16,8 +15,7 @@ const App: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />    
-      {/*<Home />*/}
-      <Pagination/>
+      <Home />
     </div>
   )
 }

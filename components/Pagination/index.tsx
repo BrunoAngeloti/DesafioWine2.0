@@ -5,7 +5,8 @@ import {
     ContainerPagination,
     Vinhos,
     Buttons,
-    ButtonPag
+    ButtonPag,
+    ButtonPass
 } from './style'
 
 interface Teste {
@@ -33,25 +34,47 @@ export const Pagination: FunctionComponent = () => {
 
     const [limitedWines, setlimitedWines] = useState <Array<Teste>>([]);
 
+    function scrollToTop(){
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        })
+    }
+
     useEffect(()=>{
         setNumPage(Math.round(numItems/ItemsPerPage));
         setlimitedWines(ArrayTeste.slice(ItemsPerPage*page, ItemsPerPage*(page+1)));
+        scrollToTop()
     },[page])
 
     async function changeToPage(num:number){
-        setPage(num);
-        //setlimitedCampus(campus.slice(nRows*newPage, nRows*(newPage+1)))        
+        setPage(num);       
     }
     async function changePageToPage(num:number){
         const newPage = page+num;
-        setPage(newPage);
-        //setlimitedCampus(campus.slice(nRows*newPage, nRows*(newPage+1)))        
+        setPage(newPage);       
     }
 
+    function visible(idx:number){
+        if(idx === 0 || (idx+1) === numPage) return true;
+        if(idx > (page - 2) && idx < (page + 2)) return true;
+        return false;
+    }
+
+    function EllipsisFinal(idx:number){
+        if(idx===numPage-1)
+            return page < (idx - 2) ?  true : false
+        return
+    }
+    function EllipsisBegin(idx:number){
+        if(idx === 0)
+            return page > (idx + 2) ? true : false
+        return
+    }
 
     return(
         <ContainerPagination>
-            <Vinhos>
+            {/*<Vinhos>
                 {limitedWines.map(vinho => {
                     return(
                         <div>
@@ -60,25 +83,29 @@ export const Pagination: FunctionComponent = () => {
                         </div>
                     )
                 })}
-            </Vinhos>
+            </Vinhos>*/}
             <Buttons>
-                {page !== 0 && <button onClick={()=>changePageToPage(-1)}>Anterior</button>}
+                {page !== 0 && <ButtonPass onClick={()=>changePageToPage(-1)}>{'<< '}Anterior</ButtonPass>}
                 {
                     [...Array(numPage)].map((pages, idx) => {
                         return(
-                            <ButtonPag 
-                                onClick={()=>changeToPage(idx)}
-                                Selected={idx === page}
-                                Next={idx === page+1}
-                            >
-                                {idx+1}
-                            </ButtonPag>
+                            visible(idx) && 
+                            <>
+                                {EllipsisFinal(idx) && <span>...</span>}
+                                <ButtonPag 
+                                    onClick={()=>changeToPage(idx)}
+                                    Selected={idx === page}
+                                    Next={idx === page+1}
+                                >
+                                    {idx+1}
+                                </ButtonPag>
+                                {EllipsisBegin(idx) && <span>...</span>}
+                            </>
                         )
                     })
                 }
-                {(page+1) !== numPage && <button onClick={()=>changePageToPage(1)}>Proximo</button>}
+                {(page+1) !== numPage && <ButtonPass onClick={()=>changePageToPage(1)}>Próximo{' >>'}</ButtonPass>}
             </Buttons>
-            pagina atual = {page+1}
         </ContainerPagination>  
     )
     

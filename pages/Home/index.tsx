@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 
 import React from 'react'
 import { CardWine } from '../../components/CardWine'
+import { Pagination } from '../../components/Pagination'
 
 import { Search, Items, ContentHome, Filter, Wines } from './style'
 
@@ -46,6 +47,7 @@ export const Home: NextPage = () => {
           <CardWine />
           <CardWine />
         </Wines>
+      <Pagination />
       </Items>
     </ContentHome>
     
