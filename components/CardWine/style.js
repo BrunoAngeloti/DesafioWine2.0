@@ -46,7 +46,7 @@ export const ContentCard = styled.div`
     flex-direction: column;
     align-items: center;
     padding: 15px 5px;
-
+    cursor: pointer;
     box-shadow: 0px 9.73384px 14.6008px rgba(0, 0, 0, 0.1);
     @media(max-width: 470px){
         img{

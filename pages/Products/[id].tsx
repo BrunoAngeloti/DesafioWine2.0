@@ -1,7 +1,14 @@
-import type { NextPage} from 'next'
 import ReactStars from 'react-stars'
 
 import React, {  useState  } from 'react'
+
+import { GetServerSideProps } from "next";
+
+import Router from 'next/router'
+
+interface ProductsProps {
+    id: number;
+}
 
 import { 
     ContainerWineInfo, 
@@ -14,12 +21,13 @@ import {
     CommentsWine,
     Button,
     AddOnCart,
-    FooterMobile
+    FooterMobile,
 } from './style'
 
-import { addToCart } from '../../components/CardWine'
+import { addToCart } from '../../components/ShoppingCart';
+import { useDispatch } from 'react-redux';
 
-export const WineInfo: NextPage = () => {
+export default function Products(props:ProductsProps){
     const [qtd, setQtd] = useState(1);
 
     function add(){
@@ -31,28 +39,30 @@ export const WineInfo: NextPage = () => {
             setQtd(qtd-1);
     }
 
+    const dispatch = useDispatch()
+
     return (
         <ContainerWineInfo>
-            <header>
-                <img src="back.svg" alt="seta de voltar" />
+            <header onClick={()=> {Router.back()}} >
+                <img src="/back.svg" alt="seta de voltar"/>
                 <span>Voltar</span>
             </header>
             <ContentWineInfo>
                 <LeftContent>
-                    <img src="Wine2.svg" alt="garrafa do vinho" />
+                    <img src="/Wine2.svg" alt="garrafa do vinho" />
                 </LeftContent>
                 <RightContent>
                     <LocationWine>
                         <h4>Vinhos</h4>
-                        <img src="arrowRight.svg" alt="seta para direita" />
+                        <img src="/arrowRight.svg" alt="seta para direita" />
                         <h4>Estados Unidos</h4>
-                        <img src="arrowRight.svg" alt="seta para direita" />
+                        <img src="/arrowRight.svg" alt="seta para direita" />
                         <h4>Califórnia</h4>
                     </LocationWine>
                     <DetailsWine>
                         <h1>Apothic Red 2019</h1>
                         <div>
-                            <img src="pais.svg" alt="bandeira do país" />
+                            <img src="/pais.svg" alt="bandeira do país" />
                             <p>Estados Unidos</p> 
                             <p>Tinto</p> 
                             <p>Meio Seco/Demi-Sec</p>
@@ -70,7 +80,7 @@ export const WineInfo: NextPage = () => {
                             <p>(2)</p>
                         </div>
                     </DetailsWine>
-                    <img src="Wine2.svg" alt="garrafa do vinho" />
+                    <img src="/Wine2.svg" alt="garrafa do vinho" />
                     <PriceWine>
                         <h2><span>R$</span>63,<span>67</span></h2>
                         <h3>NÃO SÓCIO R$ 120,95/UN.</h3>
@@ -85,7 +95,7 @@ export const WineInfo: NextPage = () => {
                             <span>{qtd}</span>
                             <button onClick={add}>+</button>
                         </div>
-                        <Button onClick={() => addToCart(qtd)}>Adicionar</Button>
+                        <Button onClick={() => addToCart(qtd, dispatch)}>Adicionar</Button>
                     </AddOnCart>               
                 </RightContent>
             </ContentWineInfo>
@@ -97,8 +107,18 @@ export const WineInfo: NextPage = () => {
                     <h3>PREÇO NÃO-SÓCIO R$ 29.999,90</h3>
                 </section>
                 
-                <Button onClick={() => addToCart(1)}>Adicionar</Button>
+                <Button onClick={() => addToCart(1, dispatch)}>Adicionar</Button>
             </FooterMobile>
         </ContainerWineInfo> 
     )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    const id = context.query.id;
+
+    return {
+        props: {
+            id: id
+        }
+    }
 }

@@ -17,8 +17,8 @@ export const Header: FunctionComponent = () => {
         <Container>
             <ContentHeader>
                 <LeftContent>
-                    <img src="ic-line.svg" alt="Icone para o menu" />
-                    <img src="LogoWine.svg" alt="Logo da Wine" />   
+                    <img src="/ic-line.svg" alt="Icone para o menu" />
+                    <img src="/LogoWine.svg" alt="Logo da Wine" />   
                     <div>     
                         <Button>Clube</Button>
                         <Button selected={true}>Loja</Button>
@@ -29,8 +29,8 @@ export const Header: FunctionComponent = () => {
                 </LeftContent>
                 
                 <RightContent>
-                    <img src="Busca.svg" alt="Icone de buscar" />
-                    <Profile src="conta.svg" alt="Icone de perfil" />
+                    <img src="/Busca.svg" alt="Icone de buscar" />
+                    <Profile src="/conta.svg" alt="Icone de perfil" />
                     <ShoppingCart /> 
                 </RightContent>
             </ContentHeader>
