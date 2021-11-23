@@ -27,7 +27,7 @@ export const Pagination: FunctionComponent = () => {
     }
 
     useEffect(()=>{
-        setNumPage(Math.round(numItems/ItemsPerPage));
+        setNumPage(Math.ceil(numItems/ItemsPerPage));
         dispatch({ type: 'CHANGE_CURRENT_PAGE', payload: page })
         scrollToTop()
 

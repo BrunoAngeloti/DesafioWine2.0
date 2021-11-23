@@ -4,10 +4,12 @@ import { combineReducers } from 'redux'
 
 import amountItemsReducer from './ducks/amountItems'
 import paginationReducer from './ducks/pagination'
+import pricesFilterReducer from './ducks/pricesFilter'
 
 const rootReducer = combineReducers({
     amountitems: amountItemsReducer,
-    pagination: paginationReducer
+    pagination: paginationReducer,
+    pricesfilter: pricesFilterReducer
 })
 
 export default configureStore({

@@ -4,11 +4,12 @@ import React, { useEffect, useState } from 'react'
 import { CardWine } from '../../components/CardWine'
 import { Pagination } from '../../components/Pagination'
 
-import { Search, Items, ContentHome, Filter, Wines } from './style'
+import { Search, Items, ContentHome, Wines } from './style'
 
 import api from '../../documents/vinhos.json'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store'
+import { PriceFilter } from '../../components/PriceFilter'
 
 export interface iWines{ 
   Id: number,
@@ -29,21 +30,33 @@ export interface iWines{
   SommelierComment: string
 }
 
-
-
 export const Home: NextPage = () => {
 
   const [limitedWines, setlimitedWines] = useState <Array<iWines>>([]);
 
   const { ItemsPerPage, currentPage, numItems } = useSelector((state: RootState)=>state.pagination);
+  const { min, max } = useSelector((state: RootState)=>state.pricesfilter);
 
   const dispatch = useDispatch()
 
+  function stringToNumber(value:string){
+    const split = value.split(",");
+    const leftContent = parseInt(split[0])
+    const rightContent = parseInt(split[1])
+    const result = leftContent + (rightContent/100)
+
+    return result
+  }
+
   useEffect(()=>{
-    const wineAux = api
+    const wineAux = max === 0 && min === 0 ? 
+      api : 
+      api.filter(wine => (stringToNumber(wine.PriceMember) > min && stringToNumber(wine.PriceMember) <= max) )
+    
+    
     setlimitedWines(wineAux.slice(ItemsPerPage*currentPage, ItemsPerPage*(currentPage+1)));
     dispatch({ type: 'CHANGE_NUM_ITEMS', payload: wineAux.length })
-  }, [currentPage])
+  }, [currentPage, min, max])
 
   return (
     
@@ -51,29 +64,7 @@ export const Home: NextPage = () => {
       <Search>
         <h2>Refine sua busca</h2>
         <h3>Por preço</h3>
-        <Filter>
-          <div>
-            <input type="radio" id="40" value="40"/>
-            <label htmlFor="40">Até R$40</label>
-          </div>
-          <div>
-            <input type="radio" id="60" value="60"/>
-            <label htmlFor="60">R$40 A R$60</label>
-          </div>
-          <div>
-            <input type="radio" id="100" value="100"/>
-            <label htmlFor="100">R$100 A R$200</label>
-          </div>
-          <div>
-            <input type="radio" id="200" value="200"/>
-            <label htmlFor="200">R$200 A R$500</label>
-          </div>
-          <div>
-            <input type="radio" id="500" value="500"/>
-            <label htmlFor="500">Acima de R$500</label>
-          </div>
-        </Filter>
-        
+        <PriceFilter />
       </Search>
       <Items>
         <h3><strong>{numItems}</strong> produtos encontrados</h3>

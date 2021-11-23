@@ -6,14 +6,6 @@ export const ContainerPagination = styled.div`
     justify-content: center;
     margin-top: 30px;
 `
-
-export const Vinhos = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    
-`
-
 export const Buttons = styled.div`
     display: flex;
     flex-direction: row;

@@ -286,5 +286,23 @@
         "State": "Rioja",
         "CountryFlag": "https://img.wine.com.br/fenix/image/flags/rounded/espanha.svg",
         "SommelierComment": "Colección de Familia La Mateo 2015 foi elaborado a partir de uma rigorosa seleção das variedades tempranillo, garnacha e graciano, todas escolhidas a dedo em El Salobral, o vinhedo mais emblemático da vinícola, com orientação norte-sul e solos argilosos e calcários. O vinho é produzido a partir da fermentação malolática em barris novos de 225 litros, pós é submetido a um processo de envelhecimento de 14 meses em barricas de carvalho francês Allier, Nevers, Tronçaise & Jupilles (85%) e americano da Pensilvânia (15%). Para preservar aromas e sabores, foi engarrafado sem filtrar, envelhecendo por mais 18 meses engarrafado, antes de ir à venda."
+    },
+    {
+        "Id": 17,
+        "Image": "https://www.wine.com.br/cdn-cgi/image/f=png,h=515,q=99/assets-images/produtos/26453-01.png",
+        "Name": "Colección De Familia La Mateo D.O.Ca. Rioja 2017",
+        "OldValue": "390,90",
+        "Off": "23%",
+        "PriceMember": "302,36",
+        "PriceNotMember": "355,72",
+        "Type": "Tinto",
+        "Classification": "Seco",
+        "Size": "750 ml",
+        "Rating": 0,
+        "Avaliations": 0,
+        "Country": "Espanha",
+        "State": "Rioja",
+        "CountryFlag": "https://img.wine.com.br/fenix/image/flags/rounded/espanha.svg",
+        "SommelierComment": "Colección de Familia La Mateo 2015 foi elaborado a partir de uma rigorosa seleção das variedades tempranillo, garnacha e graciano, todas escolhidas a dedo em El Salobral, o vinhedo mais emblemático da vinícola, com orientação norte-sul e solos argilosos e calcários. O vinho é produzido a partir da fermentação malolática em barris novos de 225 litros, pós é submetido a um processo de envelhecimento de 14 meses em barricas de carvalho francês Allier, Nevers, Tronçaise & Jupilles (85%) e americano da Pensilvânia (15%). Para preservar aromas e sabores, foi engarrafado sem filtrar, envelhecendo por mais 18 meses engarrafado, antes de ir à venda."
     }
 ]
