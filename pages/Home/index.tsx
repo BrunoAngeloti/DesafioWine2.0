@@ -53,7 +53,6 @@ export const Home: NextPage = () => {
       api : 
       api.filter(wine => (stringToNumber(wine.PriceMember) > min && stringToNumber(wine.PriceMember) <= max) )
     
-    
     setlimitedWines(wineAux.slice(ItemsPerPage*currentPage, ItemsPerPage*(currentPage+1)));
     dispatch({ type: 'CHANGE_NUM_ITEMS', payload: wineAux.length })
   }, [currentPage, min, max])
@@ -75,6 +74,9 @@ export const Home: NextPage = () => {
                 <CardWine key={wine.Id} wine={wine}/>
               )
             })
+          }
+          {
+            limitedWines.length === 0 && <h1>Não temos vinhos para mostrar :(</h1>
           }
         </Wines>
       <Pagination />

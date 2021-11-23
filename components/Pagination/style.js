@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const ContainerPagination = styled.div`
-    display: flex;
+    display: ${props => props.numeroItems === 0 ? "none" : "flex"};;
     align-items: center;
     justify-content: center;
     margin-top: 30px;

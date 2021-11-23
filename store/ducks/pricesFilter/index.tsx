@@ -2,7 +2,7 @@ import { createAction, createReducer } from "@reduxjs/toolkit"
 
 const INITIAL_STATE = {
     min: 0,
-    max: 97,
+    max: 0,
 }
 
 export const getPriceFilter = createAction('GET_PRICE_FILTER')

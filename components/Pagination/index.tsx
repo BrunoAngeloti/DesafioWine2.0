@@ -59,7 +59,7 @@ export const Pagination: FunctionComponent = () => {
     }
 
     return(
-        <ContainerPagination>
+        <ContainerPagination numeroItems={numItems}>
             <Buttons>
                 {page !== 0 && <ButtonPass onClick={()=>changePageToPage(-1)}>{'<< '}Anterior</ButtonPass>}
                 {
