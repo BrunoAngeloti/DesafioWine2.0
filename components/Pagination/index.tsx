@@ -1,38 +1,23 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Interface } from 'readline'
+import { RootState } from '../../store'
 
 import { 
     ContainerPagination,
-    Vinhos,
     Buttons,
     ButtonPag,
     ButtonPass
 } from './style'
 
-interface Teste {
-    name: string;
-    price: number
-}
-  
 
 export const Pagination: FunctionComponent = () => {
     const [numPage, setNumPage] = useState<number>(0)
     const [page, setPage] = useState<number>(0);
-    const numItems = 62;
-    const ItemsPerPage = 4;
 
-    const teste = {     
-        name: 'vinho tinto',
-        price: 15000        
-    }
-    const teste2 = {     
-        name: 'vinho seco',
-        price: 6        
-    }
+    const { ItemsPerPage, numItems } = useSelector((state: RootState)=>state.pagination);
 
-    const ArrayTeste = [teste, teste, teste, teste2, teste2, teste, teste, teste, teste, teste2, teste2]
-
-    const [limitedWines, setlimitedWines] = useState <Array<Teste>>([]);
+    const dispatch = useDispatch()
 
     function scrollToTop(){
         window.scrollTo({
@@ -43,9 +28,10 @@ export const Pagination: FunctionComponent = () => {
 
     useEffect(()=>{
         setNumPage(Math.round(numItems/ItemsPerPage));
-        setlimitedWines(ArrayTeste.slice(ItemsPerPage*page, ItemsPerPage*(page+1)));
+        dispatch({ type: 'CHANGE_CURRENT_PAGE', payload: page })
         scrollToTop()
-    },[page])
+
+    },[page, numItems])
 
     async function changeToPage(num:number){
         setPage(num);       
@@ -74,16 +60,6 @@ export const Pagination: FunctionComponent = () => {
 
     return(
         <ContainerPagination>
-            {/*<Vinhos>
-                {limitedWines.map(vinho => {
-                    return(
-                        <div>
-                            <h1>{vinho.name}</h1>
-                            <h2>{vinho.price}</h2>
-                        </div>
-                    )
-                })}
-            </Vinhos>*/}
             <Buttons>
                 {page !== 0 && <ButtonPass onClick={()=>changePageToPage(-1)}>{'<< '}Anterior</ButtonPass>}
                 {

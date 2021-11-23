@@ -74,7 +74,7 @@ export default function Products(props:ProductsProps){
                     <DetailsWine>
                         <h1>{wines?.Name}</h1>
                         <div>
-                            <img src="/pais.svg" alt="bandeira do país" />
+                            <img src={wines?.CountryFlag} alt="bandeira do país" />
                             <p>{wines?.Country}</p> 
                             <p>{wines?.Type}</p> 
                             <p>{wines?.Classification}</p>
@@ -92,10 +92,9 @@ export default function Products(props:ProductsProps){
                             <p>({wines?.Avaliations})</p>
                         </div>
                     </DetailsWine>
-                    <img src="/Wine2.svg" alt="garrafa do vinho" />
+                    <img src={wines?.Image} alt="garrafa do vinho" />
                     <PriceWine>
-                        {
-                        
+                        {                    
                             <h2>
                                 <span>R$</span>
                                 {wines?.PriceMember.substr(0, wines?.PriceMember.indexOf(","))}
@@ -134,7 +133,6 @@ export default function Products(props:ProductsProps){
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const id = context.query.id;
-
     return {
         props: {
             id: id

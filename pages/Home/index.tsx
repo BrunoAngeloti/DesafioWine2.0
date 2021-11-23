@@ -1,4 +1,4 @@
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 
 import React, { useEffect, useState } from 'react'
 import { CardWine } from '../../components/CardWine'
@@ -7,6 +7,8 @@ import { Pagination } from '../../components/Pagination'
 import { Search, Items, ContentHome, Filter, Wines } from './style'
 
 import api from '../../documents/vinhos.json'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../store'
 
 export interface iWines{ 
   Id: number,
@@ -27,13 +29,21 @@ export interface iWines{
   SommelierComment: string
 }
 
+
+
 export const Home: NextPage = () => {
 
-  const [wines, setWines] = useState<Array<iWines>>([])
+  const [limitedWines, setlimitedWines] = useState <Array<iWines>>([]);
+
+  const { ItemsPerPage, currentPage, numItems } = useSelector((state: RootState)=>state.pagination);
+
+  const dispatch = useDispatch()
 
   useEffect(()=>{
-    setWines(api);
-  }, [])
+    const wineAux = api
+    setlimitedWines(wineAux.slice(ItemsPerPage*currentPage, ItemsPerPage*(currentPage+1)));
+    dispatch({ type: 'CHANGE_NUM_ITEMS', payload: wineAux.length })
+  }, [currentPage])
 
   return (
     
@@ -66,10 +76,10 @@ export const Home: NextPage = () => {
         
       </Search>
       <Items>
-        <h3><strong>49</strong> produtos encontrados</h3>
+        <h3><strong>{numItems}</strong> produtos encontrados</h3>
         <Wines>
           {
-            wines.map(wine => {
+            limitedWines.map(wine => {
               return (
                 <CardWine key={wine.Id} wine={wine}/>
               )
