@@ -1,32 +1,36 @@
 import Router from 'next/router'
-import React, { FunctionComponent } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 
 import { ContainerCard, ContentCard, Discount, Member, NotMember } from './style'
 
 import { addToCart } from '../ShoppingCart'
 import { useDispatch } from 'react-redux'
+import { iWines } from '../../pages/Home'
 
+interface iCardWine { 
+    wine: iWines
+}
 
-
-export const CardWine: FunctionComponent = () => {
+export const CardWine: FunctionComponent<iCardWine> = ({wine}:iCardWine) => {
 
     function handleInfoPage(){
-        Router.push('/Products/59')
+        Router.push(`/Products/${wine.Id}`)        
     }
-
     const dispatch = useDispatch()
+
+    const PriceMember = wine.PriceMember.split(",")
     
     return(
         <ContainerCard>
             <ContentCard onClick={handleInfoPage}>
-                <img src="Wine.svg" alt="Imagem do vinho" />
-                <h1>Bacalhôa Meia Pipa Private Selection Castelão Syrah 2014</h1>
+                <img src={wine.Image} alt="Imagem do vinho" />
+                <h1>{wine.Name}</h1>
                 <Discount>
-                    <p>R$ 37,40</p>
-                    <span>60% OFF</span>
+                    <p>R$ {wine.OldValue}</p>
+                    <span>{wine.Off} OFF</span>
                 </Discount>
-                <Member>SÓCIO WINE <strong> R$ <span>30</span>,00</strong></Member>  
-                <NotMember>NÃO SÓCIO R$ 37,40</NotMember>
+                <Member>SÓCIO WINE <strong> R$ <span>{PriceMember[0]}</span>,{PriceMember[1]}</strong></Member>  
+                <NotMember>NÃO SÓCIO R$ {wine.PriceNotMember}</NotMember>
             </ContentCard>
             <button onClick={() => addToCart(1, dispatch)}>
                 ADICIONAR

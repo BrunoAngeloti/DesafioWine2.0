@@ -90,7 +90,7 @@ export const Pagination: FunctionComponent = () => {
                     [...Array(numPage)].map((pages, idx) => {
                         return(
                             visible(idx) && 
-                            <>
+                            <div key={idx}>
                                 {EllipsisFinal(idx) && <span>...</span>}
                                 <ButtonPag 
                                     onClick={()=>changeToPage(idx)}
@@ -100,7 +100,7 @@ export const Pagination: FunctionComponent = () => {
                                     {idx+1}
                                 </ButtonPag>
                                 {EllipsisBegin(idx) && <span>...</span>}
-                            </>
+                            </div>
                         )
                     })
                 }

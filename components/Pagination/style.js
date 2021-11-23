@@ -18,12 +18,18 @@ export const Buttons = styled.div`
     display: flex;
     flex-direction: row;
     gap: 20px;
-
-    span{
+    div{
         display: flex;
+        flex-direction: row;
         align-items: center;
-        color: #B6116E;
+        gap: 20px;
+        span{
+            display: flex;
+            align-items: center;
+            color: #B6116E;
+        }
     }
+    
 `
 
 export const ButtonPag = styled.button`

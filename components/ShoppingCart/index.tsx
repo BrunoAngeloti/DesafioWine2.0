@@ -19,6 +19,11 @@ export function addToCart(qtdRequested:number, dispatch:Dispatch){
 export const ShoppingCart: FunctionComponent = () => {
     
     const { amount } = useSelector((state: RootState)=>state.amountitems);
+    const dispatch = useDispatch()
+    
+    useEffect(()=>{
+        dispatch(getItemsCart() as any)
+    },[])
 
     return(       
         <ContainerCart>

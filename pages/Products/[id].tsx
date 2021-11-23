@@ -1,6 +1,6 @@
 import ReactStars from 'react-stars'
 
-import React, {  useState  } from 'react'
+import React, {  useEffect, useState  } from 'react'
 
 import { GetServerSideProps } from "next";
 
@@ -26,9 +26,15 @@ import {
 
 import { addToCart } from '../../components/ShoppingCart';
 import { useDispatch } from 'react-redux';
+import { iWines } from '../Home';
+
+import api from '../../documents/vinhos.json'
 
 export default function Products(props:ProductsProps){
     const [qtd, setQtd] = useState(1);
+
+    const [wines, setWines] = useState<iWines>()
+
 
     function add(){
         setQtd(qtd+1);
@@ -40,6 +46,12 @@ export default function Products(props:ProductsProps){
     }
 
     const dispatch = useDispatch()
+    
+
+    useEffect(()=>{
+        const vinho = api.find(wine => wine.Id == props.id)        
+        setWines(vinho);
+    }, [])
 
     return (
         <ContainerWineInfo>
@@ -49,45 +61,52 @@ export default function Products(props:ProductsProps){
             </header>
             <ContentWineInfo>
                 <LeftContent>
-                    <img src="/Wine2.svg" alt="garrafa do vinho" />
+                    <img src={wines?.Image} alt="garrafa do vinho" />
                 </LeftContent>
                 <RightContent>
                     <LocationWine>
                         <h4>Vinhos</h4>
                         <img src="/arrowRight.svg" alt="seta para direita" />
-                        <h4>Estados Unidos</h4>
+                        <h4>{wines?.Country}</h4>
                         <img src="/arrowRight.svg" alt="seta para direita" />
-                        <h4>Califórnia</h4>
+                        <h4>{wines?.State}</h4>
                     </LocationWine>
                     <DetailsWine>
-                        <h1>Apothic Red 2019</h1>
+                        <h1>{wines?.Name}</h1>
                         <div>
                             <img src="/pais.svg" alt="bandeira do país" />
-                            <p>Estados Unidos</p> 
-                            <p>Tinto</p> 
-                            <p>Meio Seco/Demi-Sec</p>
-                            <p>750 ml</p>
+                            <p>{wines?.Country}</p> 
+                            <p>{wines?.Type}</p> 
+                            <p>{wines?.Classification}</p>
+                            <p>{wines?.Size}</p>
                             <div>
                                 <ReactStars
                                     count={5}
-                                    value={4}
+                                    value={wines?.Rating}
                                     size={20}                          
                                     color2={'#ffd700'} 
                                     edit={false}
                                 />
                             </div>
                             
-                            <p>(2)</p>
+                            <p>({wines?.Avaliations})</p>
                         </div>
                     </DetailsWine>
                     <img src="/Wine2.svg" alt="garrafa do vinho" />
                     <PriceWine>
-                        <h2><span>R$</span>63,<span>67</span></h2>
-                        <h3>NÃO SÓCIO R$ 120,95/UN.</h3>
+                        {
+                        
+                            <h2>
+                                <span>R$</span>
+                                {wines?.PriceMember.substr(0, wines?.PriceMember.indexOf(","))}
+                                <span>{wines?.PriceMember.substr(wines?.PriceMember.indexOf(","))}</span>
+                            </h2>
+                        }
+                        <h3>NÃO SÓCIO R$ {wines?.PriceNotMember}/UN.</h3>
                     </PriceWine>
                     <CommentsWine>
                         <h3>Comentário do Sommelier</h3>
-                        <p>Produzido no terroir californiano, esse tinto mescla as variedades Zinfandel, Syrah, Cabernet Sauvignon e Merlot. Apothic é um vinho inspirado nas antigas Apothecas (adegas subterrâneas), um lugar misterioso onde há mais de 800 anos os viticultores misturavam e armazenavam seus cobiçados vinhos.</p>
+                        <p>{wines?.SommelierComment}</p>
                     </CommentsWine>
                     <AddOnCart>
                         <div>
@@ -101,10 +120,10 @@ export default function Products(props:ProductsProps){
             </ContentWineInfo>
             <FooterMobile>
                 <section>
-                    <span>15% OFF</span>
-                    <h2>R$ 30.007,40</h2>
-                    <h1>R$ <strong>28.000,00</strong></h1>
-                    <h3>PREÇO NÃO-SÓCIO R$ 29.999,90</h3>
+                    <span>{wines?.Off} OFF</span>
+                    <h2>R$ {wines?.OldValue}</h2>
+                    <h1>R$ <strong>{wines?.PriceMember}</strong></h1>
+                    <h3>PREÇO NÃO-SÓCIO R$ {wines?.PriceNotMember}</h3>
                 </section>
                 
                 <Button onClick={() => addToCart(1, dispatch)}>Adicionar</Button>

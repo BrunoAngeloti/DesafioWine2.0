@@ -51,6 +51,9 @@ export const LeftContent = styled.div`
     width: 50%;
     align-items: center;
     justify-content: center;
+    img{
+        width: 100%;
+    }
     @media(max-width: 1210px){
         width: 40%;
     }
@@ -102,7 +105,7 @@ export const LocationWine = styled.span`
 export const DetailsWine = styled.div`
     display: flex;
     flex-direction: column;
-
+    
     h1{
         color: #111111;
         font-size: 2rem;
@@ -119,7 +122,6 @@ export const DetailsWine = styled.div`
         align-items: center;
         flex-direction: row;
         font-weight: 400;
-        
         p{
             margin:0px 8px 0px 8px;
             @media(max-width: 1020px){
@@ -133,6 +135,8 @@ export const DetailsWine = styled.div`
         }
         @media(max-width: 1020px){
             margin-top: 10px;
+            align-items: center;
+            justify-content: center;
         }
     }
 

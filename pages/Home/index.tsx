@@ -1,12 +1,40 @@
 import type { NextPage } from 'next'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CardWine } from '../../components/CardWine'
 import { Pagination } from '../../components/Pagination'
 
 import { Search, Items, ContentHome, Filter, Wines } from './style'
 
+import api from '../../documents/vinhos.json'
+
+export interface iWines{ 
+  Id: number,
+  Image: string,
+  Name: string,
+  OldValue: string,
+  Off: string,
+  PriceMember: string,
+  PriceNotMember: string,
+  Type: string,
+  Classification: string,
+  Size: string,
+  Rating: number,
+  Avaliations: number,
+  Country: string,
+  State: string,
+  CountryFlag: string,
+  SommelierComment: string
+}
+
 export const Home: NextPage = () => {
+
+  const [wines, setWines] = useState<Array<iWines>>([])
+
+  useEffect(()=>{
+    setWines(api);
+  }, [])
+
   return (
     
     <ContentHome>
@@ -40,12 +68,13 @@ export const Home: NextPage = () => {
       <Items>
         <h3><strong>49</strong> produtos encontrados</h3>
         <Wines>
-          <CardWine />
-          <CardWine />
-          <CardWine />
-          <CardWine />
-          <CardWine />
-          <CardWine />
+          {
+            wines.map(wine => {
+              return (
+                <CardWine key={wine.Id} wine={wine}/>
+              )
+            })
+          }
         </Wines>
       <Pagination />
       </Items>

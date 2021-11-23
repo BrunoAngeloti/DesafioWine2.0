@@ -7,12 +7,3 @@ export const getItemsCart = () => {
         dispatch({ type: 'GET_AMOUNT_ITEMS', payload: {amount: amount} })
     }
 }
-
-/*export const addToCart = (qtdRequested:number) => {  
-    return  (dispatch:Dispatch) => {
-        const aux = localStorage.getItem('shoppingCart')
-        var qtd = (aux? parseInt(aux)+qtdRequested : qtdRequested);
-        localStorage.setItem('shoppingCart', qtd.toString());
-        dispatch(getItemsCart())
-    }
-}*/
