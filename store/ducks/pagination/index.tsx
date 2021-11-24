@@ -3,7 +3,7 @@ import { createAction, createReducer } from "@reduxjs/toolkit"
 const INITIAL_STATE = {
     numItems: 0,
     ItemsPerPage: 6,
-    currentPage: 0
+    currentPage: 0,
 }
 
 export const getPagination = createAction('GET_PAGINATION_ITEMS')

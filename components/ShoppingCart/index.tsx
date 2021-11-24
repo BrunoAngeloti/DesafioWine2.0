@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useState } from 'react'
+import React, { FunctionComponent, useEffect } from 'react'
 
 import { ContainerCart } from './style'
 
@@ -11,8 +11,10 @@ import { Dispatch } from '@reduxjs/toolkit'
 
 export function addToCart(qtdRequested:number, dispatch:Dispatch){   
     const aux = localStorage.getItem('shoppingCart')
+
     var qtd = (aux? parseInt(aux)+qtdRequested : qtdRequested);
     localStorage.setItem('shoppingCart', qtd.toString());
+
     dispatch(getItemsCart() as any)
 }
 

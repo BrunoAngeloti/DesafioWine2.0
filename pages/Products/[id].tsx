@@ -35,7 +35,6 @@ export default function Products(props:ProductsProps){
 
     const [wines, setWines] = useState<iWines>()
 
-
     function add(){
         setQtd(qtd+1);
     }
@@ -47,9 +46,8 @@ export default function Products(props:ProductsProps){
 
     const dispatch = useDispatch()
     
-
     useEffect(()=>{
-        const vinho = api.find(wine => wine.Id == props.id)        
+        const vinho = api.Wines.find(wine => wine.Id == props.id)        
         setWines(vinho);
     }, [])
 

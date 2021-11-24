@@ -1,5 +1,5 @@
 import Router from 'next/router'
-import React, { FunctionComponent, useEffect } from 'react'
+import React, { FunctionComponent } from 'react'
 
 import { ContainerCard, ContentCard, Discount, Member, NotMember } from './style'
 
@@ -13,11 +13,12 @@ interface iCardWine {
 
 export const CardWine: FunctionComponent<iCardWine> = ({wine}:iCardWine) => {
 
+    const dispatch = useDispatch()
+
     function handleInfoPage(){
         Router.push(`/Products/${wine.Id}`)        
     }
-    const dispatch = useDispatch()
-
+    
     const PriceMember = wine.PriceMember.split(",")
     
     return(

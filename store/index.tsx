@@ -17,5 +17,3 @@ export default configureStore({
 })
 
 export type RootState = ReturnType<typeof rootReducer>
-
-//export default createStore(reducer)

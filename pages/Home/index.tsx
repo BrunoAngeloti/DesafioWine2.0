@@ -1,4 +1,4 @@
-import type { GetServerSideProps, NextPage } from 'next'
+import type { NextPage } from 'next'
 
 import React, { useEffect, useState } from 'react'
 import { CardWine } from '../../components/CardWine'
@@ -33,6 +33,7 @@ export interface iWines{
 export const Home: NextPage = () => {
 
   const [limitedWines, setlimitedWines] = useState <Array<iWines>>([]);
+  const [wines, setWines] = useState <Array<Array<iWines>>>([]);
 
   const { ItemsPerPage, currentPage, numItems } = useSelector((state: RootState)=>state.pagination);
   const { min, max } = useSelector((state: RootState)=>state.pricesfilter);
@@ -49,16 +50,38 @@ export const Home: NextPage = () => {
   }
 
   useEffect(()=>{
-    const wineAux = max === 0 && min === 0 ? 
-      api : 
-      api.filter(wine => (stringToNumber(wine.PriceMember) > min && stringToNumber(wine.PriceMember) <= max) )
-    
-    setlimitedWines(wineAux.slice(ItemsPerPage*currentPage, ItemsPerPage*(currentPage+1)));
-    dispatch({ type: 'CHANGE_NUM_ITEMS', payload: wineAux.length })
+    if(max === 0 && min === 0){
+      if(wines[currentPage] === undefined){
+        const wineAux = api.Wines.slice(ItemsPerPage*currentPage, ItemsPerPage*(currentPage+1))
+  
+        let arrayAux = [...wines]
+        arrayAux[currentPage] = wineAux;
+        setWines(arrayAux)
+  
+        setlimitedWines(wineAux);
+      }else{
+        setlimitedWines(wines[currentPage]);
+      }
+      dispatch({ type: 'CHANGE_NUM_ITEMS', payload: api.QtdItems }) 
+    }else{
+      const wineAux = api.Wines.filter(wine => (stringToNumber(wine.PriceMember) > min && stringToNumber(wine.PriceMember) <= max) )
+      setlimitedWines(wineAux.slice(ItemsPerPage*currentPage, ItemsPerPage*(currentPage+1)));
+      dispatch({ type: 'CHANGE_NUM_ITEMS', payload: wineAux.length })
+    }   
   }, [currentPage, min, max])
 
+  useEffect(()=>{   
+    const wineAux = api.Wines.slice(ItemsPerPage*currentPage, ItemsPerPage*(currentPage+1)) 
+
+    let arrayAux = [...wines]
+    arrayAux[currentPage] = wineAux;
+    setWines(arrayAux)
+  
+    setlimitedWines(wineAux);
+    dispatch({ type: 'CHANGE_NUM_ITEMS', payload: api.QtdItems }) 
+  }, [])
+
   return (
-    
     <ContentHome>
       <Search>
         <h2>Refine sua busca</h2>
@@ -68,16 +91,12 @@ export const Home: NextPage = () => {
       <Items>
         <h3><strong>{numItems}</strong> produtos encontrados</h3>
         <Wines>
-          {
-            limitedWines.map(wine => {
-              return (
-                <CardWine key={wine.Id} wine={wine}/>
-              )
-            })
-          }
-          {
-            limitedWines.length === 0 && <h1>Não temos vinhos para mostrar :(</h1>
-          }
+          {limitedWines?.map(wine => {
+            return (
+              <CardWine key={wine.Id} wine={wine}/>
+            )
+          })}
+          {limitedWines?.length === 0 && <h1>Não temos vinhos para mostrar :(</h1>}
         </Wines>
       <Pagination />
       </Items>

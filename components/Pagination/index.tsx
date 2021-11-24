@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Interface } from 'readline'
 import { RootState } from '../../store'
 
 import { 
@@ -30,12 +29,13 @@ export const Pagination: FunctionComponent = () => {
         setNumPage(Math.ceil(numItems/ItemsPerPage));
         dispatch({ type: 'CHANGE_CURRENT_PAGE', payload: page })
         scrollToTop()
-
     },[page, numItems])
 
     async function changeToPage(num:number){
-        setPage(num);       
+        setPage(num);    
+           
     }
+    
     async function changePageToPage(num:number){
         const newPage = page+num;
         setPage(newPage);       
@@ -52,6 +52,7 @@ export const Pagination: FunctionComponent = () => {
             return page < (idx - 2) ?  true : false
         return
     }
+
     function EllipsisBegin(idx:number){
         if(idx === 0)
             return page > (idx + 2) ? true : false
