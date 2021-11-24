@@ -50,8 +50,11 @@ export const Home: NextPage = () => {
   }
 
   useEffect(()=>{
+    // Verifica se o filtro foi aplicado
     if(max === 0 && min === 0){
+      // Verifica se ele ja fez a requisição
       if(wines[currentPage] === undefined){
+        // Se não fez a requisição, faz apenas a parcela indicada e limita a visualizacao
         const wineAux = api.Wines.slice(ItemsPerPage*currentPage, ItemsPerPage*(currentPage+1))
   
         let arrayAux = [...wines]
@@ -60,26 +63,21 @@ export const Home: NextPage = () => {
   
         setlimitedWines(wineAux);
       }else{
-        setlimitedWines(wines[currentPage]);
+        // Se ja fez a requisição, apenas mostre
+        setlimitedWines(wines[currentPage]);     
       }
+
       dispatch({ type: 'CHANGE_NUM_ITEMS', payload: api.QtdItems }) 
     }else{
+      // Se o filtro foi aplicado, pega todos os vinhos da requisição e filtra pelo preço
       const wineAux = api.Wines.filter(wine => (stringToNumber(wine.PriceMember) > min && stringToNumber(wine.PriceMember) <= max) )
+
+      // Limita a visualização e altera o valor de numero de itens total
       setlimitedWines(wineAux.slice(ItemsPerPage*currentPage, ItemsPerPage*(currentPage+1)));
       dispatch({ type: 'CHANGE_NUM_ITEMS', payload: wineAux.length })
     }   
+    
   }, [currentPage, min, max])
-
-  useEffect(()=>{   
-    const wineAux = api.Wines.slice(ItemsPerPage*currentPage, ItemsPerPage*(currentPage+1)) 
-
-    let arrayAux = [...wines]
-    arrayAux[currentPage] = wineAux;
-    setWines(arrayAux)
-  
-    setlimitedWines(wineAux);
-    dispatch({ type: 'CHANGE_NUM_ITEMS', payload: api.QtdItems }) 
-  }, [])
 
   return (
     <ContentHome>

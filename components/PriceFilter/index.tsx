@@ -10,6 +10,7 @@ export const PriceFilter: FunctionComponent = () => {
     const { min, max } = useSelector((state: RootState)=>state.pricesfilter);
 
     function handleChangeFilter(minimo:number, maximo:number){  
+        dispatch({ type: 'CHANGE_CURRENT_PAGE', payload: 0 })
         if(min === 0 && max === 0) {
             dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: minimo, max: maximo} })
         }else{
