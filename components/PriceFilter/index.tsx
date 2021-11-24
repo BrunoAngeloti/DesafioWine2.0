@@ -1,128 +1,50 @@
-import React, { FunctionComponent, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { ChangeEvent, ChangeEventHandler, FunctionComponent, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../store'
 
 import { Filter } from './style'
 
 export const PriceFilter: FunctionComponent = () => {
     const dispatch = useDispatch()
-    const [checked1, setChecked1] = useState(false)
-    const [checked2, setChecked2] = useState(false)
-    const [checked3, setChecked3] = useState(false)
-    const [checked4, setChecked4] = useState(false)
-    const [checked5, setChecked5] = useState(false)
-    const [checked6, setChecked6] = useState(false)
 
-    function handleChangeFilter(min:number, max:number, selected:string){   
-        if(selected === "1")  {
-            if(!checked1){
-                dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: min, max: max} })
-                setChecked1(true)
-                setChecked2(false)
-                setChecked3(false)
-                setChecked4(false)
-                setChecked5(false)
-                setChecked6(false)
-            }else{
+    const { min, max } = useSelector((state: RootState)=>state.pricesfilter);
+
+    function handleChangeFilter(minimo:number, maximo:number){  
+        if(min === 0 && max === 0) {
+            dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: minimo, max: maximo} })
+        }else{
+            if(min === minimo){
                 dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: 0, max: 0} })
-                setChecked1(false)
-            }
-        }
-        if(selected === "2")  {
-            if(!checked2){
-                dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: min, max: max} })
-                setChecked1(false)
-                setChecked2(true)
-                setChecked3(false)
-                setChecked4(false)
-                setChecked5(false)
-                setChecked6(false)
             }else{
-                dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: 0, max: 0} })
-                setChecked2(false)
+                dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: minimo, max: maximo} })
             }
-        }
-        if(selected === "3")  {
-            if(!checked3){
-                dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: min, max: max} })
-                setChecked1(false)
-                setChecked2(false)
-                setChecked3(true)
-                setChecked4(false)
-                setChecked5(false)
-                setChecked6(false)
-            }else{
-                dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: 0, max: 0} })
-                setChecked3(false)
-            }
-        }
-        if(selected === "4")  {
-            if(!checked4){
-                dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: min, max: max} })
-                setChecked1(false)
-                setChecked2(false)
-                setChecked3(false)
-                setChecked4(true)
-                setChecked5(false)
-                setChecked6(false)
-            }else{
-                dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: 0, max: 0} })
-                setChecked4(false)
-            }
-        }
-        if(selected === "5")  {
-            if(!checked5){
-                dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: min, max: max} })
-                setChecked1(false)
-                setChecked2(false)
-                setChecked3(false)
-                setChecked4(false)
-                setChecked5(true)
-                setChecked6(false)
-            }else{
-                dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: 0, max: 0} })
-                setChecked5(false)
-            }
-        }
-        if(selected === "6")  {
-            if(!checked6){
-                dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: min, max: max} })
-                setChecked1(false)
-                setChecked2(false)
-                setChecked3(false)
-                setChecked4(false)
-                setChecked5(false)
-                setChecked6(true)
-            }else{
-                dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: 0, max: 0} })
-                setChecked6(false)
-            }
-        }      
+        }     
     }
 
     return(       
         <Filter>
             <div>
-                <input checked={checked1} onClick={() => handleChangeFilter(0,40, "1")} type="radio" id="40" value="40"/>
+                <input readOnly checked={min === 0 && max===40} onClick={() => handleChangeFilter(0,40)} type="radio" id="40" value="option1"/>
                 <label htmlFor="40">Até R$40</label>
             </div>
             <div>
-                <input checked={checked2} onClick={() => handleChangeFilter(40,60, "2")} type="radio" id="60" value="60"/>
+                <input readOnly checked={min === 40} onClick={() => handleChangeFilter(40,60)} type="radio" id="60" value="option2"/>
                 <label htmlFor="60">R$40 A R$60</label>
             </div>
             <div>
-                <input checked={checked3} onClick={() => handleChangeFilter(60,100, "3")} type="radio" id="80" value="80"/>
+                <input readOnly checked={min === 60} onClick={() => handleChangeFilter(60,100)} type="radio" id="80" value="option3"/>
                 <label htmlFor="80">R$60 A R$100</label>
             </div>
             <div>
-                <input checked={checked4} onClick={() => handleChangeFilter(100,200, "4")} type="radio" id="100" value="100"/>
+                <input readOnly checked={min === 100} onClick={() => handleChangeFilter(100,200)} type="radio" id="100" value="option4"/>
                 <label htmlFor="100">R$100 A R$200</label>
             </div>
             <div>
-                <input checked={checked5} onClick={() => handleChangeFilter(200,500, "5")} type="radio" id="200" value="200"/>
+                <input readOnly checked={min === 200} onClick={() => handleChangeFilter(200,500)} type="radio" id="200" value="option5"/>
                 <label htmlFor="200">R$200 A R$500</label>
             </div>
             <div>
-                <input checked={checked6} onClick={() => handleChangeFilter(500,9999999, "6")} type="radio" id="500" value="500"/>
+                <input readOnly checked={min === 500} onClick={() => handleChangeFilter(500,9999999)} type="radio" id="500" value="option6"/>
                 <label htmlFor="500">Acima de R$500</label>
             </div>
         </Filter>                 
