@@ -23,7 +23,7 @@ import {
     Button,
     AddOnCart,
     FooterMobile,
-} from './style'
+} from '../../styles/pages/Products/style'
 
 import { addToCart } from '../../components/ShoppingCart';
 import { useDispatch } from 'react-redux';

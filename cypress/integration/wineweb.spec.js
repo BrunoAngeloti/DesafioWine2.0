@@ -6,23 +6,24 @@ describe('Wine', ()=>{
         cy.visit('http://localhost:3000/')
         cy.get('.style__ContainerCart-sc-bkd84-0 > span').should("contain", 0)
 
-        cy.get('.style__Wines-sc-mhyjcg-3 > :nth-child(1) > button').click()
+        cy.get('.style__Wines-sc-184jf42-3 > :nth-child(1) > button').click()
 
         cy.get('.style__ContainerCart-sc-bkd84-0 > span').should("contain", 1)
 
         cy.get(':nth-child(1) > .style__ContentCard-sc-1ui9u84-1').click()
 
         for(let n = 0; n < 4; n ++){
-            cy.get('.style__AddOnCart-sc-ei19f7-8 > div > :nth-child(3)').click()
+            cy.get('.style__AddOnCart-sc-lj51xx-8 > div > :nth-child(3)').click()
         }
 
+
         cy.get('.style__ContainerCart-sc-bkd84-0 > span').should("contain", 1)
-        cy.get('.style__AddOnCart-sc-ei19f7-8 > .style__Button-sc-ei19f7-9').click()
+        cy.get('.style__AddOnCart-sc-lj51xx-8 > .style__Button-sc-lj51xx-9').click()
         cy.get('.style__ContainerCart-sc-bkd84-0 > span').should("contain", 6)
 
         cy.viewport(550, 750)
 
-        cy.get('.style__FooterMobile-sc-ei19f7-10 > .style__Button-sc-ei19f7-9').click()
+        cy.get('.style__FooterMobile-sc-lj51xx-10 > .style__Button-sc-lj51xx-9').click()
         cy.get('.style__ContainerCart-sc-bkd84-0 > span').should("contain", 7)
 
         cy.get('[src="/ic-line.svg"]').click()

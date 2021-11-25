@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { CardWine } from '../../components/CardWine'
 import { Pagination } from '../../components/Pagination'
 
-import { Search, Items, ContentHome, Wines } from './style'
+import { Search, Items, ContentHome, Wines } from '../../styles/pages/Home/style'
 
 import api from '../../documents/vinhos.json'
 import { useDispatch, useSelector } from 'react-redux'
