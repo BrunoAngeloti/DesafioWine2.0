@@ -30,7 +30,7 @@ export interface iWines{
   SommelierComment: string
 }
 
-export const Home: NextPage = () => {
+export default function Home(){
 
   const [limitedWines, setlimitedWines] = useState <Array<iWines>>([]);
   const [wines, setWines] = useState <Array<Array<iWines>>>([]);
