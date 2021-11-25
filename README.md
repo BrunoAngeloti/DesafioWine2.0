@@ -28,6 +28,5 @@ yarn dev
 - Em seguida, o Cypress irá executar, então basta rodá-lo :)
 <br>
 
-```diff
-- Feito com ❤️ por Bruno Angeloti
-```
+
+# Feito com ❤️ por Bruno Angeloti
