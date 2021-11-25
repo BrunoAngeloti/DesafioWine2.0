@@ -5,6 +5,7 @@ export const ContainerCard = styled.div`
     flex-direction: column;
     gap: 15px;
     width: 260px;
+    margin-bottom: 5px;
 
     @media(max-width: 730px){
         width: 200px;

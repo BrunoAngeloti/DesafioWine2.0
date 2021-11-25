@@ -30,8 +30,8 @@ export function addToCart(qtdRequested:number, dispatch:Dispatch){
       })
       
     Toast.fire({
-    icon: 'success',
-    title: 'Item adicionado ao carrinho'
+        icon: 'success',
+        title: 'Item adicionado ao carrinho'
     })
 
     dispatch(getItemsCart() as any)

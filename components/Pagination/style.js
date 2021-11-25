@@ -25,7 +25,6 @@ export const Buttons = styled.div`
 `
 
 export const ButtonPag = styled.button`
-    transition: 0.4s;
     width: ${props => props.Next ? "80px" : "40px"};
     height: 40px;
     border: 2px solid #B6116E;
@@ -33,6 +32,15 @@ export const ButtonPag = styled.button`
     border-radius: 3px;
     background-color: ${props => props.Selected ? "#B6116E" : "transparent"};
     cursor: pointer;
+    &:hover{
+        background-color: #E43FA0;
+        border-color: #E43FA0;
+        color: #FFFFFF;
+    }
+    @media (max-width: 360px){
+        height: 30px;
+        width: ${props => props.Next ? "60px" : "30px"};
+    }
 `
 
 export const ButtonPass = styled.button`  

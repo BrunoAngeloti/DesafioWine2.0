@@ -63,24 +63,22 @@ export const Pagination: FunctionComponent = () => {
         <ContainerPagination numeroItems={numItems}>
             <Buttons>
                 {page !== 0 && <ButtonPass onClick={()=>changePageToPage(-1)}>{'<< '}Anterior</ButtonPass>}
-                {
-                    [...Array(numPage)].map((pages, idx) => {
-                        return(
-                            visible(idx) && 
-                            <div key={idx}>
-                                {EllipsisFinal(idx) && <span>...</span>}
-                                <ButtonPag 
-                                    onClick={()=>changeToPage(idx)}
-                                    Selected={idx === page}
-                                    Next={idx === page+1}
-                                >
-                                    {idx+1}
-                                </ButtonPag>
-                                {EllipsisBegin(idx) && <span>...</span>}
-                            </div>
-                        )
-                    })
-                }
+                {[...Array(numPage)].map((pages, idx) => {
+                    return(
+                        visible(idx) && 
+                        <div key={idx}>
+                            {EllipsisFinal(idx) && <span>...</span>}
+                            <ButtonPag 
+                                onClick={()=>changeToPage(idx)}
+                                Selected={idx === page}
+                                Next={idx === page+1}
+                            >
+                                {idx+1}
+                            </ButtonPag>
+                            {EllipsisBegin(idx) && <span>...</span>}
+                        </div>
+                    )
+                })}
                 {(page+1) !== numPage && <ButtonPass onClick={()=>changePageToPage(1)}>Próximo{' >>'}</ButtonPass>}
             </Buttons>
         </ContainerPagination>  

@@ -79,7 +79,14 @@ export const Button = styled.button`
     ${props => props.selected &&`
         border-bottom: 2px solid rgba(209, 75, 143, 1);
         color: rgba(209, 75, 143, 1);
+        cursor: pointer;
     `}
+
+    @media(max-width: 1020px){
+        width: 80%;
+        height:70px !important;
+        justify-content:center;
+    }
 `
 
 export const RightContent = styled.div`
@@ -105,6 +112,46 @@ export const Profile = styled.img`
     @media(max-width: 1020px){
         display: none;
     }
+`
+
+export const MenuMobile = styled.div`
+    height: 100vh;
+    width: 320px;
+    background-color:white;
+    position:fixed;
+    left: -320px;
+    z-index: 3;
+    display: flex;
+    transition: 0.4s;
+    box-shadow: 4px 0px 5px rgba(0, 0, 0,0.25);
+    padding: 20px;
+    img{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 20px;
+        width: 32px;
+    }
+
+    div{
+        display: flex;
+        justify-content: center;
+        flex-direction:column;
+        align-items: center;
+        img{
+            width: 64px;
+            position: relative;
+        }
+        width:100%;
+    }
+
+    @media(max-width: 1020px){
+        display: flex;
+    }
+
+    ${props => props.show &&`
+        left: 0px;
+    `}
 `
 
 

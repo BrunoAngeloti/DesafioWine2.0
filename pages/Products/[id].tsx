@@ -3,6 +3,7 @@ import ReactStars from 'react-stars'
 import React, {  useEffect, useState  } from 'react'
 
 import { GetServerSideProps } from "next";
+import Head from 'next/head'
 
 import Router from 'next/router'
 
@@ -53,6 +54,9 @@ export default function Products(props:ProductsProps){
 
     return (
         <ContainerWineInfo>
+            <Head>
+                <title>Wine | {wines?.Name}</title>
+            </Head>
             <header onClick={()=> {Router.back()}} >
                 <img src="/back.svg" alt="seta de voltar"/>
                 <span>Voltar</span>
