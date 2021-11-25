@@ -63,10 +63,11 @@ export const Wines = styled.div`
     display: flex;
     width: 100%;
     height: 100%;
-    justify-content: center;
+    justify-content: center ;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
+    //align-items: center;
+    align-items: stretch;
     gap: 30px;
     @media(max-width: 470px){
         gap: 20px;

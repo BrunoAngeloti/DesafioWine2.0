@@ -6,6 +6,7 @@ export const ContainerCard = styled.div`
     gap: 15px;
     width: 260px;
     margin-bottom: 5px;
+    
 
     @media(max-width: 730px){
         width: 200px;
@@ -43,9 +44,11 @@ export const ContainerCard = styled.div`
 
 export const ContentCard = styled.div`
     display: flex;
+    height: 100%;
     background-color:white;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 15px 5px;
     cursor: pointer;
     box-shadow: 0px 9.73384px 14.6008px rgba(0, 0, 0, 0.1);
@@ -79,6 +82,7 @@ export const Discount = styled.div`
     flex-direction: row;
     padding: 0;
     gap: 10px;
+    align-items: center;
     p{
         margin: 0;
         text-decoration: line-through;
@@ -119,7 +123,6 @@ export const Member = styled.p`
     color: #1D1D1B;
     font-weight: bold;
     font-size: 0.9rem;
-
     strong{
         color: #B6116E;
 
