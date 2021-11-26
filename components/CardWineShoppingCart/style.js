@@ -16,8 +16,8 @@ export const LeftContent = styled.div`
     width: 30%;
     justify-content: center;
     img{
-        width: auto;
-        height: auto;
+        width: 100%;
+        height: 100%;
     }
     
 `

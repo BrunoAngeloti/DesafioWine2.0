@@ -20,7 +20,7 @@ export const ContainerCart = styled.div`
 `
 
 export const MenuCart = styled.div`
-    height: 100vh;
+    height: 100%;
     width: 350px;
     background-color:white;
     position:fixed;
