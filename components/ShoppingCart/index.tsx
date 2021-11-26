@@ -1,6 +1,15 @@
-import React, { FunctionComponent, useEffect } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 
-import { ContainerCart } from './style'
+import { 
+    ContainerCart, 
+    BackgroundCart, 
+    MenuCart,
+    HeaderMenuCart,
+    ContentMenuCart,
+    FooterMenuCart,
+    TopSideFooter,
+    BotSideFooter
+} from './style'
 
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
@@ -10,6 +19,7 @@ import { getItemsCart } from '../../store/fetchActions'
 import { Dispatch } from '@reduxjs/toolkit'
 
 import Swal from 'sweetalert2'
+import { CardWineShoppingCart } from '../CardWineShoppingCart'
 
 export function addToCart(qtdRequested:number, dispatch:Dispatch){   
     const aux = localStorage.getItem('shoppingCart')
@@ -38,20 +48,52 @@ export function addToCart(qtdRequested:number, dispatch:Dispatch){
 }
 
 export const ShoppingCart: FunctionComponent = () => {
-    
+    const [menuMobile, setMenuMobile] = useState(false)
     const { amount } = useSelector((state: RootState)=>state.amountitems);
     
     const dispatch = useDispatch()
     
     useEffect(()=>{
         dispatch(getItemsCart() as any)
+
     },[])
 
     return(       
-        <ContainerCart>
-            <img src="/winebox.svg" alt="Icone do carrinho de compras" />
-            <span>{amount}</span>
-        </ContainerCart>                 
+        <>
+            <BackgroundCart onClick={() => {setMenuMobile(!menuMobile)}} show={menuMobile}/>
+            <MenuCart show={menuMobile}>
+                <HeaderMenuCart>
+                    <img onClick={() => {setMenuMobile(!menuMobile)}} src="/x.svg" alt="fechar aba" />
+                    <h4>WineBox({amount})</h4>
+                </HeaderMenuCart>
+                <ContentMenuCart>   
+                    <CardWineShoppingCart />
+                    <CardWineShoppingCart />
+                    <CardWineShoppingCart />
+                    <CardWineShoppingCart />
+                    <CardWineShoppingCart />
+                </ContentMenuCart>
+                <FooterMenuCart>
+                    <TopSideFooter>
+                        <div>
+                            <h4>Total</h4>
+                            <span>R$177,40</span>
+                        </div>
+                        <p>Ganhe até <strong> R$6,39 </strong> de cashback nesta compra</p>
+                        <span>Uso do cashback exclusivo no app Wine.</span>
+                    </TopSideFooter>
+                    <BotSideFooter>
+                        <button>
+                            Finalizar pedido
+                        </button>
+                    </BotSideFooter>
+                </FooterMenuCart>
+            </MenuCart>
+            <ContainerCart onClick={() => {setMenuMobile(!menuMobile)}}>
+                <img src="/winebox.svg" alt="Icone do carrinho de compras" />
+                <span>{amount}</span>
+            </ContainerCart>       
+        </>          
     )
     
 }

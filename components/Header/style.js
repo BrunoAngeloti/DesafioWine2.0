@@ -110,7 +110,7 @@ export const MenuMobile = styled.div`
     width: 320px;
     background-color:white;
     position:fixed;
-    left: -320px;
+    left: -330px;
     z-index: 4;
     display: flex;
     transition: 0.4s;

@@ -49,4 +49,9 @@ describe('Wine', ()=>{
 
         cy.get('.style__Filter-sc-4wwmc8-0 > :nth-child(6)').click()
     })
+
+    it('devem poder abrir e fechar o carrinho', ()=>{
+        cy.get('.style__ContainerCart-sc-bkd84-0 > img').click()
+        cy.get('.style__HeaderMenuCart-sc-bkd84-2 > img').click()
+    })
 })
