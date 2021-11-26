@@ -48,5 +48,11 @@ export const ButtonPass = styled.button`
     border: none;
     background-color: transparent;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: 420px){
+        display: none;
+    }
 `
 

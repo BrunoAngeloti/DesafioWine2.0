@@ -7,7 +7,6 @@ export const ContentHome = styled.div`
     width: 100%;
     padding: 0px 50px;
     height: 100%;
-
     @media(max-width: 552px){
         padding: 0px 10px;
     }
@@ -28,7 +27,6 @@ export const Search = styled.div`
         color: #333333;
         font-weight: 600;
     }
-
     @media(max-width: 900px){
         display: none;
     }

@@ -35,8 +35,7 @@ export const CardWine: FunctionComponent<iCardWine> = ({wine}:iCardWine) => {
                     <strong> R$ <span>{PriceMember[0]}</span>,{PriceMember[1]}</strong>
                 </Member>  
                 <NotMember>
-                    NÃO SÓCIO
-                    <span>R$ {wine.PriceNotMember}</span>
+                    NÃO SÓCIO <span>R$ {wine.PriceNotMember}</span>
                 </NotMember>
             </ContentCard>
             <button onClick={() => addToCart(1, dispatch)}>

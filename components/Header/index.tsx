@@ -7,7 +7,8 @@ import {
     RightContent, 
     Button, 
     Profile,
-    MenuMobile
+    MenuMobile,
+    BackgroundMobile
 } from './style'
 
 import { ShoppingCart } from '../ShoppingCart'
@@ -23,6 +24,7 @@ export const Header: FunctionComponent = () => {
 
     return(
         <>
+            <BackgroundMobile show={menuMobile}/>
             <MenuMobile show={menuMobile}>
                 <img onClick={() => {setMenuMobile(!menuMobile)}} src="/x.svg" alt="fechar aba" />
                 <div>

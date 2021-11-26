@@ -7,11 +7,9 @@ export const ContainerCard = styled.div`
     width: 260px;
     margin-bottom: 5px;
     
-
     @media(max-width: 730px){
         width: 200px;
     }
-
     @media(max-width: 470px){
         width: 160px;
     }
@@ -21,7 +19,6 @@ export const ContainerCard = styled.div`
     @media(max-width: 350px){
         width: 115px;
     }
-
     button{
         background: #7EBC43;
         box-shadow: 0px 0.973384px 1.94677px rgba(0, 0, 0, 0.2);
@@ -52,11 +49,9 @@ export const ContentCard = styled.div`
     padding: 15px 5px;
     cursor: pointer;
     box-shadow: 0px 9.73384px 14.6008px rgba(0, 0, 0, 0.1);
-
     img{
         max-width: 150px;
     }
-
     @media(max-width: 470px){
         img{
             width: 100%;
@@ -72,9 +67,9 @@ export const ContentCard = styled.div`
         @media(max-width: 350px){
             font-size: 0.7rem;
         }
+        flex-grow: 1;
     }
     
-
 `
 
 export const Discount = styled.div`
@@ -113,7 +108,6 @@ export const Discount = styled.div`
         align-items: center;
         justify-content: center;
     }
-
     @media(max-width: 400px){
         flex-direction: column;
     }
@@ -123,9 +117,9 @@ export const Member = styled.p`
     color: #1D1D1B;
     font-weight: bold;
     font-size: 0.9rem;
+    
     strong{
         color: #B6116E;
-
         span{
             font-size: 1.8rem;
             @media(max-width: 470px){
@@ -156,6 +150,7 @@ export const NotMember = styled.p`
     color: #888888;
     font-weight: 600;
     margin:0;
+    
     @media(max-width: 470px){
         font-size: 0.8rem;
     }
@@ -167,5 +162,4 @@ export const NotMember = styled.p`
     @media(max-width: 350px){
         font-size: 0.6rem;
     }
-
 `

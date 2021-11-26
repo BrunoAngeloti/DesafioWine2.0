@@ -16,7 +16,6 @@ export const ContentHeader = styled.div`
     align-items: center;
     margin: 0 auto;
     height: 100%;
-
     @media(max-width: 420px){
         justify-content: space-evenly; 
         gap: 20px;
@@ -35,11 +34,9 @@ export const LeftContent = styled.div`
         @media(max-width: 420px){
              width: 60px;  
         }
-
         &:first-child{
             width: 30px;
             display: none;
-
             @media(max-width: 1020px){
                 display: flex;
             }
@@ -48,20 +45,17 @@ export const LeftContent = styled.div`
             }
         }
     }
-
     @media(max-width: 1020px){
         gap: 30px;
     }
     @media(max-width: 420px){
         gap: 20px; 
     }
-
     div {
         display: flex;
         flex-direction: row;
         gap: 40px;
         height:100% !important;
-
         @media(max-width: 1020px){
             display: none;
         }
@@ -75,13 +69,11 @@ export const Button = styled.button`
     height:100% !important;
     align-items: center;
     color: rgba(85, 85, 85, 1);
-
     ${props => props.selected &&`
         border-bottom: 2px solid rgba(209, 75, 143, 1);
         color: rgba(209, 75, 143, 1);
         cursor: pointer;
     `}
-
     @media(max-width: 1020px){
         width: 80%;
         height:70px !important;
@@ -100,7 +92,6 @@ export const RightContent = styled.div`
             width: 50px;  
         }
     }
-
     @media(max-width: 1020px){
         gap: 20px;
         margin-left: 20px;
@@ -120,7 +111,7 @@ export const MenuMobile = styled.div`
     background-color:white;
     position:fixed;
     left: -320px;
-    z-index: 3;
+    z-index: 4;
     display: flex;
     transition: 0.4s;
     box-shadow: 4px 0px 5px rgba(0, 0, 0,0.25);
@@ -132,7 +123,6 @@ export const MenuMobile = styled.div`
         margin: 20px;
         width: 32px;
     }
-
     div{
         display: flex;
         justify-content: center;
@@ -144,14 +134,24 @@ export const MenuMobile = styled.div`
         }
         width:100%;
     }
-
     @media(max-width: 1020px){
         display: flex;
     }
-
     ${props => props.show &&`
         left: 0px;
     `}
 `
 
-
+export const BackgroundMobile = styled.div`
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 3;
+    background-color: rgba(0,0,0,0.5);
+    transition: 0.4s;
+    ${props => props.show &&`
+        display: flex;
+    `}
+    overflow-y: hidden;
+`

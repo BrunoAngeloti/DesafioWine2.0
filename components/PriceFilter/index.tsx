@@ -19,7 +19,7 @@ export const PriceFilter: FunctionComponent = () => {
             }else{
                 dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: minimo, max: maximo} })
             }
-        }     
+        }             
     }
 
     return(       
