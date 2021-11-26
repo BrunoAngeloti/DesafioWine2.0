@@ -106,7 +106,7 @@ export const Profile = styled.img`
 `
 
 export const MenuMobile = styled.div`
-    height: 100vh;
+    height: 100%;
     width: 320px;
     background-color:white;
     position:fixed;

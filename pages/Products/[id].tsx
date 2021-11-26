@@ -115,7 +115,7 @@ export default function Products(props:ProductsProps){
                             <span>{qtd}</span>
                             <button onClick={add}>+</button>
                         </div>
-                        <Button onClick={() => addToCart(qtd, dispatch)}>Adicionar</Button>
+                        <Button onClick={() => addToCart(qtd, dispatch, wines)}>Adicionar</Button>
                     </AddOnCart>               
                 </RightContent>
             </ContentWineInfo>
@@ -127,7 +127,7 @@ export default function Products(props:ProductsProps){
                     <h3>PREÇO NÃO-SÓCIO R$ {wines?.PriceNotMember}</h3>
                 </section>
                 
-                <Button onClick={() => addToCart(1, dispatch)}>Adicionar</Button>
+                <Button onClick={() => addToCart(1, dispatch, wines)}>Adicionar</Button>
             </FooterMobile>
         </ContainerWineInfo> 
     )

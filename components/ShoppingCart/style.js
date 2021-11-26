@@ -148,3 +148,22 @@ export const BackgroundCart = styled.div`
         display: flex;
     `}
 `
+
+export const NotBuyYet = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    height:100%;
+    background-color:#F5F5F5;
+    h1{
+        color: #C0C0C0;
+        margin: 0;
+    }
+    h2{
+        color: #1D1D1B;
+        margin: 0;
+    }
+`
