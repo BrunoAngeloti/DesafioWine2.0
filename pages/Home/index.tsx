@@ -10,25 +10,9 @@ import api from '../../documents/vinhos.json'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store'
 import { PriceFilter } from '../../components/PriceFilter'
+import { stringToNumber } from '../../utils/stringUtils'
+import { iWines } from '../../interfaces/wines'
 
-export interface iWines{ 
-  Id: number,
-  Image: string,
-  Name: string,
-  OldValue: string,
-  Off: string,
-  PriceMember: string,
-  PriceNotMember: string,
-  Type: string,
-  Classification: string,
-  Size: string,
-  Rating: number,
-  Avaliations: number,
-  Country: string,
-  State: string,
-  CountryFlag: string,
-  SommelierComment: string
-}
 
 export default function Home(){
 
@@ -39,15 +23,6 @@ export default function Home(){
   const { min, max } = useSelector((state: RootState)=>state.pricesfilter);
 
   const dispatch = useDispatch()
-
-  function stringToNumber(value:string){
-    const split = value.split(",");
-    const leftContent = parseInt(split[0])
-    const rightContent = parseInt(split[1])
-    const result = leftContent + (rightContent/100)
-
-    return result
-  }
 
   function noApplyFilter(){
     return (max === 0 && min === 0)

@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
-import { iItemCart } from '../../components/ShoppingCart';
+import { iItemCart } from '../../interfaces/cart';
+
 
 export const getItemsCart = () => {
     return (dispatch:Dispatch) => {

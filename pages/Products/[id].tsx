@@ -25,33 +25,19 @@ import {
     FooterMobile,
 } from '../../styles/pages/Products/style'
 
-import { addToCart } from '../../components/ShoppingCart';
 import { useDispatch } from 'react-redux';
-import { iWines } from '../Home';
 
 import api from '../../documents/vinhos.json'
+import { addToCart } from '../../utils/cartUtils';
+import { iWines } from '../../interfaces/wines';
 
 export default function Products(props:ProductsProps){
     const [qtd, setQtd] = useState(1);
 
-    const [wines, setWines] = useState<iWines>()
-
-    function add(){
-        setQtd(qtd+1);
-    }
-
-    function sub(){
-        if(qtd > 1)
-            setQtd(qtd-1);
-    }
+    const wines:iWines | undefined = api.Wines.find(wine => wine.Id == props.id)
 
     const dispatch = useDispatch()
     
-    useEffect(()=>{
-        const vinho = api.Wines.find(wine => wine.Id == props.id)        
-        setWines(vinho);
-    }, [])
-
     return (
         <ContainerWineInfo>
             <Head>
@@ -111,9 +97,9 @@ export default function Products(props:ProductsProps){
                     </CommentsWine>
                     <AddOnCart>
                         <div>
-                            <button style={qtd === 1 ? {color: 'rgba(255, 255, 255, 0.2)'} : {}} onClick={sub}>-</button>
+                            <button disabled={qtd===1} style={qtd === 1 ? {color: 'rgba(255, 255, 255, 0.2)'} : {}} onClick={()=>setQtd(qtd-1)}>-</button>
                             <span>{qtd}</span>
-                            <button onClick={add}>+</button>
+                            <button onClick={()=>setQtd(qtd+1)}>+</button>
                         </div>
                         <Button onClick={() => addToCart(qtd, dispatch, wines)}>Adicionar</Button>
                     </AddOnCart>               

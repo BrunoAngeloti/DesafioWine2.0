@@ -35,17 +35,7 @@ export const Pagination: FunctionComponent = () => {
     useEffect(()=>{
         setPage(0)
     },[max])
-
-    async function changeToPage(num:number){
-        setPage(num);    
-           
-    }
     
-    async function changePageToPage(num:number){
-        const newPage = page+num;
-        setPage(newPage);       
-    }
-
     function visible(idx:number){
         if(idx === 0 || (idx+1) === numPage) return true;
         if(idx > (page - 2) && idx < (page + 2)) return true;
@@ -54,27 +44,27 @@ export const Pagination: FunctionComponent = () => {
 
     function EllipsisFinal(idx:number){
         if(idx===numPage-1)
-            return page < (idx - 2) ?  true : false
-        return
+            return page < (idx - 2)
+        return false
     }
 
     function EllipsisBegin(idx:number){
         if(idx === 0)
-            return page > (idx + 2) ? true : false
-        return
+            return page > (idx + 2)
+        return false
     }
 
     return(
         <ContainerPagination numeroItems={numItems}>
             <Buttons>
-                {page !== 0 && <ButtonPass onClick={()=>changePageToPage(-1)}>{'<< '}Anterior</ButtonPass>}
+                {page !== 0 && <ButtonPass onClick={()=>setPage(page-1)}>{'<< '}Anterior</ButtonPass>}
                 {[...Array(numPage)].map((pages, idx) => {
                     return(
                         visible(idx) && 
                         <div key={idx}>
                             {EllipsisFinal(idx) && <span>...</span>}
                             <ButtonPag 
-                                onClick={()=>changeToPage(idx)}
+                                onClick={()=>setPage(idx)}
                                 Selected={idx === page}
                                 Next={idx === page+1}
                             >
@@ -84,7 +74,7 @@ export const Pagination: FunctionComponent = () => {
                         </div>
                     )
                 })}
-                {(page+1) !== numPage && <ButtonPass onClick={()=>changePageToPage(1)}>Próximo{' >>'}</ButtonPass>}
+                {(page+1) !== numPage && <ButtonPass onClick={()=>setPage(page+1)}>Próximo{' >>'}</ButtonPass>}
             </Buttons>
         </ContainerPagination>  
     )

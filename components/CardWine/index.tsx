@@ -3,9 +3,10 @@ import React, { FunctionComponent } from 'react'
 
 import { ContainerCard, ContentCard, Discount, Member, NotMember } from './style'
 
-import { addToCart } from '../ShoppingCart'
 import { useDispatch } from 'react-redux'
-import { iWines } from '../../pages/Home'
+
+import { addToCart } from '../../utils/cartUtils'
+import { iWines } from '../../interfaces/wines'
 
 interface iCardWine { 
     wine: iWines
@@ -19,7 +20,7 @@ export const CardWine: FunctionComponent<iCardWine> = ({wine}:iCardWine) => {
         Router.push(`/Products/${wine.Id}`)        
     }
     
-    const PriceMember = wine.PriceMember.split(",")
+    const priceMember = wine.PriceMember.split(",")
     
     return(
         <ContainerCard>
@@ -32,7 +33,7 @@ export const CardWine: FunctionComponent<iCardWine> = ({wine}:iCardWine) => {
                 </Discount>
                 <Member>
                     SÓCIO WINE
-                    <strong> R$ <span>{PriceMember[0]}</span>,{PriceMember[1]}</strong>
+                    <strong> R$ <span>{priceMember[0]}</span>,{priceMember[1]}</strong>
                 </Member>  
                 <NotMember>
                     NÃO SÓCIO <span>R$ {wine.PriceNotMember}</span>

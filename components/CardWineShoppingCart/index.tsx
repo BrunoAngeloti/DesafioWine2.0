@@ -1,10 +1,12 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
-import { iWines } from '../../pages/Home'
 
 import { ContainerCard, LeftContent, RightContent, HeaderCardWine, FooterCardWine, AddMoreToCart, Price } from './style'
 
-import { addToCart, iItemCart, removeToCart } from '../ShoppingCart/index'
 import { useDispatch } from 'react-redux'
+
+import { stringToNumber } from '../../utils/stringUtils'
+import { addToCart, removeToCart } from '../../utils/cartUtils'
+import { iItemCart } from '../../interfaces/cart'
 
 interface iwineCart{ 
     wine: iItemCart,
@@ -16,22 +18,13 @@ export const CardWineShoppingCart: FunctionComponent<iwineCart> = ({wine}:iwineC
 
     const dispatch = useDispatch()
 
-    function stringToNumber(value:string){
-        const split = value.split(",");
-        const leftContent = parseInt(split[0])
-        const rightContent = parseInt(split[1])
-        const result = leftContent + (rightContent/100)
-    
-        return result
-    }
-
     useEffect(()=>{
-        const PriceMember = stringToNumber(wine.wine.PriceMember)
-        const Total = PriceMember*wine.qtdWine;
-        const TotalString = Total.toString()
-        const TotalStringSplit = TotalString.split(".")
-        setPriceTotal1(TotalStringSplit[0])
-        setPriceTotal2(TotalStringSplit[1])
+        const priceMember = stringToNumber(wine.wine.PriceMember)
+        const total = priceMember*wine.qtdWine;
+        const totalString = total.toString()
+        const totalStringSplit = totalString.split(".")
+        setPriceTotal1(totalStringSplit[0])
+        setPriceTotal2(totalStringSplit[1])
     }, [wine.qtdWine])
 
     return(
