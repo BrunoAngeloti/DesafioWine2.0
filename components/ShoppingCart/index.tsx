@@ -12,28 +12,37 @@ import {
     NotBuyYet
 } from './style'
 
-import { useSelector } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import { RootState } from '../../store'
-
+import {bindActionCreators, Dispatch} from 'redux'
 import { useDispatch } from "react-redux"
-import { getItemsCart } from '../../store/fetchActions'
+//import { getItemsCart } from '../../store/fetchActions'
 
 import { CardWineShoppingCart } from '../CardWineShoppingCart'
 
 import { stringToNumber } from '../../utils/stringUtils'
 import { iItemCart } from '../../interfaces/cart'
+import { loadItemsCart } from '../../store/ducks/amountItems'
 
-export const ShoppingCart: FunctionComponent = () => {
+export const ShoppingCart: FunctionComponent = (props:any) => {
     const [menuMobile, setMenuMobile] = useState(false)
     const { amount } = useSelector((state: RootState)=>state.amountitems);
+    const dispatch = useDispatch()
+    
+    
+    
 
     const [winesOnCart, setWinesOnCart] = useState<Array<iItemCart>>([])
     
-    const dispatch = useDispatch()
+    
     
     useEffect(()=>{
-        dispatch(getItemsCart() as any)
-
+        //dispatch(getItemsCart() as any)
+       //const { loadItemsCart } = props
+       //loadItemsCart()
+       dispatch({ type: 'GET_ITEMS_CART' })
+       //dispatch('GET_ITEMS_CART')
+       console.log(props.amount)
     },[])
 
     useEffect(()=>{
@@ -84,9 +93,7 @@ export const ShoppingCart: FunctionComponent = () => {
                         <h1>:(</h1>
                         <h2>Você ainda não escolheu seus produtos</h2>
                     </NotBuyYet>
-
-                }
-                
+                }               
             </MenuCart>
             <ContainerCart onClick={() => {setMenuMobile(!menuMobile)}}>
                 <img src="/winebox.svg" alt="Icone do carrinho de compras" />
@@ -96,3 +103,13 @@ export const ShoppingCart: FunctionComponent = () => {
     )
     
 }
+
+const mapStateToProps = (state: RootState) => ({  
+    amount: state.amountitems.amount,
+})
+
+const mapDispatchToProps = (dispatch:Dispatch) => bindActionCreators({
+    loadItemsCart
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart)

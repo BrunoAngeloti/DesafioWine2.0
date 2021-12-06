@@ -2,7 +2,7 @@ import { createAction, createReducer } from "@reduxjs/toolkit"
 
 const INITIAL_STATE = {
     numItems: 0,
-    ItemsPerPage: 6,
+    itemsPerPage: 6,
     currentPage: 0,
 }
 

@@ -19,7 +19,7 @@ export default function Home(){
   const [limitedWines, setlimitedWines] = useState <Array<iWines>>([]);
   const [wines, setWines] = useState <Array<Array<iWines>>>([]);
 
-  const { ItemsPerPage, currentPage, numItems } = useSelector((state: RootState)=>state.pagination);
+  const { itemsPerPage, currentPage, numItems } = useSelector((state: RootState)=>state.pagination);
   const { min, max } = useSelector((state: RootState)=>state.pricesfilter);
 
   const dispatch = useDispatch()
@@ -36,13 +36,13 @@ export default function Home(){
 
   function applyingFilter(){
     const wineAux = api.Wines.filter(wine => (stringToNumber(wine.PriceMember) > min && stringToNumber(wine.PriceMember) <= max) )    
-    setlimitedWines(wineAux.slice(ItemsPerPage*currentPage, ItemsPerPage*(currentPage+1)));
+    setlimitedWines(wineAux.slice(itemsPerPage*currentPage, itemsPerPage*(currentPage+1)));
     dispatch({ type: 'CHANGE_NUM_ITEMS', payload: wineAux.length })  
   }
 
   function noApplyingFilter(){
     if(wines[currentPage] === undefined){        
-      const wineAux = api.Wines.slice(ItemsPerPage*currentPage, ItemsPerPage*(currentPage+1))    
+      const wineAux = api.Wines.slice(itemsPerPage*currentPage, itemsPerPage*(currentPage+1))    
       addInWines(wineAux)
       setlimitedWines(wineAux);
     }else{

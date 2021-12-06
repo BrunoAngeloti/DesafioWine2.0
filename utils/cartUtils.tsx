@@ -3,7 +3,7 @@ import { Dispatch } from '@reduxjs/toolkit'
 import Swal from 'sweetalert2'
 import { iItemCart } from '../interfaces/cart';
 import { iWines } from '../interfaces/wines';
-import { getItemsCart } from '../store/fetchActions';
+import { loadItemsCart } from '../store/ducks/amountItems';
 
 function modal(name: string | undefined, behavior: string, type: string){
     const Toast = Swal.mixin({
@@ -36,7 +36,8 @@ export function addToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:iWin
     
     modal(wineAdded?.Name, 'adicionado', 'sucess')
 
-    dispatch(getItemsCart() as any)
+    dispatch({ type: 'GET_ITEMS_CART' })
+    //dispatch(getItemsCart() as any)
 }
 
 
@@ -51,6 +52,6 @@ export function removeToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:i
     localStorage.setItem('itemsOnCart', JSON.stringify(itemsOnCart))
 
     modal(wineAdded?.Name, 'removido', 'warning')
-    
-    dispatch(getItemsCart() as any)
+    dispatch({ type: 'GET_ITEMS_CART' })
+    //dispatch(getItemsCart() as any)
 }

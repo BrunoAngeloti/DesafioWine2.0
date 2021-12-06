@@ -14,7 +14,7 @@ export const Pagination: FunctionComponent = () => {
     const [numPage, setNumPage] = useState<number>(0)
     const [page, setPage] = useState<number>(0);
 
-    const { ItemsPerPage, numItems } = useSelector((state: RootState)=>state.pagination);
+    const { itemsPerPage, numItems } = useSelector((state: RootState)=>state.pagination);
     const { max } = useSelector((state: RootState)=>state.pricesfilter);
 
     const dispatch = useDispatch()
@@ -27,7 +27,7 @@ export const Pagination: FunctionComponent = () => {
     }
 
     useEffect(()=>{
-        setNumPage(Math.ceil(numItems/ItemsPerPage));
+        setNumPage(Math.ceil(numItems/itemsPerPage));
         dispatch({ type: 'CHANGE_CURRENT_PAGE', payload: page })
         scrollToTop()
     },[page, numItems])
