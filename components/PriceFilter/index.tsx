@@ -1,23 +1,26 @@
 import React, { FunctionComponent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../store'
+import { ApplicationState } from '../../store'
+import { PaginationTypes } from '../../store/ducks/pagination/types'
+import { PriceFilterTypes } from '../../store/ducks/pricesFilter/types'
 
 import { Filter } from './style'
+
 
 export const PriceFilter: FunctionComponent = () => {
     const dispatch = useDispatch()
 
-    const { min, max } = useSelector((state: RootState)=>state.pricesfilter);
+    const { min, max } = useSelector((state: ApplicationState)=>state.pricesFilter);
 
     function handleChangeFilter(minimo:number, maximo:number){  
-        dispatch({ type: 'CHANGE_CURRENT_PAGE', payload: 0 })
+        dispatch({ type: PaginationTypes.CHANGE_CURRENT_PAGE, payload: 0 })
         if(min === 0 && max === 0) {
-            dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: minimo, max: maximo} })
+            dispatch({ type: PriceFilterTypes.CHANGE_PRICE_FILTER, payload: {min: minimo, max: maximo} })
         }else{
             if(min === minimo){
-                dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: 0, max: 0} })
+                dispatch({ type: PriceFilterTypes.CHANGE_PRICE_FILTER, payload: {min: 0, max: 0} })
             }else{
-                dispatch({ type: 'CHANGE_PRICE_FILTER', payload: {min: minimo, max: maximo} })
+                dispatch({ type: PriceFilterTypes.CHANGE_PRICE_FILTER, payload: {min: minimo, max: maximo} })
             }
         }             
     }

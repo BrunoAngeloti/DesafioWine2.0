@@ -12,37 +12,27 @@ import {
     NotBuyYet
 } from './style'
 
-import { connect, useSelector } from 'react-redux'
-import { RootState } from '../../store'
-import {bindActionCreators, Dispatch} from 'redux'
+import { useSelector } from 'react-redux'
+import { ApplicationState } from '../../store'
 import { useDispatch } from "react-redux"
-//import { getItemsCart } from '../../store/fetchActions'
 
 import { CardWineShoppingCart } from '../CardWineShoppingCart'
 
 import { stringToNumber } from '../../utils/stringUtils'
 import { iItemCart } from '../../interfaces/cart'
-import { loadItemsCart } from '../../store/ducks/amountItems'
+import { AmountItemsTypes } from '../../store/ducks/amountItems/types'
+import { loadItemsCart } from '../../store/ducks/amountItems/actions'
 
-export const ShoppingCart: FunctionComponent = (props:any) => {
+export const ShoppingCart: FunctionComponent = () => {
     const [menuMobile, setMenuMobile] = useState(false)
-    const { amount } = useSelector((state: RootState)=>state.amountitems);
+    const { amount } = useSelector((state: ApplicationState)=>state.amountItems);
     const dispatch = useDispatch()
     
-    
-    
-
     const [winesOnCart, setWinesOnCart] = useState<Array<iItemCart>>([])
     
-    
-    
     useEffect(()=>{
-        //dispatch(getItemsCart() as any)
-       //const { loadItemsCart } = props
+       dispatch({ type: AmountItemsTypes.GET_ITEMS_CART })
        //loadItemsCart()
-       dispatch({ type: 'GET_ITEMS_CART' })
-       //dispatch('GET_ITEMS_CART')
-       console.log(props.amount)
     },[])
 
     useEffect(()=>{
@@ -103,13 +93,3 @@ export const ShoppingCart: FunctionComponent = (props:any) => {
     )
     
 }
-
-const mapStateToProps = (state: RootState) => ({  
-    amount: state.amountitems.amount,
-})
-
-const mapDispatchToProps = (dispatch:Dispatch) => bindActionCreators({
-    loadItemsCart
-}, dispatch)
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart)

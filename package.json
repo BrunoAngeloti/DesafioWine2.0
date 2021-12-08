@@ -5,7 +5,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --testPathIgnorePatterns=cypress",
+    "test:watch": "npm test -- --watch"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
@@ -22,12 +24,15 @@
     "typesafe-actions": "^5.1.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.16.4",
     "@types/node": "16.11.7",
     "@types/react": "17.0.35",
+    "babel-jest": "^27.4.2",
     "babel-plugin-styled-components": "^1.13.3",
     "cypress": "^4.1.0",
     "eslint": "7",
     "eslint-config-next": "12.0.4",
+    "jest": "^27.4.3",
     "typescript": "4.4.4"
   }
 }

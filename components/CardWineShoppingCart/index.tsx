@@ -18,13 +18,17 @@ export const CardWineShoppingCart: FunctionComponent<iwineCart> = ({wine}:iwineC
 
     const dispatch = useDispatch()
 
-    useEffect(()=>{
+    function setPriceItemTotal(){
         const priceMember = stringToNumber(wine.wine.PriceMember)
         const total = priceMember*wine.qtdWine;
         const totalString = total.toString()
         const totalStringSplit = totalString.split(".")
         setPriceTotal1(totalStringSplit[0])
         setPriceTotal2(totalStringSplit[1])
+    }
+
+    useEffect(()=>{
+        setPriceItemTotal()
     }, [wine.qtdWine])
 
     return(
@@ -49,7 +53,7 @@ export const CardWineShoppingCart: FunctionComponent<iwineCart> = ({wine}:iwineC
                         <button onClick={()=>addToCart(1, dispatch, wine.wine)}>+</button>                      
                     </AddMoreToCart>
                     <Price>
-                        <strong> R$ <span>{priceTotal1}</span>,{priceTotal2[0]}{priceTotal2[1] || 0}</strong>
+                        <strong> R$ <span>{priceTotal1}</span>,{priceTotal2? priceTotal2[0] : 0}{priceTotal2? (priceTotal2[1] || 0) : 0}</strong>
                     </Price>
                 </FooterCardWine>
             </RightContent>

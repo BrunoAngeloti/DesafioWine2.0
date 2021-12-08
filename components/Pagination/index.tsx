@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../store'
+import { ApplicationState } from '../../store'
+import { PaginationTypes } from '../../store/ducks/pagination/types'
 
 import { 
     ContainerPagination,
@@ -14,8 +15,8 @@ export const Pagination: FunctionComponent = () => {
     const [numPage, setNumPage] = useState<number>(0)
     const [page, setPage] = useState<number>(0);
 
-    const { itemsPerPage, numItems } = useSelector((state: RootState)=>state.pagination);
-    const { max } = useSelector((state: RootState)=>state.pricesfilter);
+    const { itemsPerPage, numItems } = useSelector((state: ApplicationState)=>state.pagination);
+    const { max } = useSelector((state: ApplicationState)=>state.pricesFilter);
 
     const dispatch = useDispatch()
 
@@ -28,7 +29,7 @@ export const Pagination: FunctionComponent = () => {
 
     useEffect(()=>{
         setNumPage(Math.ceil(numItems/itemsPerPage));
-        dispatch({ type: 'CHANGE_CURRENT_PAGE', payload: page })
+        dispatch({ type: PaginationTypes.CHANGE_CURRENT_PAGE, payload: page })
         scrollToTop()
     },[page, numItems])
 

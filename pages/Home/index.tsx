@@ -8,10 +8,11 @@ import { Search, Items, ContentHome, Wines } from '../../styles/pages/Home/style
 
 import api from '../../documents/vinhos.json'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../store'
+import { ApplicationState } from '../../store'
 import { PriceFilter } from '../../components/PriceFilter'
 import { stringToNumber } from '../../utils/stringUtils'
 import { iWines } from '../../interfaces/wines'
+import { PaginationTypes } from '../../store/ducks/pagination/types'
 
 
 export default function Home(){
@@ -19,8 +20,8 @@ export default function Home(){
   const [limitedWines, setlimitedWines] = useState <Array<iWines>>([]);
   const [wines, setWines] = useState <Array<Array<iWines>>>([]);
 
-  const { itemsPerPage, currentPage, numItems } = useSelector((state: RootState)=>state.pagination);
-  const { min, max } = useSelector((state: RootState)=>state.pricesfilter);
+  const { itemsPerPage, currentPage, numItems } = useSelector((state: ApplicationState)=>state.pagination);
+  const { min, max } = useSelector((state: ApplicationState)=>state.pricesFilter);
 
   const dispatch = useDispatch()
 
@@ -37,7 +38,7 @@ export default function Home(){
   function applyingFilter(){
     const wineAux = api.Wines.filter(wine => (stringToNumber(wine.PriceMember) > min && stringToNumber(wine.PriceMember) <= max) )    
     setlimitedWines(wineAux.slice(itemsPerPage*currentPage, itemsPerPage*(currentPage+1)));
-    dispatch({ type: 'CHANGE_NUM_ITEMS', payload: wineAux.length })  
+    dispatch({ type: PaginationTypes.CHANGE_NUM_ITEMS, payload: wineAux.length })  
   }
 
   function noApplyingFilter(){
@@ -48,7 +49,7 @@ export default function Home(){
     }else{
       setlimitedWines(wines[currentPage]);     
     }
-    dispatch({ type: 'CHANGE_NUM_ITEMS', payload: api.QtdItems }) 
+    dispatch({ type: PaginationTypes.CHANGE_NUM_ITEMS, payload: api.QtdItems }) 
   }
 
   // UseEffect usado para renderizar os vinhos, com ou sem o filtro, de acordo com a página em questão
