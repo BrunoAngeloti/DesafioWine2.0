@@ -1,25 +1,10 @@
 import { Dispatch } from '@reduxjs/toolkit'
 
-import Swal from 'sweetalert2'
 import { iItemCart } from '../interfaces/cart';
 import { iWines } from '../interfaces/wines';
-import { loadItemsCart } from '../store/ducks/amountItems/actions';
-import { AmountItemsTypes } from '../store/ducks/amountItems/types';
 
-function modal(name: string | undefined, behavior: string, type: string){
-    const Toast = Swal.mixin({
-        toast: true,
-        position: 'top',
-        showConfirmButton: false,
-        timer: 2000,
-        timerProgressBar: true,
-    })
-      
-    Toast.fire({
-        icon: type === 'sucess' ? 'success' : 'warning',
-        title: `${name} ${behavior} do carrinho`
-    })
-}
+import { AmountItemsTypes } from '../store/ducks/amountItems/types';
+import { modal } from './modalUtils';
 
 export function addToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:iWines | undefined){   
     //Adiciona o item no localStorage
@@ -36,7 +21,7 @@ export function addToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:iWin
     localStorage.setItem('itemsOnCart', JSON.stringify(itemsOnCart))
     
     modal(wineAdded?.Name, 'adicionado', 'sucess')
-    //loadItemsCart()
+    
     dispatch({ type: AmountItemsTypes.GET_ITEMS_CART })
 }
 
@@ -44,14 +29,15 @@ export function addToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:iWin
 export function removeToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:iWines | undefined){
     var itemsOnCart:Array<iItemCart> = JSON.parse(localStorage.getItem('itemsOnCart') || "[]");
     const idxItem = itemsOnCart.findIndex(wine => wine.wine.Id === wineAdded?.Id)
-    if(itemsOnCart[idxItem].qtdWine - qtdRequested === 0){
+
+    itemsOnCart[idxItem].qtdWine -= qtdRequested;
+
+    if(itemsOnCart[idxItem].qtdWine === 0)
         itemsOnCart.splice(idxItem, 1)
-    }else{
-        itemsOnCart[idxItem].qtdWine -= qtdRequested;
-    }
+        
     localStorage.setItem('itemsOnCart', JSON.stringify(itemsOnCart))
 
     modal(wineAdded?.Name, 'removido', 'warning')
-    //loadItemsCart()
+    
     dispatch({ type: AmountItemsTypes.GET_ITEMS_CART })
 }

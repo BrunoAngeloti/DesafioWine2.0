@@ -1,5 +1,6 @@
 import reducer  from './index'
 import { changePriceFilter } from './actions'
+import { PriceFilterTypes } from './types'
 
 test('deve retornar o estado inicial', () => {
     expect(reducer(undefined, {})).toEqual({
@@ -11,7 +12,10 @@ test('deve retornar o estado inicial', () => {
 
 test('deve retornar o preço minimo e maximo exatos', () => {
     const previousState = {}
-    expect(reducer(previousState, changePriceFilter({min: 5, max: 15}))).toEqual({
+    expect(reducer(previousState, {
+        type: PriceFilterTypes.CHANGE_PRICE_FILTER,
+        payload: {min: 5, max: 15}
+    })).toEqual({
         min: 5,
         max: 15
     })
@@ -23,7 +27,10 @@ test('deve retornar o preço minimo e maximo mesmo sem o estado inicial em zero'
         max: 100
     }
     
-    expect(reducer(previousState, changePriceFilter({min: 200, max: 500}))).toEqual({
+    expect(reducer(previousState, {
+        type: PriceFilterTypes.CHANGE_PRICE_FILTER,
+        payload: {min: 200, max: 500}
+    })).toEqual({
         min: 200,
         max: 500
     })

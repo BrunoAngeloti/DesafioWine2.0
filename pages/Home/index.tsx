@@ -13,15 +13,17 @@ import { PriceFilter } from '../../components/PriceFilter'
 import { stringToNumber } from '../../utils/stringUtils'
 import { iWines } from '../../interfaces/wines'
 import { PaginationTypes } from '../../store/ducks/pagination/types'
+import { ItemsTypes } from '../../store/ducks/items/types'
 
 
 export default function Home(){
 
   const [limitedWines, setlimitedWines] = useState <Array<iWines>>([]);
-  const [wines, setWines] = useState <Array<Array<iWines>>>([]);
 
   const { itemsPerPage, currentPage, numItems } = useSelector((state: ApplicationState)=>state.pagination);
   const { min, max } = useSelector((state: ApplicationState)=>state.pricesFilter);
+
+  const { wines } = useSelector((state: ApplicationState)=>state.items)
 
   const dispatch = useDispatch()
 
@@ -32,7 +34,7 @@ export default function Home(){
   function addInWines(wineAux:Array<iWines>){
     let arrayAux = [...wines]
     arrayAux[currentPage] = wineAux;
-    setWines(arrayAux)
+    dispatch({type: ItemsTypes.SET_ITEMS, payload: { wines: arrayAux}})
   }
 
   function applyingFilter(){
@@ -54,6 +56,7 @@ export default function Home(){
 
   // UseEffect usado para renderizar os vinhos, com ou sem o filtro, de acordo com a página em questão
   useEffect(()=>{
+    //dispatch({type: ItemsTypes.REQUEST_ITEMS, payload: {filter:{min: 0, max:100}, pageAtual:2}})
     if(noApplyFilter()){
       noApplyingFilter()
     }else{      

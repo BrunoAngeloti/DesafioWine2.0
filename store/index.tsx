@@ -7,11 +7,13 @@ import rootSaga from "./ducks/rootSaga";
 import { AmountItemsState } from "./ducks/amountItems/types";
 import { PaginationState } from "./ducks/pagination/types";
 import { PriceFilterState } from "./ducks/pricesFilter/types";
+import { ItemsState } from "./ducks/items/types";
 
 export interface ApplicationState {
-    amountItems: AmountItemsState
+    amountItems: AmountItemsState,
     pagination: PaginationState,
-    pricesFilter: PriceFilterState
+    pricesFilter: PriceFilterState,
+    items: ItemsState
 }
 
 const sagaMiddleware = createSagaMiddleware()

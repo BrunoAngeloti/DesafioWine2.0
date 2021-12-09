@@ -1,7 +1,5 @@
 import reducer  from './index'
-import { getAmountItems } from './actions'
-import { getItemsCart } from './sagas'
-import { assert } from 'console'
+import { AmountItemsTypes } from './types';
 
 test('deve retornar o estado inicial', () => {
     expect(reducer(undefined, {})).toEqual({
@@ -10,7 +8,7 @@ test('deve retornar o estado inicial', () => {
 })
 
 test('deve retornar a quantidade de itens alterada', () => {
-    expect(reducer(undefined, getAmountItems(10))).toEqual({
+    expect(reducer(undefined, {type: AmountItemsTypes.GET_AMOUNT_ITEMS, payload: 10})).toEqual({
         amount: 10
     })
 })

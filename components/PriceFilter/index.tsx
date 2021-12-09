@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ApplicationState } from '../../store'
+import { ItemsTypes } from '../../store/ducks/items/types'
 import { PaginationTypes } from '../../store/ducks/pagination/types'
 import { PriceFilterTypes } from '../../store/ducks/pricesFilter/types'
 
@@ -16,11 +17,17 @@ export const PriceFilter: FunctionComponent = () => {
         dispatch({ type: PaginationTypes.CHANGE_CURRENT_PAGE, payload: 0 })
         if(min === 0 && max === 0) {
             dispatch({ type: PriceFilterTypes.CHANGE_PRICE_FILTER, payload: {min: minimo, max: maximo} })
+            dispatch({type: ItemsTypes.REQUEST_ITEMS, payload: {filter:{min: minimo, max:maximo}, pageAtual:1}})
+
         }else{
             if(min === minimo){
                 dispatch({ type: PriceFilterTypes.CHANGE_PRICE_FILTER, payload: {min: 0, max: 0} })
+                dispatch({type: ItemsTypes.REQUEST_ITEMS, payload: {filter:{min: 0, max:1000}, pageAtual:1}})
+
             }else{
                 dispatch({ type: PriceFilterTypes.CHANGE_PRICE_FILTER, payload: {min: minimo, max: maximo} })
+                dispatch({type: ItemsTypes.REQUEST_ITEMS, payload: {filter:{min: minimo, max:maximo}, pageAtual:1}})
+
             }
         }             
     }
