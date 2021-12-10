@@ -10,13 +10,13 @@ const INITIAL_STATE: ItemsState ={
 const reducer: Reducer<ItemsState> = (state = INITIAL_STATE, action) => {
     switch(action.type){
         case ItemsTypes.SET_ITEMS:
-            return { ...state, wines: action.payload.wines }
+            return { ...state, wines: action.payload}
         case ItemsTypes.REQUEST_LOADING_ITEMS:
             return { ...state, loading: true }
         case ItemsTypes.REQUEST_SUCCESS_ITEMS:
-            return { ...state, loading: true, error: false }
+            return { ...state, loading: false, error: false }
         case ItemsTypes.REQUEST_FAILED_ITEMS:
-            return { ...state, error: false, wines: [] }
+            return { ...state, error: true, wines: [] }
         default:
             return state
     }

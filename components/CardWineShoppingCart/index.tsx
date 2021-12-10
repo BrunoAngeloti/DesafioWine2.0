@@ -4,7 +4,6 @@ import { ContainerCard, LeftContent, RightContent, HeaderCardWine, FooterCardWin
 
 import { useDispatch } from 'react-redux'
 
-import { stringToNumber } from '../../utils/stringUtils'
 import { addToCart, removeToCart } from '../../utils/cartUtils'
 import { iItemCart } from '../../interfaces/cart'
 
@@ -19,8 +18,7 @@ export const CardWineShoppingCart: FunctionComponent<iwineCart> = ({wine}:iwineC
     const dispatch = useDispatch()
 
     function setPriceItemTotal(){
-        const priceMember = stringToNumber(wine.wine.PriceMember)
-        const total = priceMember*wine.qtdWine;
+        const total = wine.wine.priceMember*wine.qtdWine;
         const totalString = total.toString()
         const totalStringSplit = totalString.split(".")
         setPriceTotal1(totalStringSplit[0])
@@ -29,18 +27,19 @@ export const CardWineShoppingCart: FunctionComponent<iwineCart> = ({wine}:iwineC
 
     useEffect(()=>{
         setPriceItemTotal()
+        console.log(wine.wine.priceMember)
     }, [wine.qtdWine])
 
     return(
         <ContainerCard>
             <LeftContent>
-                <img src={wine?.wine.Image} alt="Foto do vinho" />
+                <img src={wine?.wine.image} alt="Foto do vinho" />
             </LeftContent>
             <RightContent>
                 <HeaderCardWine>
                     <div>
-                        <h4>{wine?.wine.Name}</h4>
-                        <span>{wine?.wine.Country}</span>
+                        <h4>{wine?.wine.name}</h4>
+                        <span>{wine?.wine.country}</span>
                     </div>
                     <div>
                         <img onClick={() => removeToCart(wine.qtdWine, dispatch, wine.wine)} src="/x-circle.svg" alt="excluir vinho"/>

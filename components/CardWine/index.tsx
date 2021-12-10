@@ -17,26 +17,28 @@ export const CardWine: FunctionComponent<iCardWine> = ({wine}:iCardWine) => {
     const dispatch = useDispatch()
 
     function handleInfoPage(){
-        Router.push(`/Products/${wine.Id}`)        
+        Router.push(`/Products/${wine.id}`)        
     }
-    
-    const priceMember = wine.PriceMember.split(",")
-    
+
+    const priceMemberToString = wine.priceMember.toFixed(2).toString().split(".")
+    const priceNonMemberToString = wine.priceNonMember.toFixed(2).toString().replace(".", ",")
+    const priceToString = wine.price.toFixed(2).toString().replace(".", ",")
+
     return(
         <ContainerCard>
             <ContentCard onClick={handleInfoPage}>
-                <img src={wine.Image} alt="Imagem do vinho" />
-                <h1>{wine.Name}</h1>
+                <img src={wine.image} alt="Imagem do vinho" />
+                <h1>{wine.name}</h1>
                 <Discount>
-                    <p>R$ {wine.OldValue}</p>
-                    <span>{wine.Off} OFF</span>
+                    <p>R$ {priceToString}</p>
+                    <span>{wine.discount}% OFF</span>
                 </Discount>
                 <Member>
                     SÓCIO WINE
-                    <strong> R$ <span>{priceMember[0]}</span>,{priceMember[1]}</strong>
+                    <strong> R$ <span>{priceMemberToString[0]},</span>{priceMemberToString[1]}</strong>
                 </Member>  
                 <NotMember>
-                    NÃO SÓCIO <span>R$ {wine.PriceNotMember}</span>
+                    NÃO SÓCIO <span>R$ {priceNonMemberToString}</span>
                 </NotMember>
             </ContentCard>
             <button onClick={() => addToCart(1, dispatch, wine)}>

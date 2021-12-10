@@ -10,7 +10,7 @@ export function addToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:iWin
     //Adiciona o item no localStorage
     var itemsOnCart:Array<iItemCart> = JSON.parse(localStorage.getItem('itemsOnCart') || "[]");
 
-    const idxItem = itemsOnCart.findIndex(wine => wine.wine.Id === wineAdded?.Id)
+    const idxItem = itemsOnCart.findIndex(wine => wine.wine.id === wineAdded?.id)
     if(idxItem !== -1){
         itemsOnCart[idxItem].qtdWine += qtdRequested;
     }else{
@@ -20,7 +20,7 @@ export function addToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:iWin
     
     localStorage.setItem('itemsOnCart', JSON.stringify(itemsOnCart))
     
-    modal(wineAdded?.Name, 'adicionado', 'sucess')
+    modal(wineAdded?.name, 'adicionado', 'sucess')
     
     dispatch({ type: AmountItemsTypes.GET_ITEMS_CART })
 }
@@ -28,7 +28,7 @@ export function addToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:iWin
 
 export function removeToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:iWines | undefined){
     var itemsOnCart:Array<iItemCart> = JSON.parse(localStorage.getItem('itemsOnCart') || "[]");
-    const idxItem = itemsOnCart.findIndex(wine => wine.wine.Id === wineAdded?.Id)
+    const idxItem = itemsOnCart.findIndex(wine => wine.wine.id === wineAdded?.id)
 
     itemsOnCart[idxItem].qtdWine -= qtdRequested;
 
@@ -37,7 +37,7 @@ export function removeToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:i
         
     localStorage.setItem('itemsOnCart', JSON.stringify(itemsOnCart))
 
-    modal(wineAdded?.Name, 'removido', 'warning')
+    modal(wineAdded?.name, 'removido', 'warning')
     
     dispatch({ type: AmountItemsTypes.GET_ITEMS_CART })
 }

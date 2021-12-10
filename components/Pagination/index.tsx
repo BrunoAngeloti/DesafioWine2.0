@@ -1,6 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ApplicationState } from '../../store'
+import { ItemsTypes } from '../../store/ducks/items/types'
 import { PaginationTypes } from '../../store/ducks/pagination/types'
 
 import { 
@@ -12,11 +13,11 @@ import {
 
 
 export const Pagination: FunctionComponent = () => {
-    const [numPage, setNumPage] = useState<number>(0)
-    const [page, setPage] = useState<number>(0);
 
-    const { itemsPerPage, numItems } = useSelector((state: ApplicationState)=>state.pagination);
-    const { max } = useSelector((state: ApplicationState)=>state.pricesFilter);
+    const { numItems, currentPage, totalPages } = useSelector((state: ApplicationState)=>state.pagination);
+    const { min, max } = useSelector((state: ApplicationState)=>state.pricesFilter);
+
+    const { wines } = useSelector((state: ApplicationState)=>state.items)
 
     const dispatch = useDispatch()
 
@@ -27,55 +28,71 @@ export const Pagination: FunctionComponent = () => {
         })
     }
 
-    useEffect(()=>{
-        setNumPage(Math.ceil(numItems/itemsPerPage));
-        dispatch({ type: PaginationTypes.CHANGE_CURRENT_PAGE, payload: page })
-        scrollToTop()
-    },[page, numItems])
-
-    useEffect(()=>{
-        setPage(0)
-    },[max])
-    
     function visible(idx:number){
-        if(idx === 0 || (idx+1) === numPage) return true;
-        if(idx > (page - 2) && idx < (page + 2)) return true;
+        if(idx === 1 || (idx) === totalPages) return true;
+        if(idx > (currentPage - 2) && idx < (currentPage + 2)) return true;
         return false;
     }
 
     function EllipsisFinal(idx:number){
-        if(idx===numPage-1)
-            return page < (idx - 2)
+        if(idx===totalPages)
+            return currentPage < (idx - 2)
         return false
     }
 
     function EllipsisBegin(idx:number){
-        if(idx === 0)
-            return page > (idx + 2)
+        if(idx === 1)
+            return currentPage > (idx + 2)
         return false
+    }
+
+    function handleButton(idx: number){
+        scrollToTop()
+        dispatch({ type: PaginationTypes.CHANGE_CURRENT_PAGE, payload: idx })
+        if(min === 0 && max === 999999){
+            dispatch({
+                type: ItemsTypes.REQUEST_ITEMS, 
+                payload: {
+                  pageAtual: idx,
+                  wines: wines
+                }
+            }) 
+        }else{
+            dispatch({
+                type: ItemsTypes.REQUEST_ITEMS, 
+                payload: {
+                    pageAtual: idx,
+                    filter:{
+                        min: min,
+                        max: max
+                    },
+                    wines: wines
+                }
+            }) 
+        }
     }
 
     return(
         <ContainerPagination numeroItems={numItems}>
             <Buttons>
-                {page !== 0 && <ButtonPass onClick={()=>setPage(page-1)}>{'<< '}Anterior</ButtonPass>}
-                {[...Array(numPage)].map((pages, idx) => {
+                {currentPage !== 1 && <ButtonPass onClick={()=>handleButton(currentPage-1)}>{'<< '}Anterior</ButtonPass>}
+                {[...Array(totalPages)].map((pages, idx) => {
                     return(
-                        visible(idx) && 
-                        <div key={idx}>
-                            {EllipsisFinal(idx) && <span>...</span>}
+                        visible(idx+1) && 
+                        <div key={idx+1}>
+                            {EllipsisFinal(idx+1) && <span>...</span>}
                             <ButtonPag 
-                                onClick={()=>setPage(idx)}
-                                Selected={idx === page}
-                                Next={idx === page+1}
+                                onClick={()=>handleButton(idx+1)}
+                                Selected={idx+1 === currentPage}
+                                Next={idx+1 === currentPage+1}
                             >
                                 {idx+1}
                             </ButtonPag>
-                            {EllipsisBegin(idx) && <span>...</span>}
+                            {EllipsisBegin(idx+1) && <span>...</span>}
                         </div>
                     )
                 })}
-                {(page+1) !== numPage && <ButtonPass onClick={()=>setPage(page+1)}>Próximo{' >>'}</ButtonPass>}
+                {(currentPage) !== totalPages && <ButtonPass onClick={()=>handleButton(currentPage+1)}>Próximo{' >>'}</ButtonPass>}
             </Buttons>
         </ContainerPagination>  
     )

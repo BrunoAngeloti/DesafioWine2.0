@@ -25,23 +25,29 @@ import {
     FooterMobile,
 } from '../../styles/pages/Products/style'
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import api from '../../documents/vinhos.json'
 import { addToCart } from '../../utils/cartUtils';
 import { iWines } from '../../interfaces/wines';
+import { ApplicationState } from '../../store';
 
 export default function Products(props:ProductsProps){
     const [qtd, setQtd] = useState(1);
     const [loading, setLoading] = useState(true)
 
-    const wines:iWines | undefined = api.Wines.find(wine => wine.Id == props.id)
+    const wines: Array<Array<iWines>> = useSelector((state: ApplicationState)=>state.items.wines)
+    const wine = wines.map(wines=>wines?.find(wine => wine.id == props.id)).find(wine=> wine !== undefined)
 
+    const priceMemberToString = wine?.priceMember.toFixed(2).toString().split(".")
+    const priceMemberToStringNotSplit = wine?.priceMember.toFixed(2).toString().replace(".", ",")
+    const priceNonMemberToString = wine?.priceNonMember.toFixed(2).toString().replace(".", ",")
+    const priceToString = wine?.price.toFixed(2).toString().replace(".", ",")
+    
     const dispatch = useDispatch()
     
     useEffect(()=>{
-        if(!wines) Router.push(`/`)
-        else setLoading(false)
+       if(!wines) Router.push(`/`)
+       else setLoading(false)
     }, [])
 
     return (
@@ -49,7 +55,7 @@ export default function Products(props:ProductsProps){
             {!loading &&
             <>
                 <Head>
-                    <title>Wine | {wines?.Name}</title>
+                    <title>Wine | {wine?.name}</title>
                 </Head>
                 <header onClick={()=> {Router.back()}} >
                     <img src="/back.svg" alt="seta de voltar"/>
@@ -57,51 +63,51 @@ export default function Products(props:ProductsProps){
                 </header>
                 <ContentWineInfo>
                     <LeftContent>
-                        <img src={wines?.Image} alt="garrafa do vinho" />
+                        <img src={wine?.image} alt="garrafa do vinho" />
                     </LeftContent>
                     <RightContent>
                         <LocationWine>
                             <h4>Vinhos</h4>
                             <img src="/arrowRight.svg" alt="seta para direita" />
-                            <h4>{wines?.Country}</h4>
+                            <h4>{wine?.country}</h4>
                             <img src="/arrowRight.svg" alt="seta para direita" />
-                            <h4>{wines?.State}</h4>
+                            <h4>{wine?.region}</h4>
                         </LocationWine>
                         <DetailsWine>
-                            <h1>{wines?.Name}</h1>
+                            <h1>{wine?.name}</h1>
                             <div>
-                                <img src={wines?.CountryFlag} alt="bandeira do país" />
-                                <p>{wines?.Country}</p> 
-                                <p>{wines?.Type}</p> 
-                                <p>{wines?.Classification}</p>
-                                <p>{wines?.Size}</p>
+                                <img src={wine?.flag} alt="bandeira do país" />
+                                <p>{wine?.country}</p> 
+                                <p>{wine?.type}</p> 
+                                <p>{wine?.classification}</p>
+                                <p>{wine?.volume}</p>
                                 <div>
                                     <ReactStars
                                         count={5}
-                                        value={wines?.Rating}
+                                        value={wine?.rating}
                                         size={20}                          
                                         color2={'#ffd700'} 
                                         edit={false}
                                     />
                                 </div>
                                 
-                                <p>({wines?.Avaliations})</p>
+                                <p>({wine?.avaliations})</p>
                             </div>
                         </DetailsWine>
-                        <img src={wines?.Image} alt="garrafa do vinho" />
+                        <img src={wine?.image} alt="garrafa do vinho" />
                         <PriceWine>
                             {                    
                                 <h2>
                                     <span>R$</span>
-                                    {wines?.PriceMember.substr(0, wines?.PriceMember.indexOf(","))}
-                                    <span>{wines?.PriceMember.substr(wines?.PriceMember.indexOf(","))}</span>
+                                    {priceMemberToString && priceMemberToString[0]},
+                                    <span>{priceMemberToString && priceMemberToString[1]}</span>
                                 </h2>
                             }
-                            <h3>NÃO SÓCIO R$ {wines?.PriceNotMember}/UN.</h3>
+                            <h3>NÃO SÓCIO R$ {priceNonMemberToString}/UN.</h3>
                         </PriceWine>
                         <CommentsWine>
                             <h3>Comentário do Sommelier</h3>
-                            <p>{wines?.SommelierComment}</p>
+                            <p>{wine?.sommelierComment}</p>
                         </CommentsWine>
                         <AddOnCart>
                             <div>
@@ -109,22 +115,22 @@ export default function Products(props:ProductsProps){
                                 <span>{qtd}</span>
                                 <button onClick={()=>setQtd(qtd+1)}>+</button>
                             </div>
-                            <Button onClick={() => addToCart(qtd, dispatch, wines)}>Adicionar</Button>
+                            <Button onClick={() => addToCart(qtd, dispatch, wine)}>Adicionar</Button>
                         </AddOnCart>               
                     </RightContent>
                 </ContentWineInfo>
                 <FooterMobile>
                     <section>
-                        <span>{wines?.Off} OFF</span>
-                        <h2>R$ {wines?.OldValue}</h2>
-                        <h1>R$ <strong>{wines?.PriceMember}</strong></h1>
-                        <h3>PREÇO NÃO-SÓCIO R$ {wines?.PriceNotMember}</h3>
+                        <span>{wine?.discount}% OFF</span>
+                        <h2>R$ {priceToString}</h2>
+                        <h1>R$ <strong>{priceMemberToStringNotSplit}</strong></h1>
+                        <h3>PREÇO NÃO-SÓCIO R$ {priceNonMemberToString}</h3>
                     </section>
                     
-                    <Button onClick={() => addToCart(1, dispatch, wines)}>Adicionar</Button>
+                    <Button onClick={() => addToCart(1, dispatch, wine)}>Adicionar</Button>
                 </FooterMobile>
             </>
-            }
+                        }
         </ContainerWineInfo> 
     )
 }

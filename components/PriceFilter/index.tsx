@@ -14,19 +14,23 @@ export const PriceFilter: FunctionComponent = () => {
     const { min, max } = useSelector((state: ApplicationState)=>state.pricesFilter);
 
     function handleChangeFilter(minimo:number, maximo:number){  
-        dispatch({ type: PaginationTypes.CHANGE_CURRENT_PAGE, payload: 0 })
-        if(min === 0 && max === 0) {
+        
+        dispatch({ type: PaginationTypes.CHANGE_CURRENT_PAGE, payload: 1 })
+        dispatch({type: ItemsTypes.SET_ITEMS, payload: []})
+        
+        if(min === 0 && max === 999999) {
             dispatch({ type: PriceFilterTypes.CHANGE_PRICE_FILTER, payload: {min: minimo, max: maximo} })
-            dispatch({type: ItemsTypes.REQUEST_ITEMS, payload: {filter:{min: minimo, max:maximo}, pageAtual:1}})
+            dispatch({ type: ItemsTypes.REQUEST_ITEMS, payload: {filter:{min: minimo, max:maximo}, pageAtual:1, wines: []}})
 
         }else{
             if(min === minimo){
-                dispatch({ type: PriceFilterTypes.CHANGE_PRICE_FILTER, payload: {min: 0, max: 0} })
-                dispatch({type: ItemsTypes.REQUEST_ITEMS, payload: {filter:{min: 0, max:1000}, pageAtual:1}})
+                
+                dispatch({ type: PriceFilterTypes.CHANGE_PRICE_FILTER, payload: {min: 0, max: 999999} })
+                dispatch({ type: ItemsTypes.REQUEST_ITEMS, payload: {pageAtual:1, wines: []}})
 
             }else{
                 dispatch({ type: PriceFilterTypes.CHANGE_PRICE_FILTER, payload: {min: minimo, max: maximo} })
-                dispatch({type: ItemsTypes.REQUEST_ITEMS, payload: {filter:{min: minimo, max:maximo}, pageAtual:1}})
+                dispatch({ type: ItemsTypes.REQUEST_ITEMS, payload: {filter:{min: minimo, max:maximo}, pageAtual:1, wines: []}})
 
             }
         }             
@@ -55,7 +59,7 @@ export const PriceFilter: FunctionComponent = () => {
                 <label htmlFor="200">R$200 A R$500</label>
             </div>
             <div>
-                <input readOnly checked={min === 500} onClick={() => handleChangeFilter(500,9999999)} type="radio" id="500" value="option6"/>
+                <input readOnly checked={min === 500} onClick={() => handleChangeFilter(500,999999)} type="radio" id="500" value="option6"/>
                 <label htmlFor="500">Acima de R$500</label>
             </div>
         </Filter>                 

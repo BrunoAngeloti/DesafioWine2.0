@@ -18,10 +18,8 @@ import { useDispatch } from "react-redux"
 
 import { CardWineShoppingCart } from '../CardWineShoppingCart'
 
-import { stringToNumber } from '../../utils/stringUtils'
 import { iItemCart } from '../../interfaces/cart'
 import { AmountItemsTypes } from '../../store/ducks/amountItems/types'
-import { loadItemsCart } from '../../store/ducks/amountItems/actions'
 
 export const ShoppingCart: FunctionComponent = () => {
     const [menuMobile, setMenuMobile] = useState(false)
@@ -32,7 +30,6 @@ export const ShoppingCart: FunctionComponent = () => {
     
     useEffect(()=>{
        dispatch({ type: AmountItemsTypes.GET_ITEMS_CART })
-       //loadItemsCart()
     },[])
 
     useEffect(()=>{
@@ -53,7 +50,7 @@ export const ShoppingCart: FunctionComponent = () => {
                         <ContentMenuCart>  
                             {winesOnCart.map((wines)=>{
                                 return(
-                                    <CardWineShoppingCart key={wines.wine.Id} wine={wines}/>
+                                    <CardWineShoppingCart key={wines.wine.id} wine={wines}/>
                                 )                  
                             })} 
                         </ContentMenuCart>
@@ -64,8 +61,8 @@ export const ShoppingCart: FunctionComponent = () => {
                                     <span>
                                         {
                                             winesOnCart.reduce(function (total, currentValue){
-                                                return total + (currentValue.qtdWine * stringToNumber(currentValue.wine.PriceMember))
-                                            }, 0).toFixed(2)
+                                                return total + (currentValue.qtdWine * currentValue.wine.priceMember)
+                                            }, 0).toFixed(2).replace(".", ",")
                                         }
                                     </span>
                                 </div>

@@ -3,7 +3,7 @@ import { PriceFilterState, PriceFilterTypes } from "./types";
 
 const INITIAL_STATE: PriceFilterState ={
     min: 0,
-    max: 0
+    max: 999999
 }
 
 const reducer: Reducer<PriceFilterState> = (state = INITIAL_STATE, action) => {
