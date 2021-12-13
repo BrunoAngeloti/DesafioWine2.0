@@ -27,7 +27,6 @@ export const CardWineShoppingCart: FunctionComponent<iwineCart> = ({wine}:iwineC
 
     useEffect(()=>{
         setPriceItemTotal()
-        console.log(wine.wine.priceMember)
     }, [wine.qtdWine])
 
     return(
@@ -42,14 +41,14 @@ export const CardWineShoppingCart: FunctionComponent<iwineCart> = ({wine}:iwineC
                         <span>{wine?.wine.country}</span>
                     </div>
                     <div>
-                        <img onClick={() => removeToCart(wine.qtdWine, dispatch, wine.wine)} src="/x-circle.svg" alt="excluir vinho"/>
+                        <img id={`removeItemId${wine?.wine.id}`} onClick={() => removeToCart(wine.qtdWine, dispatch, wine.wine)} src="/x-circle.svg" alt="excluir vinho"/>
                     </div>                  
                 </HeaderCardWine>
                 <FooterCardWine>
                     <AddMoreToCart>
-                        <button onClick={()=>removeToCart(1, dispatch, wine.wine)}>-</button>
+                        <button id={`removeOneItemId${wine?.wine.id}`} onClick={()=>removeToCart(1, dispatch, wine.wine)}>-</button>
                         <span>{wine.qtdWine}</span>
-                        <button onClick={()=>addToCart(1, dispatch, wine.wine)}>+</button>                      
+                        <button id={`addOneItemId${wine?.wine.id}`} onClick={()=>addToCart(1, dispatch, wine.wine)}>+</button>                      
                     </AddMoreToCart>
                     <Price>
                         <strong> R$ <span>{priceTotal1}</span>,{priceTotal2? priceTotal2[0] : 0}{priceTotal2? (priceTotal2[1] || 0) : 0}</strong>

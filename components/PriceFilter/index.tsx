@@ -39,28 +39,28 @@ export const PriceFilter: FunctionComponent = () => {
     return(       
         <Filter>
             <div>
-                <input readOnly checked={min === 0 && max===40} onClick={() => handleChangeFilter(0,40)} type="radio" id="40" value="option1"/>
-                <label htmlFor="40">Até R$40</label>
+                <input readOnly checked={min === 0 && max===40} onClick={() => handleChangeFilter(0,40)} type="radio" id="filter40" value="option1"/>
+                <label htmlFor="filter40">Até R$40</label>
             </div>
             <div>
-                <input readOnly checked={min === 40} onClick={() => handleChangeFilter(40,60)} type="radio" id="60" value="option2"/>
-                <label htmlFor="60">R$40 A R$60</label>
+                <input readOnly checked={min === 40} onClick={() => handleChangeFilter(40,60)} type="radio" id="filter60" value="option2"/>
+                <label htmlFor="filter60">R$40 A R$60</label>
             </div>
             <div>
-                <input readOnly checked={min === 60} onClick={() => handleChangeFilter(60,100)} type="radio" id="80" value="option3"/>
-                <label htmlFor="80">R$60 A R$100</label>
+                <input readOnly checked={min === 60} onClick={() => handleChangeFilter(60,100)} type="radio" id="filter80" value="option3"/>
+                <label htmlFor="filter80">R$60 A R$100</label>
             </div>
             <div>
-                <input readOnly checked={min === 100} onClick={() => handleChangeFilter(100,200)} type="radio" id="100" value="option4"/>
-                <label htmlFor="100">R$100 A R$200</label>
+                <input readOnly checked={min === 100} onClick={() => handleChangeFilter(100,200)} type="radio" id="filter100" value="option4"/>
+                <label htmlFor="filter100">R$100 A R$200</label>
             </div>
             <div>
-                <input readOnly checked={min === 200} onClick={() => handleChangeFilter(200,500)} type="radio" id="200" value="option5"/>
-                <label htmlFor="200">R$200 A R$500</label>
+                <input readOnly checked={min === 200} onClick={() => handleChangeFilter(200,500)} type="radio" id="filter200" value="option5"/>
+                <label htmlFor="filter200">R$200 A R$500</label>
             </div>
             <div>
-                <input readOnly checked={min === 500} onClick={() => handleChangeFilter(500,999999)} type="radio" id="500" value="option6"/>
-                <label htmlFor="500">Acima de R$500</label>
+                <input readOnly checked={min === 500} onClick={() => handleChangeFilter(500,999999)} type="radio" id="filter500" value="option6"/>
+                <label htmlFor="filter500">Acima de R$500</label>
             </div>
         </Filter>                 
     )  

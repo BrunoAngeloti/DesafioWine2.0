@@ -30,7 +30,7 @@ export const Header: FunctionComponent = () => {
                 <div>
                     <img src="/conta.svg" alt="Icone de buscar" />
                     <Button>Clube</Button>
-                    <Button onClick={()=>changePage()} selected={true}>Loja</Button>
+                    <Button id="BackToMenu" onClick={()=>changePage()} selected={true}>Loja</Button>
                     <Button>Produtores</Button>
                     <Button>Ofertas</Button>
                     <Button>Eventos</Button>
@@ -39,7 +39,7 @@ export const Header: FunctionComponent = () => {
             <Container>
                 <ContentHeader>
                     <LeftContent>
-                        <img onClick={() => {setMenuMobile(!menuMobile)}} src="/ic-line.svg" alt="Icone para o menu" />
+                        <img id="LogoMenuMobile" onClick={() => {setMenuMobile(!menuMobile)}} src="/ic-line.svg" alt="Icone para o menu" />
                         <img src="/LogoWine.svg" alt="Logo da Wine" />   
                         <div>     
                             <Button>Clube</Button>

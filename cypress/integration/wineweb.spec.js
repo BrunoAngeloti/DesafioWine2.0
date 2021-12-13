@@ -4,54 +4,85 @@ describe('Wine', ()=>{
     it('devem poder adicionar um vinho ao carrinho', ()=>{
         cy.viewport(1920, 1080)
         cy.visit('http://localhost:3000/')
-        cy.get('.style__ContainerCart-sc-bkd84-0 > span').should("contain", 0)
+        cy.wait(2000)
+        cy.get('#qtdItemsCart').should("contain", 0)
+        
+        cy.get('#AdicionarVinho0').click()
+        cy.get('#AdicionarVinho3').click()
 
-        cy.get('.style__Wines-sc-184jf42-3 > :nth-child(1) > button').click()
+        cy.get('#qtdItemsCart').should("contain", 2)
 
-        cy.get('.style__ContainerCart-sc-bkd84-0 > span').should("contain", 1)
-
-        cy.get(':nth-child(1) > .style__ContentCard-sc-1ui9u84-1').click()
+        cy.get('#Vinho1').click()
 
         for(let n = 0; n < 4; n ++){
-            cy.get('.style__AddOnCart-sc-lj51xx-8 > div > :nth-child(3)').click()
+            cy.get('#ButtonAddWine').click()
         }
 
-
-        cy.get('.style__ContainerCart-sc-bkd84-0 > span').should("contain", 1)
-        cy.get('.style__AddOnCart-sc-lj51xx-8 > .style__Button-sc-lj51xx-9').click()
-        cy.get('.style__ContainerCart-sc-bkd84-0 > span').should("contain", 6)
+        cy.get('#qtdItemsCart').should("contain", 2)
+        cy.get('#ButtonAddWineOnCart').click()
+        cy.get('#qtdItemsCart').should("contain", 7)
 
         cy.viewport(550, 750)
 
-        cy.get('.style__FooterMobile-sc-lj51xx-10 > .style__Button-sc-lj51xx-9').click()
-        cy.get('.style__ContainerCart-sc-bkd84-0 > span').should("contain", 7)
+        cy.get('#ButtonMobileAddWineOnCart').click()
+        cy.get('#qtdItemsCart').should("contain", 8)
 
-        cy.get('[src="/ic-line.svg"]').click()
-        cy.get('.style__MenuMobile-sc-1i6tr25-6 > div > .hlStbA').click()
+        cy.get('#LogoMenuMobile').click()
+        cy.get('#BackToMenu').click()
     });
 
     it('devem poder fazer a paginação corretamente', () =>{
-        cy.get(':nth-child(2) > .style__ButtonPag-sc-r29819-2').click()
+        cy.get('#ButtonPage1').click()
+        cy.get('#ButtonPage2').click()
+        cy.get('#ButtonPassPage').click()
+        cy.get('#ButtonPage7').click()
 
-        cy.get('.style__Buttons-sc-r29819-1 > :nth-child(5)').click()
-        cy.get('.style__ButtonPass-sc-r29819-3').click()
-        cy.get('.style__Buttons-sc-r29819-1 > :nth-child(1)').click()
-        
+        cy.get('#ButtonBackPage').click()
+        cy.get('#ButtonPage5').click()
+        cy.get('#ButtonPage4').click()
+        cy.get('#ButtonPage1').click()     
     });
 
     it('devem poder fazer a filtragem pelo preço', ()=>{
-        cy.get('.style__Filter-sc-4wwmc8-0 > :nth-child(1)').click()
-        cy.get('.style__Filter-sc-4wwmc8-0 > :nth-child(2)').click()
-        cy.get('.style__Filter-sc-4wwmc8-0 > :nth-child(3)').click()
-        cy.get('.style__Filter-sc-4wwmc8-0 > :nth-child(4)').click()
-        cy.get('.style__Filter-sc-4wwmc8-0 > :nth-child(5)').click()
-        cy.get('.style__Filter-sc-4wwmc8-0 > :nth-child(6)').click()
+        cy.get('#filter40').click()
+        cy.get('#filter60').click()
+        cy.get('#filter80').click()
+        cy.get('#filter100').click()
+        cy.get('#filter200').click()
+        cy.get('#filter500').click()
 
-        cy.get('.style__Filter-sc-4wwmc8-0 > :nth-child(6)').click()
+        cy.get('#filter500').click()
     })
 
-    it('devem poder abrir e fechar o carrinho', ()=>{
-        cy.get('.style__ContainerCart-sc-bkd84-0 > img').click()
-        cy.get('.style__HeaderMenuCart-sc-bkd84-2 > img').click()
+
+    it('devem adicionar itens ao carrinho e estar la corretamente', ()=>{
+        cy.clearLocalStorage()
+
+        cy.get('#AdicionarVinho0').click()
+        cy.get('#AdicionarVinho3').click()
+
+        cy.get('#shoppingCart').click()
+
+        cy.get('#qtdItemsShoppingCart').should("contain", 2)
+
+        cy.get('#addOneItemId0').click()
+        cy.get('#addOneItemId0').click()
+        cy.get('#addOneItemId3').click()
+        cy.get('#addOneItemId3').click()
+        
+
+        cy.get('#qtdItemsShoppingCart').should("contain", 6)
+
+        cy.get('#removeOneItemId3').click()
+        cy.get('#removeOneItemId3').click()
+
+        cy.get('#qtdItemsShoppingCart').should("contain", 4)
+
+        cy.get('#removeItemId3').click()
+        cy.get('#removeItemId0').click()
+
+        cy.get('#qtdItemsShoppingCart').should("contain", 0)
+
+        cy.get('#closeShoppingCart').click()
     })
 })

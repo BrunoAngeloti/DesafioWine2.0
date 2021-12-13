@@ -26,7 +26,7 @@ export const CardWine: FunctionComponent<iCardWine> = ({wine}:iCardWine) => {
 
     return(
         <ContainerCard>
-            <ContentCard onClick={handleInfoPage}>
+            <ContentCard id={`Vinho${wine.id}`} onClick={handleInfoPage}>
                 <img src={wine.image} alt="Imagem do vinho" />
                 <h1>{wine.name}</h1>
                 <Discount>
@@ -41,7 +41,7 @@ export const CardWine: FunctionComponent<iCardWine> = ({wine}:iCardWine) => {
                     NÃO SÓCIO <span>R$ {priceNonMemberToString}</span>
                 </NotMember>
             </ContentCard>
-            <button onClick={() => addToCart(1, dispatch, wine)}>
+            <button id={`AdicionarVinho${wine.id}`} onClick={() => addToCart(1, dispatch, wine)}>
                 ADICIONAR
             </button>
         </ContainerCard>  

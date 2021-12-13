@@ -75,7 +75,7 @@ export const Pagination: FunctionComponent = () => {
     return(
         <ContainerPagination numeroItems={numItems}>
             <Buttons>
-                {currentPage !== 1 && <ButtonPass onClick={()=>handleButton(currentPage-1)}>{'<< '}Anterior</ButtonPass>}
+                {currentPage !== 1 && <ButtonPass id="ButtonBackPage" onClick={()=>handleButton(currentPage-1)}>{'<< '}Anterior</ButtonPass>}
                 {[...Array(totalPages)].map((pages, idx) => {
                     return(
                         visible(idx+1) && 
@@ -85,6 +85,7 @@ export const Pagination: FunctionComponent = () => {
                                 onClick={()=>handleButton(idx+1)}
                                 Selected={idx+1 === currentPage}
                                 Next={idx+1 === currentPage+1}
+                                id={`ButtonPage${idx+1}`}
                             >
                                 {idx+1}
                             </ButtonPag>
@@ -92,7 +93,7 @@ export const Pagination: FunctionComponent = () => {
                         </div>
                     )
                 })}
-                {(currentPage) !== totalPages && <ButtonPass onClick={()=>handleButton(currentPage+1)}>Próximo{' >>'}</ButtonPass>}
+                {(currentPage) !== totalPages && <ButtonPass id="ButtonPassPage" onClick={()=>handleButton(currentPage+1)}>Próximo{' >>'}</ButtonPass>}
             </Buttons>
         </ContainerPagination>  
     )

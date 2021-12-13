@@ -5,7 +5,7 @@ import { PriceFilterTypes } from './types'
 test('deve retornar o estado inicial', () => {
     expect(reducer(undefined, {})).toEqual({
         min: 0,
-        max: 0
+        max: 999999
     })
 })
 

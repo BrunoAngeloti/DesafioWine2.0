@@ -113,9 +113,9 @@ export default function Products(props:ProductsProps){
                             <div>
                                 <button disabled={qtd===1} style={qtd === 1 ? {color: 'rgba(255, 255, 255, 0.2)'} : {}} onClick={()=>setQtd(qtd-1)}>-</button>
                                 <span>{qtd}</span>
-                                <button onClick={()=>setQtd(qtd+1)}>+</button>
+                                <button id="ButtonAddWine" onClick={()=>setQtd(qtd+1)}>+</button>
                             </div>
-                            <Button onClick={() => addToCart(qtd, dispatch, wine)}>Adicionar</Button>
+                            <Button id="ButtonAddWineOnCart" onClick={() => addToCart(qtd, dispatch, wine)}>Adicionar</Button>
                         </AddOnCart>               
                     </RightContent>
                 </ContentWineInfo>
@@ -127,10 +127,10 @@ export default function Products(props:ProductsProps){
                         <h3>PREÇO NÃO-SÓCIO R$ {priceNonMemberToString}</h3>
                     </section>
                     
-                    <Button onClick={() => addToCart(1, dispatch, wine)}>Adicionar</Button>
+                    <Button id="ButtonMobileAddWineOnCart" onClick={() => addToCart(1, dispatch, wine)}>Adicionar</Button>
                 </FooterMobile>
             </>
-                        }
+            }
         </ContainerWineInfo> 
     )
 }
