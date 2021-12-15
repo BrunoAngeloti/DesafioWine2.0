@@ -46,7 +46,7 @@ export default function Products(props:ProductsProps){
     const dispatch = useDispatch()
     
     useEffect(()=>{
-       if(!wines) Router.push(`/`)
+       if(!wine) Router.push(`/`)
        else setLoading(false)
     }, [])
 
