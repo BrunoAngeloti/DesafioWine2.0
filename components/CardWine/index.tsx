@@ -27,7 +27,7 @@ export const CardWine: FunctionComponent<iCardWine> = ({wine}:iCardWine) => {
     return(
         <ContainerCard>
             <ContentCard id={`Vinho${wine.id}`} onClick={handleInfoPage}>
-                <img src={wine.image} alt="Imagem do vinho" />
+                <img src={wine.image} alt={`${wine.name}`} />
                 <h1>{wine.name}</h1>
                 <Discount>
                     <p>R$ {priceToString}</p>

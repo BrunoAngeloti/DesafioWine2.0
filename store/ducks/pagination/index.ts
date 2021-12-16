@@ -20,6 +20,13 @@ const reducer: Reducer<PaginationState> = (state = INITIAL_STATE, action) => {
             return { ...state, itemsPerPage: action.payload }
         case PaginationTypes.CHANGE_TOTAL_PAGES:
             return { ...state, totalPages: action.payload }
+        case PaginationTypes.CHANGE_STATE_PAGES:
+            return { 
+                ...state, 
+                numItems: action.payload.numItems,
+                itemsPerPage: action.payload.itemsPerPage,
+                totalPages: action.payload.totalPages
+            }
         default:
             return state
     }

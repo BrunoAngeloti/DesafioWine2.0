@@ -10,10 +10,12 @@ import { PriceFilter } from '../../components/PriceFilter'
 import { ItemsTypes } from '../../store/ducks/items/types'
 
 import ReactLoading from "react-loading";
+import { selectorPagination } from '../../store/ducks/pagination/selector'
+import { selectorItems } from '../../store/ducks/items/selector'
 
 export default function Home(){
-  const { currentPage, numItems } = useSelector((state: ApplicationState)=>state.pagination);
-  const { wines, loading } = useSelector((state: ApplicationState)=>state.items)
+  const { currentPage, numItems } = selectorPagination()
+  const { wines, loading } = selectorItems()
 
   const dispatch = useDispatch()
 
@@ -22,7 +24,6 @@ export default function Home(){
       type: ItemsTypes.REQUEST_ITEMS, 
       payload: {
         pageAtual: 1,
-        wines: wines
       }
     }) 
   }, [])
@@ -35,10 +36,11 @@ export default function Home(){
         <PriceFilter />
       </Search>
       <Items>
-        {
-          loading 
-          ? <div style={{alignSelf: 'center'}}><ReactLoading type="spin" color="#B6116E" height={80} width={80}/></div>
-          :
+        {loading ? 
+          <div style={{alignSelf: 'center'}}>
+            <ReactLoading type="spin" color="#B6116E" height={80} width={80}/>
+          </div>
+        :
           <>
             <h3><strong>{numItems}</strong> produtos encontrados</h3>
             <Wines>
@@ -47,7 +49,7 @@ export default function Home(){
                   <CardWine key={wine.id} wine={wine}/>
                 )
               })}
-              {wines[currentPage]?.length === 0 && <h1>Não temos vinhos para mostrar :(</h1>}
+              {wines?.length === 0 && <h1>Não temos vinhos para mostrar :(</h1>}
             </Wines>
             <Pagination />
           </>

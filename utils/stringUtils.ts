@@ -6,3 +6,7 @@ export function stringToNumber(value:string){
 
     return result
 }
+
+export function numberToString(value:number | undefined){
+    return value?.toFixed(2).toString().replace(".", ",");
+};

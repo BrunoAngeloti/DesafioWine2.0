@@ -30,6 +30,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../utils/cartUtils';
 import { iWines } from '../../interfaces/wines';
 import { ApplicationState } from '../../store';
+import { numberToString } from '../../utils/stringUtils';
 
 export default function Products(props:ProductsProps){
     const [qtd, setQtd] = useState(1);
@@ -39,9 +40,9 @@ export default function Products(props:ProductsProps){
     const wine = wines.map(wines=>wines?.find(wine => wine.id == props.id)).find(wine=> wine !== undefined)
 
     const priceMemberToString = wine?.priceMember.toFixed(2).toString().split(".")
-    const priceMemberToStringNotSplit = wine?.priceMember.toFixed(2).toString().replace(".", ",")
-    const priceNonMemberToString = wine?.priceNonMember.toFixed(2).toString().replace(".", ",")
-    const priceToString = wine?.price.toFixed(2).toString().replace(".", ",")
+    const priceMemberToStringNotSplit = numberToString(wine?.priceMember)
+    const priceNonMemberToString = numberToString(wine?.priceNonMember)
+    const priceToString = numberToString(wine?.price);
     
     const dispatch = useDispatch()
     

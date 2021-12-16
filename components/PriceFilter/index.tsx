@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ApplicationState } from '../../store'
 import { ItemsTypes } from '../../store/ducks/items/types'
 import { PaginationTypes } from '../../store/ducks/pagination/types'
+import { selectorPriceFilter } from '../../store/ducks/pricesFilter/selector'
 import { PriceFilterTypes } from '../../store/ducks/pricesFilter/types'
 
 import { Filter } from './style'
@@ -11,26 +12,26 @@ import { Filter } from './style'
 export const PriceFilter: FunctionComponent = () => {
     const dispatch = useDispatch()
 
-    const { min, max } = useSelector((state: ApplicationState)=>state.pricesFilter);
+    const { min, max } = selectorPriceFilter();
 
     function handleChangeFilter(minimo:number, maximo:number){  
         
         dispatch({ type: PaginationTypes.CHANGE_CURRENT_PAGE, payload: 1 })
-        dispatch({type: ItemsTypes.SET_ITEMS, payload: []})
+        dispatch({ type: ItemsTypes.SET_ITEMS, payload: {pageAtual: 1, wines: []}})
         
         if(min === 0 && max === 999999) {
             dispatch({ type: PriceFilterTypes.CHANGE_PRICE_FILTER, payload: {min: minimo, max: maximo} })
-            dispatch({ type: ItemsTypes.REQUEST_ITEMS, payload: {filter:{min: minimo, max:maximo}, pageAtual:1, wines: []}})
+            dispatch({ type: ItemsTypes.REQUEST_ITEMS, payload: {filter:{min: minimo, max:maximo}, pageAtual:1}})
 
         }else{
             if(min === minimo){
                 
                 dispatch({ type: PriceFilterTypes.CHANGE_PRICE_FILTER, payload: {min: 0, max: 999999} })
-                dispatch({ type: ItemsTypes.REQUEST_ITEMS, payload: {pageAtual:1, wines: []}})
+                dispatch({ type: ItemsTypes.REQUEST_ITEMS, payload: {pageAtual:1}})
 
             }else{
                 dispatch({ type: PriceFilterTypes.CHANGE_PRICE_FILTER, payload: {min: minimo, max: maximo} })
-                dispatch({ type: ItemsTypes.REQUEST_ITEMS, payload: {filter:{min: minimo, max:maximo}, pageAtual:1, wines: []}})
+                dispatch({ type: ItemsTypes.REQUEST_ITEMS, payload: {filter:{min: minimo, max:maximo}, pageAtual:1}})
 
             }
         }             

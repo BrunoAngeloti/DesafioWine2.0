@@ -1,5 +1,5 @@
 import { PriceFilterTypes } from './types';
-import { changePriceFilter } from './actions'
+import { changePriceFilter } from './sagas'
 
 test('deve retornar o limite do filtro alterado', () => {
     expect(changePriceFilter({min: 5, max: 15})).toEqual({

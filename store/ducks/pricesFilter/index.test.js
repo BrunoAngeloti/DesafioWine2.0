@@ -1,5 +1,4 @@
 import reducer  from './index'
-import { changePriceFilter } from './actions'
 import { PriceFilterTypes } from './types'
 
 test('deve retornar o estado inicial', () => {

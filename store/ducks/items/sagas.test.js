@@ -1,4 +1,4 @@
-import { loadingWines } from './sagas'
+import { loadingWines, requestFailed, requestLoading, requestSuccess, setItems } from './sagas'
 import api from '../../../services/api'
 
 import { runSaga } from 'redux-saga';
@@ -181,7 +181,7 @@ describe("Items API erro", ()=>{
         })
     })
 
-    it('deve retornar os itens certos solicitados ', async()=>{
+    it('deve retornar erro ', async()=>{
         const dispatchedActions = [];
         const action = {
             payload: {
@@ -201,7 +201,7 @@ describe("Items API erro", ()=>{
 
         //Verifica se a api foi executada apenas uma vez
         expect(api.get.mock.calls.length).toBe(1);
-        console.log(dispatchedActions)
+     
         expect(dispatchedActions).toEqual([
             {
                 type: ItemsTypes.REQUEST_LOADING_ITEMS,
@@ -210,5 +210,30 @@ describe("Items API erro", ()=>{
                 type: ItemsTypes.REQUEST_FAILED_ITEMS,
             }
         ])
+    })
+})
+
+test('deve retornar se ocorreu uma falha', () => {
+    expect(requestFailed()).toEqual({
+        type: ItemsTypes.REQUEST_FAILED_ITEMS,
+    })
+})
+
+test('deve retornar os itens corretamente', () => {
+    expect(setItems([[{name: "Vinho1"},{name: "Vinho2"}], [{name: "Vinho3"},{name: "Vinho4"}]])).toEqual({
+        payload: [[{name: "Vinho1"},{name: "Vinho2"}], [{name: "Vinho3"},{name: "Vinho4"}]],
+        type: ItemsTypes.SET_ITEMS,
+    })
+})
+
+test('deve retornar se ocorreu uma chamada de loading', () => {
+    expect(requestLoading()).toEqual({
+        type: ItemsTypes.REQUEST_LOADING_ITEMS,
+    })
+})
+
+test('deve retornar se deu tudo certo', () => {
+    expect(requestSuccess()).toEqual({
+        type: ItemsTypes.REQUEST_SUCCESS_ITEMS,
     })
 })

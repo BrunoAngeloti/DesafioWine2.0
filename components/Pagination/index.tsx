@@ -1,8 +1,11 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ApplicationState } from '../../store'
+import { selectorItems } from '../../store/ducks/items/selector'
 import { ItemsTypes } from '../../store/ducks/items/types'
+import { selectorPagination } from '../../store/ducks/pagination/selector'
 import { PaginationTypes } from '../../store/ducks/pagination/types'
+import { selectorPriceFilter } from '../../store/ducks/pricesFilter/selector'
 
 import { 
     ContainerPagination,
@@ -14,10 +17,9 @@ import {
 
 export const Pagination: FunctionComponent = () => {
 
-    const { numItems, currentPage, totalPages } = useSelector((state: ApplicationState)=>state.pagination);
-    const { min, max } = useSelector((state: ApplicationState)=>state.pricesFilter);
-
-    const { wines } = useSelector((state: ApplicationState)=>state.items)
+    const { numItems, currentPage, totalPages } = selectorPagination()
+    const { min, max } = selectorPriceFilter()
+    const { wines } = selectorItems()
 
     const dispatch = useDispatch()
 
@@ -54,7 +56,7 @@ export const Pagination: FunctionComponent = () => {
                 type: ItemsTypes.REQUEST_ITEMS, 
                 payload: {
                   pageAtual: idx,
-                  wines: wines
+                  
                 }
             }) 
         }else{
@@ -66,7 +68,7 @@ export const Pagination: FunctionComponent = () => {
                         min: min,
                         max: max
                     },
-                    wines: wines
+                    
                 }
             }) 
         }

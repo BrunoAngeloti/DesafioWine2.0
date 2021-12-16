@@ -1,5 +1,5 @@
 import { PaginationTypes } from './types';
-import { changeCurrentPage, changeNumItemsPagination, changeItemsPerPage, changeTotalPages } from './actions'
+import { changeCurrentPage, changeNumItemsPagination, changeItemsPerPage, changeTotalPages } from './sagas'
 
 test('deve retornar a pagina atual alterada', () => {
     expect(changeCurrentPage(6)).toEqual({

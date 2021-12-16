@@ -1,27 +1,38 @@
-import { call, put } from 'redux-saga/effects'
+import { call, put, select } from 'redux-saga/effects'
+import { action } from 'typesafe-actions'
+import { ApplicationState } from '../..'
+import { iWines } from '../../../interfaces/wines'
 
 import api from '../../../services/api'
 
-import { requestFailed, requestLoading, requestSuccess, setItems} from './actions'
-import { changeNumItemsPagination, changeItemsPerPage,changeTotalPages } from '../pagination/actions'
+import { changeStatePages } from '../pagination/sagas'
+import { PriceFilterTypes } from '../pricesFilter/types'
+import { ItemsTypes } from './types'
 
+const getItems = (state:ApplicationState) => state.items;
 
 export function* loadingWines({payload}:any): any{  
-    const { filter, pageAtual, wines } = payload
-    if(wines[pageAtual] === undefined){    
+    const { filter, pageAtual} = payload
+    const { wines } = yield select(getItems)
+
+    if(wines[pageAtual] === undefined || wines === []){    
         yield put(requestLoading())    
         try{
             const response = filter 
             ? yield call(api.get, `products?page=${pageAtual}&limit=10&filter=${filter.min}-${filter.max}`)
             : yield call(api.get, `products?page=${pageAtual}&limit=10`)
             
-            let arrayAux = [...wines]
-            arrayAux[pageAtual] = response.data.items;
-            yield put(setItems(arrayAux)) 
+            yield put(setItems({
+                pageAtual: pageAtual,
+                wines: response.data.items
+            })) 
 
-            yield put(changeNumItemsPagination(response.data.totalItems))   
-            yield put(changeItemsPerPage(response.data.itemsPerPage))  
-            yield put(changeTotalPages(response.data.totalPages))  
+            yield put(changeStatePages({
+                numItems: response.data.totalItems, 
+                itemsPerPage: response.data.itemsPerPage, 
+                totalPages: response.data.totalPages
+            }))
+ 
             yield put(requestSuccess())
                               
         }catch(err){
@@ -29,3 +40,17 @@ export function* loadingWines({payload}:any): any{
         }
     } 
 }
+
+
+
+
+interface propsItems{
+    pageAtual: number,
+    wines: Array<iWines>
+}
+
+export const setItems = ({pageAtual, wines}:propsItems) => action(ItemsTypes.SET_ITEMS, {pageAtual, wines})
+export const requestItems = (filter: PriceFilterTypes, pageAtual: number) => action(ItemsTypes.REQUEST_ITEMS, filter, pageAtual)
+export const requestLoading = () => action(ItemsTypes.REQUEST_LOADING_ITEMS)
+export const requestFailed = () => action(ItemsTypes.REQUEST_FAILED_ITEMS)
+export const requestSuccess = () => action(ItemsTypes.REQUEST_SUCCESS_ITEMS)

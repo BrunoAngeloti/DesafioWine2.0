@@ -3,7 +3,8 @@ export enum PaginationTypes{
     CHANGE_NUM_ITEMS = '@pagination/CHANGE_NUM_ITEMS',
     CHANGE_CURRENT_PAGE = '@pagination/CHANGE_CURRENT_PAGE',
     CHANGE_ITEMS_PER_PAGE = '@pagination/CHANGE_ITEMS_PER_PAGE',
-    CHANGE_TOTAL_PAGES = '@pagination/CHANGE_TOTAL_PAGES'
+    CHANGE_TOTAL_PAGES = '@pagination/CHANGE_TOTAL_PAGES',
+    CHANGE_STATE_PAGES = '@pagination/CHANGE_STATE_PAGES'
 }
 
 export interface PaginationState{

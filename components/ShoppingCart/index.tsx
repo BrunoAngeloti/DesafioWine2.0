@@ -21,9 +21,12 @@ import { CardWineShoppingCart } from '../CardWineShoppingCart'
 import { iItemCart } from '../../interfaces/cart'
 import { AmountItemsTypes } from '../../store/ducks/amountItems/types'
 
+import { selectorAmountItems } from '../../store/ducks/amountItems/selector'
+
 export const ShoppingCart: FunctionComponent = () => {
     const [menuMobile, setMenuMobile] = useState(false)
-    const { amount } = useSelector((state: ApplicationState)=>state.amountItems);
+
+    const { amount } = selectorAmountItems();
     const dispatch = useDispatch()
     
     const [winesOnCart, setWinesOnCart] = useState<Array<iItemCart>>([])
