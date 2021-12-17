@@ -19,7 +19,6 @@ export const Pagination: FunctionComponent = () => {
 
     const { numItems, currentPage, totalPages } = selectorPagination()
     const { min, max } = selectorPriceFilter()
-    const { wines } = selectorItems()
 
     const dispatch = useDispatch()
 

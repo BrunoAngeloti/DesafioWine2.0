@@ -5,14 +5,14 @@ import { iWines } from '../../../interfaces/wines'
 
 import api from '../../../services/api'
 
-import { changeStatePages } from '../pagination/sagas'
+import { changeStatePages,changeCurrentPage } from '../pagination/sagas'
 import { PriceFilterTypes } from '../pricesFilter/types'
 import { ItemsTypes } from './types'
 
 const getItems = (state:ApplicationState) => state.items;
 
 export function* loadingWines({payload}:any): any{  
-    const { filter, pageAtual} = payload
+    const { filter, pageAtual } = payload
     const { wines } = yield select(getItems)
 
     if(wines[pageAtual] === undefined || wines === []){    
@@ -32,6 +32,8 @@ export function* loadingWines({payload}:any): any{
                 itemsPerPage: response.data.itemsPerPage, 
                 totalPages: response.data.totalPages
             }))
+            
+            yield put(changeCurrentPage(parseInt(pageAtual)))
  
             yield put(requestSuccess())
                               

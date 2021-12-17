@@ -18,7 +18,7 @@ export const CardWine: FunctionComponent<iCardWine> = ({wine}:iCardWine) => {
     const dispatch = useDispatch()
 
     function handleInfoPage(){
-        Router.push(`/Products/${wine.id}`)        
+        Router.push(`/products/${wine.id}`)        
     }
 
     const priceMemberToString = wine.priceMember.toFixed(2).toString().split(".")

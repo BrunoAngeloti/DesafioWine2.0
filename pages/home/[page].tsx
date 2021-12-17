@@ -12,18 +12,24 @@ import { ItemsTypes } from '../../store/ducks/items/types'
 import ReactLoading from "react-loading";
 import { selectorPagination } from '../../store/ducks/pagination/selector'
 import { selectorItems } from '../../store/ducks/items/selector'
+import { GetServerSideProps } from 'next'
 
-export default function Home(){
+interface HomeProps {
+  page: number;
+}
+
+export default function Home(props:HomeProps){
   const { currentPage, numItems } = selectorPagination()
   const { wines, loading } = selectorItems()
 
   const dispatch = useDispatch()
 
   useEffect(()=>{
+    
     dispatch({
       type: ItemsTypes.REQUEST_ITEMS, 
       payload: {
-        pageAtual: 1,
+        pageAtual: props.page,
       }
     }) 
   }, [])
@@ -58,3 +64,16 @@ export default function Home(){
     </ContentHome>   
   )
 }
+
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const page = context.query.page;
+  
+  return {
+      props: {
+          page: page
+      }
+  }
+}
+
+
