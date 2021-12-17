@@ -8,5 +8,5 @@ export function stringToNumber(value:string){
 }
 
 export function numberToString(value:number | undefined){
-    return value?.toFixed(2).toString().replace(".", ",");
+    return value?.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
 };

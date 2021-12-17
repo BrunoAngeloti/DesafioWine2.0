@@ -25,25 +25,22 @@ import {
     FooterMobile,
 } from '../../styles/pages/Products/style'
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { addToCart } from '../../utils/cartUtils';
-import { iWines } from '../../interfaces/wines';
-import { ApplicationState } from '../../store';
-import { numberToString } from '../../utils/stringUtils';
+import { convertPricesWine } from '../../utils/wineUtils';
+
+import { selectorItemsFiltreded } from '../../store/ducks/items/selector';
 
 export default function Products(props:ProductsProps){
     const [qtd, setQtd] = useState(1);
     const [loading, setLoading] = useState(true)
 
-    const wines: Array<Array<iWines>> = useSelector((state: ApplicationState)=>state.items.wines)
-    const wine = wines.map(wines=>wines?.find(wine => wine.id == props.id)).find(wine=> wine !== undefined)
+    const wine  = selectorItemsFiltreded(props.id)
 
+    const { price, priceMember, priceNonMember } = convertPricesWine(wine);
     const priceMemberToString = wine?.priceMember.toFixed(2).toString().split(".")
-    const priceMemberToStringNotSplit = numberToString(wine?.priceMember)
-    const priceNonMemberToString = numberToString(wine?.priceNonMember)
-    const priceToString = numberToString(wine?.price);
-    
+
     const dispatch = useDispatch()
     
     useEffect(()=>{
@@ -64,7 +61,7 @@ export default function Products(props:ProductsProps){
                 </header>
                 <ContentWineInfo>
                     <LeftContent>
-                        <img src={wine?.image} alt="garrafa do vinho" />
+                        <img src={wine?.image} alt={`garrafa do vinho ${wine?.image}`} />
                     </LeftContent>
                     <RightContent>
                         <LocationWine>
@@ -104,7 +101,7 @@ export default function Products(props:ProductsProps){
                                     <span>{priceMemberToString && priceMemberToString[1]}</span>
                                 </h2>
                             }
-                            <h3>NÃO SÓCIO R$ {priceNonMemberToString}/UN.</h3>
+                            <h3>NÃO SÓCIO {priceNonMember}/UN.</h3>
                         </PriceWine>
                         <CommentsWine>
                             <h3>Comentário do Sommelier</h3>
@@ -123,9 +120,9 @@ export default function Products(props:ProductsProps){
                 <FooterMobile>
                     <section>
                         <span>{wine?.discount}% OFF</span>
-                        <h2>R$ {priceToString}</h2>
-                        <h1>R$ <strong>{priceMemberToStringNotSplit}</strong></h1>
-                        <h3>PREÇO NÃO-SÓCIO R$ {priceNonMemberToString}</h3>
+                        <h2>{price}</h2>
+                        <h1><strong>{priceMember}</strong></h1>
+                        <h3>PREÇO NÃO-SÓCIO {priceNonMember}</h3>
                     </section>
                     
                     <Button id="ButtonMobileAddWineOnCart" onClick={() => addToCart(1, dispatch, wine)}>Adicionar</Button>

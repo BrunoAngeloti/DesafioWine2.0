@@ -2,20 +2,32 @@ import styled from 'styled-components'
 
 export const ContainerCart = styled.div`
     display: flex;
+    position: relative;
     cursor: pointer;
-    span{
-        background-color:white;
+    
+
+    &::after{
+
+        background-color: white;
         width: 25px;
         height: 25px;
-        display: flex;
+        
         align-items: center;
         justify-content: center;
-        border-radius:50%;
-        align-self: flex-end;
-        transform: translateX(-25px);
+        position: absolute;
+        bottom: -1px;
+        right: -1px;
         box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        border: 2px solid white;
+
+        font-size: 13px;
+        font-weight: 700;
         color: rgba(79, 191, 165, 1);
-        font-weight:700;
+
+        content: '${props => props.amount}';
+
+        display: flex;
     }
 `
 
