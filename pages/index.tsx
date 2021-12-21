@@ -1,9 +1,12 @@
 import type { NextPage } from 'next'
 
 import Head from 'next/head'
-import  Home  from './home/[page]'
+
+import  Home  from './home'
 
 const App:NextPage  = () => {
+  
+  
   return (
     <div>
       <Head>

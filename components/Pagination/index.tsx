@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ApplicationState } from '../../store'
@@ -21,6 +22,7 @@ export const Pagination: FunctionComponent = () => {
     const { min, max } = selectorPriceFilter()
 
     const dispatch = useDispatch()
+    const router = useRouter()
 
     function scrollToTop(){
         window.scrollTo({
@@ -71,6 +73,7 @@ export const Pagination: FunctionComponent = () => {
                 }
             }) 
         }
+        router.push(`/?pagina=${idx}`)
     }
 
     return(

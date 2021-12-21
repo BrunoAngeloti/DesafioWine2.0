@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import React, { FunctionComponent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { ApplicationState } from '../../store'
@@ -11,6 +12,7 @@ import { Filter } from './style'
 
 export const PriceFilter: FunctionComponent = () => {
     const dispatch = useDispatch()
+    const router = useRouter()
 
     const { min, max } = selectorPriceFilter();
 
@@ -34,7 +36,8 @@ export const PriceFilter: FunctionComponent = () => {
                 dispatch({ type: ItemsTypes.REQUEST_ITEMS, payload: {filter:{min: minimo, max:maximo}, pageAtual:1}})
 
             }
-        }             
+        }   
+        router.push(`/?pagina=1`)          
     }
 
     return(       
