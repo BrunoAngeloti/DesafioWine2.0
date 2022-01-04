@@ -72,7 +72,7 @@ export const PriceFilter: FunctionComponent = () => {
     const returnButtonsFilter = () => { 
         return (
             dataFilter.map(data => 
-                <div>
+                <div key={data.min}>
                     <input 
                         checked={min === data.min && max === data.max}
                         onClick={() => handleChangeFilter(data.min,data.max)} 
