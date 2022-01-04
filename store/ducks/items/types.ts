@@ -1,4 +1,4 @@
-import { iWines } from "../../../interfaces/wines";
+import { IWines } from "../../../interfaces/wines";
 
 export enum ItemsTypes{
     SET_ITEMS = '@items/SET_ITEMS',
@@ -9,7 +9,7 @@ export enum ItemsTypes{
 }
 
 export interface ItemsState{
-    readonly wines: Array<Array<iWines>>,
+    readonly wines: Array<Array<IWines>>,
     readonly loading: boolean,
     readonly error: boolean
 }

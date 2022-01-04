@@ -1,7 +1,7 @@
 import { call, put, select } from 'redux-saga/effects'
 import { action } from 'typesafe-actions'
 import { ApplicationState } from '../..'
-import { iWines } from '../../../interfaces/wines'
+import { IWines } from '../../../interfaces/wines'
 
 import api from '../../../services/api'
 
@@ -48,7 +48,7 @@ export function* loadingWines({payload}:any): any{
 
 interface propsItems{
     pageAtual: number,
-    wines: Array<iWines>
+    wines: Array<IWines>
 }
 
 export const setItems = ({pageAtual, wines}:propsItems) => action(ItemsTypes.SET_ITEMS, {pageAtual, wines})
