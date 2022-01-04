@@ -1,6 +1,6 @@
-import { iWines } from "./wines";
+import { IWines } from "./wines";
 
-export interface iItemCart{ 
-    wine: iWines,
+export interface IItemCart{ 
+    wine: IWines,
     qtdWine: number
 }

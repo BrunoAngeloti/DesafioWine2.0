@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Filter = styled.form`
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     gap: 25px;
 
     div{
@@ -14,7 +14,7 @@ export const Filter = styled.form`
         }
         label{
             color: #1D1D1B;
-            font-weight:500;
+            font-weight: 500;
             cursor: pointer;
         }
     }

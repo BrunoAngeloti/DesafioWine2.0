@@ -38,8 +38,7 @@ export default function Products(props:ProductsProps){
 
     const wine  = selectorItemsFiltreded(props.id)
 
-    const { price, priceMember, priceNonMember } = convertPricesWine(wine);
-    const priceMemberToString = wine?.priceMember.toFixed(2).toString().split(".")
+    const { price, priceMember, priceNonMember, priceMemberToString } = convertPricesWine(wine);
 
     const dispatch = useDispatch()
     
@@ -56,25 +55,25 @@ export default function Products(props:ProductsProps){
                     <title>Wine | {wine?.name}</title>
                 </Head>
                 <header onClick={()=> {Router.back()}} >
-                    <img src="/back.svg" alt="seta de voltar"/>
+                    <img src="/back.svg" alt="back arrow"/>
                     <span>Voltar</span>
                 </header>
                 <ContentWineInfo>
                     <LeftContent>
-                        <img src={wine?.image} alt={`garrafa do vinho ${wine?.image}`} />
+                        <img src={wine?.image} alt={`wine bottle ${wine?.image}`} />
                     </LeftContent>
                     <RightContent>
                         <LocationWine>
                             <h4>Vinhos</h4>
-                            <img src="/arrowRight.svg" alt="seta para direita" />
+                            <img src="/arrowRight.svg" alt="right arrow" />
                             <h4>{wine?.country}</h4>
-                            <img src="/arrowRight.svg" alt="seta para direita" />
+                            <img src="/arrowRight.svg" alt="right arrow" />
                             <h4>{wine?.region}</h4>
                         </LocationWine>
                         <DetailsWine>
                             <h1>{wine?.name}</h1>
                             <div>
-                                <img src={wine?.flag} alt="bandeira do país" />
+                                <img src={wine?.flag} alt="country flag" />
                                 <p>{wine?.country}</p> 
                                 <p>{wine?.type}</p> 
                                 <p>{wine?.classification}</p>
@@ -92,7 +91,7 @@ export default function Products(props:ProductsProps){
                                 <p>({wine?.avaliations})</p>
                             </div>
                         </DetailsWine>
-                        <img src={wine?.image} alt="garrafa do vinho" />
+                        <img src={wine?.image} alt={`wine bottle ${wine?.image}`} />
                         <PriceWine>
                             {                    
                                 <h2>
@@ -109,7 +108,7 @@ export default function Products(props:ProductsProps){
                         </CommentsWine>
                         <AddOnCart>
                             <div>
-                                <button disabled={qtd===1} style={qtd === 1 ? {color: 'rgba(255, 255, 255, 0.2)'} : {}} onClick={()=>setQtd(qtd-1)}>-</button>
+                                <button disabled={qtd===1} style={qtd === 1 ? {color: 'rgba(255, 255, 255, 0.2)'} : undefined} onClick={()=>setQtd(qtd-1)}>-</button>
                                 <span>{qtd}</span>
                                 <button id="ButtonAddWine" onClick={()=>setQtd(qtd+1)}>+</button>
                             </div>

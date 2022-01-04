@@ -5,7 +5,7 @@ export const ContainerCard = styled.div`
     flex-direction:row;
     width: 100%;
     height: 160px;
-    background-color:#F5F5F5;
+    background-color: #F5F5F5;
     border-bottom: 1px solid #ddd;
     padding: 16px;
     gap: 5px;
@@ -19,7 +19,6 @@ export const LeftContent = styled.div`
         width: 100%;
         height: 100%;
     }
-    
 `
 
 export const RightContent = styled.div`
@@ -51,7 +50,7 @@ export const HeaderCardWine = styled.header`
         width: 20%;
         display: flex;
         align-items: center;
-        justify-content:flex-end;
+        justify-content: flex-end;
         img{
             width: 22px;
             cursor: pointer;
@@ -62,14 +61,14 @@ export const HeaderCardWine = styled.header`
 export const FooterCardWine = styled.footer`
     display: flex;
     flex-direction: row;
-    align-items:center;
+    align-items: center;
     justify-content: space-between;
 `
 
 export const AddMoreToCart = styled.div`
     display: flex;
     flex-direction: row;
-    align-items:center;
+    align-items: center;
     justify-content: center;
     border: 1px solid #BFBFBF;
     height: 100%;
@@ -79,11 +78,11 @@ export const AddMoreToCart = styled.div`
 
     button{
         border: none;
-        background-color:transparent;
-        justify-content:center;
-        align-items:center;
+        background-color: transparent;
+        justify-content: center;
+        align-items: center;
         display: flex;
-        color: #888888;
+        color: #888;
         cursor: pointer;
     }
 `

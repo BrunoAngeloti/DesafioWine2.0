@@ -1,16 +1,16 @@
 import { Dispatch } from '@reduxjs/toolkit'
 
-import { iItemCart } from '../interfaces/cart';
-import { iWines } from '../interfaces/wines';
+import { IItemCart } from '../interfaces/cart';
+import { IWines } from '../interfaces/wines';
 
 import { AmountItemsTypes } from '../store/ducks/amountItems/types';
+import { getLocalStorage, setLocalStorage } from './localStorageUtils';
 import { modal } from './modalUtils';
 
-export function addToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:iWines | undefined){   
-    //Adiciona o item no localStorage
-    var itemsOnCart:Array<iItemCart> = JSON.parse(localStorage.getItem('itemsOnCart') || "[]");
-
+export function addToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:IWines | undefined){   
+    var itemsOnCart:Array<IItemCart> = getLocalStorage()
     const idxItem = itemsOnCart.findIndex(wine => wine.wine.id === wineAdded?.id)
+
     if(idxItem !== -1){
         itemsOnCart[idxItem].qtdWine += qtdRequested;
     }else{
@@ -18,7 +18,7 @@ export function addToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:iWin
             itemsOnCart.push({"wine": wineAdded, "qtdWine": qtdRequested})
     }
     
-    localStorage.setItem('itemsOnCart', JSON.stringify(itemsOnCart))
+    setLocalStorage(itemsOnCart)
     
     modal(wineAdded?.name, 'adicionado', 'sucess')
     
@@ -26,8 +26,8 @@ export function addToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:iWin
 }
 
 
-export function removeToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:iWines | undefined){
-    var itemsOnCart:Array<iItemCart> = JSON.parse(localStorage.getItem('itemsOnCart') || "[]");
+export function removeToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:IWines | undefined){
+    var itemsOnCart:Array<IItemCart> = getLocalStorage()
     const idxItem = itemsOnCart.findIndex(wine => wine.wine.id === wineAdded?.id)
 
     itemsOnCart[idxItem].qtdWine -= qtdRequested;
@@ -35,7 +35,7 @@ export function removeToCart(qtdRequested:number, dispatch:Dispatch, wineAdded:i
     if(itemsOnCart[idxItem].qtdWine === 0)
         itemsOnCart.splice(idxItem, 1)
         
-    localStorage.setItem('itemsOnCart', JSON.stringify(itemsOnCart))
+    setLocalStorage(itemsOnCart)
 
     modal(wineAdded?.name, 'removido', 'warning')
     

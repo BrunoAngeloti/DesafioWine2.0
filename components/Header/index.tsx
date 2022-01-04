@@ -22,41 +22,40 @@ export const Header: FunctionComponent = () => {
         Router.push(`/`)
     }
 
+    const returnButtonsMenu = (img: boolean) => { 
+        return (
+            <div>
+                {img && <img src="/conta.svg" alt="Icon Search" />}
+                <Button>Clube</Button>
+                <Button id="BackToMenu" onClick={()=>changePage()} selected>Loja</Button>
+                <Button>Produtores</Button>
+                <Button>Ofertas</Button>
+                <Button>Eventos</Button>
+            </div>
+        )
+    }
+
     return(
         <>
             <BackgroundMobile onClick={() => {setMenuMobile(!menuMobile)}} show={menuMobile}/>
             <MenuMobile show={menuMobile}>
-                <img onClick={() => {setMenuMobile(!menuMobile)}} src="/x.svg" alt="fechar aba" />
-                <div>
-                    <img src="/conta.svg" alt="Icone de buscar" />
-                    <Button>Clube</Button>
-                    <Button id="BackToMenu" onClick={()=>changePage()} selected={true}>Loja</Button>
-                    <Button>Produtores</Button>
-                    <Button>Ofertas</Button>
-                    <Button>Eventos</Button>
-                </div>
+                <img onClick={() => {setMenuMobile(!menuMobile)}} src="/x.svg" alt="close tab" />  
+                {returnButtonsMenu(true)}            
             </MenuMobile>
             <Container>
                 <ContentHeader>
                     <LeftContent>
-                        <img id="LogoMenuMobile" onClick={() => {setMenuMobile(!menuMobile)}} src="/ic-line.svg" alt="Icone para o menu" />
-                        <img src="/LogoWine.svg" alt="Logo da Wine" />   
-                        <div>     
-                            <Button>Clube</Button>
-                            <Button onClick={()=>{Router.push(`/`)}} selected={true}>Loja</Button>
-                            <Button>Produtores</Button>
-                            <Button>Ofertas</Button>
-                            <Button>Eventos</Button>
-                        </div>  
+                        <img id="LogoMenuMobile" onClick={() => {setMenuMobile(!menuMobile)}} src="/ic-line.svg" alt="Icon to the menu" />
+                        <img src="/LogoWine.svg" alt="Wine" />   
+                        {returnButtonsMenu(false)}   
                     </LeftContent>
                     
                     <RightContent>
-                        <img src="/Busca.svg" alt="Icone de buscar" />
-                        <Profile src="/conta.svg" alt="Icone de perfil" />
+                        <img src="/Busca.svg" alt="Icon Search" />
+                        <Profile src="/conta.svg" alt="Icon profile" />
                         <ShoppingCart /> 
                     </RightContent>
-                </ContentHeader>
-                
+                </ContentHeader>             
             </Container>  
         </>
     )

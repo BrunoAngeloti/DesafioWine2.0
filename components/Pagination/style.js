@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const ContainerPagination = styled.div`
-    display: ${props => props.numeroItems === 0 ? "none" : "flex"};;
+    display: ${props => props.numberItems === 0 ? "none" : "flex"};;
     align-items: center;
     justify-content: center;
     margin-top: 30px;
@@ -25,21 +25,21 @@ export const Buttons = styled.div`
 `
 
 export const ButtonPag = styled.button`
-    width: ${props => props.Next ? "80px" : "40px"};
+    width: ${props => props.next ? "80px" : "40px"};
     height: 40px;
     border: 2px solid #B6116E;
-    color: ${props => props.Selected ? "white" : "#B6116E"};
+    color: ${props => props.selected ? "white" : "#B6116E"};
     border-radius: 3px;
-    background-color: ${props => props.Selected ? "#B6116E" : "transparent"};
+    background-color: ${props => props.selected ? "#B6116E" : "transparent"};
     cursor: pointer;
     &:hover{
         background-color: #E43FA0;
         border-color: #E43FA0;
-        color: #FFFFFF;
+        color: #FFF;
     }
     @media (max-width: 360px){
         height: 30px;
-        width: ${props => props.Next ? "60px" : "30px"};
+        width: ${props => props.next ? "60px" : "30px"};
     }
 `
 

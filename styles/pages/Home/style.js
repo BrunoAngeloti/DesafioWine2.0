@@ -15,7 +15,7 @@ export const ContentHome = styled.div`
 export const Search = styled.div`
     display: flex;
     width: 20%;
-    flex-direction:column;
+    flex-direction: column;
     height: 100%;
     padding: 0;
     h2{
@@ -64,7 +64,6 @@ export const Wines = styled.div`
     justify-content: center ;
     flex-direction: row;
     flex-wrap: wrap;
-    //align-items: center;
     align-items: stretch;
     gap: 30px;
     @media(max-width: 470px){

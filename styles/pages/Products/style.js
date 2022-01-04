@@ -18,8 +18,8 @@ export const ContainerWineInfo = styled.div`
         align-self: flex-start;
         cursor: pointer;
         span{
-            font-size:1.2rem;
-            font-weight:600;
+            font-size: 1.2rem;
+            font-weight: 600;
             align-items: center;
         }
         @media(max-width: 1020px){
@@ -69,7 +69,7 @@ export const RightContent = styled.div`
     
     h4{
         color: #C81A78;
-        font-weight:600;
+        font-weight: 600;
     }
     h4:last-child{
         color: #888888;
@@ -154,9 +154,9 @@ export const PriceWine = styled.div`
         margin:0;
         color: #C81A78;
         font-weight: 700;
-        font-size:2.5rem;
+        font-size: 2.5rem;
         span{
-            font-size:1.4rem;
+            font-size: 1.4rem;
 
             &:last-child{
                 font-size:1.8rem;
@@ -165,7 +165,7 @@ export const PriceWine = styled.div`
     }
 
     h3{
-        color: #888888;
+        color: #888;
         margin: 0;
         font-weight: 500;
     }
@@ -199,15 +199,15 @@ export const CommentsWine = styled.div`
 export const AddOnCart = styled.div`
     display: flex;
     margin-top: 50px;
-    align-items:center;
+    align-items: center;
     flex-direction: row;
     background-color: red;
     background: #7EBC43;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.35);
     border-radius: 4px;
-    width:300px;
+    width: 300px;
     height: 55px;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     div{
         display: flex;
         flex-direction: row;
@@ -216,10 +216,10 @@ export const AddOnCart = styled.div`
         align-items: center;
         justify-content: center;
         height: 100%;
-        width:50%;
+        width: 50%;
         button{
             border: 1px solid rgba(255, 255, 255, 0.4);
-            width:20px;
+            width: 20px;
             color: white;
             background-color: transparent;
             height: 20px;
@@ -248,18 +248,18 @@ export const Button = styled.button`
     cursor: pointer;
     border-left: 0.5px solid rgba(255,255,255,0.1);
     border-radius: 4px;
-    width:50%;
+    width: 50%;
 `
 export const FooterMobile = styled.footer`
     display: none;
     position: fixed;
-    background: #FFFFFF;
+    background: #FFF;
     box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.0627185);
-    bottom:0;
-    width:100%;
-    left:0;
+    bottom: 0;
+    width: 100%;
+    left: 0;
     height: 120px;
-    flex-direction:row;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     padding: 10px;
@@ -304,7 +304,7 @@ export const FooterMobile = styled.footer`
             width: 70px;
             position: absolute;
             transform: translateY(-30px);
-            border-radius: 1.94677px;
+            border-radius: 2px;
             padding: 2px 5px;
             font-weight: bold;
             color: white;

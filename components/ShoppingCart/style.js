@@ -5,7 +5,6 @@ export const ContainerCart = styled.div`
     position: relative;
     cursor: pointer;
     
-
     &::after{
 
         background-color: white;
@@ -34,10 +33,10 @@ export const ContainerCart = styled.div`
 export const MenuCart = styled.div`
     height: 100%;
     width: 350px;
-    background-color:white;
-    position:fixed;
+    background-color: white;
+    position: fixed;
     right: -360px;
-    flex-direction:column;
+    flex-direction: column;
     z-index: 4;
     display: flex;
     transition: 0.4s;
@@ -49,8 +48,7 @@ export const MenuCart = styled.div`
     `}
 
     @media(max-width: 500px){
-        width: 320px;
-        
+        width: 320px;   
     }
 `
 export const HeaderMenuCart = styled.header`
@@ -58,8 +56,8 @@ export const HeaderMenuCart = styled.header`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    width:100%;
-    height:50px;
+    width: 100%;
+    height: 50px;
     padding: 3px;
     img{
         margin: 20px;
@@ -75,15 +73,15 @@ export const HeaderMenuCart = styled.header`
 
 export const ContentMenuCart = styled.section`
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     overflow: auto;
     width: 100%;
-    height:100%;
+    height: 100%;
 `
 
 export const FooterMenuCart = styled.footer`
     display: flex;
-    background-color:white;
+    background-color: white;
     flex-direction: column;
     padding: 10px 20px;
 `
@@ -109,7 +107,7 @@ export const TopSideFooter = styled.div`
     }
     p{
         display: flex;
-        background-color:#E5F2D9;
+        background-color: #E5F2D9;
         font-size: 0.8rem;
         align-items: center;
         justify-content: center;
@@ -118,7 +116,7 @@ export const TopSideFooter = styled.div`
         gap: 4px;
         margin: 15px 0px 0px 0px;
         strong{
-            font-weight:500;
+            font-weight: 500;
         }
     }
     span:last-child{
@@ -138,7 +136,7 @@ export const BotSideFooter = styled.div`
         color: white;
         border: none;
         height: 50px;
-        border-radius:5px;
+        border-radius: 5px;
         font-size: 1.1rem;
         font-weight: 500;
         margin: 0;
@@ -168,7 +166,7 @@ export const NotBuyYet = styled.div`
     text-align: center;
     padding: 20px;
     width: 100%;
-    height:100%;
+    height: 100%;
     background-color:#F5F5F5;
     h1{
         color: #C0C0C0;

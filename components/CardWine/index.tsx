@@ -6,14 +6,14 @@ import { ContainerCard, ContentCard, Discount, Member, NotMember } from './style
 import { useDispatch } from 'react-redux'
 
 import { addToCart } from '../../utils/cartUtils'
-import { iWines } from '../../interfaces/wines'
+import { IWines } from '../../interfaces/wines'
 import { convertPricesWine } from '../../utils/wineUtils'
 
-interface iCardWine { 
-    wine: iWines
+interface ICardWine { 
+    wine: IWines
 }
 
-export const CardWine: FunctionComponent<iCardWine> = ({wine}:iCardWine) => {
+export const CardWine: FunctionComponent<ICardWine> = ({wine}:ICardWine) => {
 
     const dispatch = useDispatch()
 
@@ -21,8 +21,7 @@ export const CardWine: FunctionComponent<iCardWine> = ({wine}:iCardWine) => {
         Router.push(`/products/${wine.id}`)        
     }
 
-    const priceMemberToString = wine.priceMember.toFixed(2).toString().split(".")
-    const { price, priceMember, priceNonMember } = convertPricesWine(wine);
+    const { price, priceNonMember, priceMemberToString } = convertPricesWine(wine);
 
     return(
         <ContainerCard>
@@ -35,7 +34,7 @@ export const CardWine: FunctionComponent<iCardWine> = ({wine}:iCardWine) => {
                 </Discount>
                 <Member>
                     SÓCIO WINE
-                    <strong> R$ <span>{priceMemberToString[0]},</span>{priceMemberToString[1]}</strong>
+                    <strong> R$ <span>{priceMemberToString ? priceMemberToString[0] : 0},</span>{priceMemberToString ? priceMemberToString[1] : 0}</strong>
                 </Member>  
                 <NotMember>
                     NÃO SÓCIO <span>{priceNonMember}</span>
@@ -45,6 +44,5 @@ export const CardWine: FunctionComponent<iCardWine> = ({wine}:iCardWine) => {
                 ADICIONAR
             </button>
         </ContainerCard>  
-    )
-    
+    )  
 }

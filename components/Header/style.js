@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const Container = styled.header`
     width: 100%;
-    
     z-index: 2;
     height: 100px;
     box-shadow: 0px 3px 2px rgba(0, 0, 0,0.25);
@@ -26,7 +25,7 @@ export const LeftContent = styled.div`
     display: flex;
     flex-direction: row;
     gap: 80px;
-    height:100%;
+    height: 100%;
     margin: 0;
     
     img {
@@ -55,7 +54,7 @@ export const LeftContent = styled.div`
         display: flex;
         flex-direction: row;
         gap: 40px;
-        height:100% !important;
+        height: 100% !important;
         @media(max-width: 1020px){
             display: none;
         }
@@ -64,9 +63,9 @@ export const LeftContent = styled.div`
 
 export const Button = styled.button`
     display: flex ;
-    background-color:transparent;
+    background-color: transparent;
     border: none;
-    height:100% !important;
+    height: 100% !important;
     align-items: center;
     color: rgba(85, 85, 85, 1);
     ${props => props.selected &&`
@@ -76,8 +75,8 @@ export const Button = styled.button`
     `}
     @media(max-width: 1020px){
         width: 80%;
-        height:70px !important;
-        justify-content:center;
+        height: 70px !important;
+        justify-content: center;
     }
 `
 
@@ -108,8 +107,8 @@ export const Profile = styled.img`
 export const MenuMobile = styled.div`
     height: 100%;
     width: 320px;
-    background-color:white;
-    position:fixed;
+    background-color: white;
+    position: fixed;
     left: -330px;
     z-index: 4;
     display: flex;
@@ -126,7 +125,7 @@ export const MenuMobile = styled.div`
     div{
         display: flex;
         justify-content: center;
-        flex-direction:column;
+        flex-direction: column;
         align-items: center;
         img{
             width: 64px;

@@ -12,15 +12,13 @@ import {
     NotBuyYet
 } from './style'
 
-import { useSelector } from 'react-redux'
-import { ApplicationState } from '../../store'
 import { useDispatch } from "react-redux"
 
 import { CardWineShoppingCart } from '../CardWineShoppingCart'
 
-import { iItemCart } from '../../interfaces/cart'
-import { AmountItemsTypes } from '../../store/ducks/amountItems/types'
+import { IItemCart } from '../../interfaces/cart'
 
+import { AmountItemsTypes } from '../../store/ducks/amountItems/types'
 import { selectorAmountItems } from '../../store/ducks/amountItems/selector'
 
 export const ShoppingCart: FunctionComponent = () => {
@@ -29,7 +27,7 @@ export const ShoppingCart: FunctionComponent = () => {
     const { amount } = selectorAmountItems();
     const dispatch = useDispatch()
     
-    const [winesOnCart, setWinesOnCart] = useState<Array<iItemCart>>([])
+    const [winesOnCart, setWinesOnCart] = useState<Array<IItemCart>>([])
     
     useEffect(()=>{
        dispatch({ type: AmountItemsTypes.GET_ITEMS_CART })
@@ -45,17 +43,15 @@ export const ShoppingCart: FunctionComponent = () => {
             <BackgroundCart onClick={() => {setMenuMobile(!menuMobile)}} show={menuMobile}/>
             <MenuCart show={menuMobile}>
                 <HeaderMenuCart>
-                    <img id="closeShoppingCart" onClick={() => {setMenuMobile(!menuMobile)}} src="/x.svg" alt="fechar aba" />
-                    <h4 id="qtdItemsShoppingCart" >WineBox({amount})</h4>
+                    <img id="closeShoppingCart" onClick={() => {setMenuMobile(!menuMobile)}} src="/x.svg" alt="close tab" />
+                    <h4 id="qtdItemsShoppingCart">WineBox({amount})</h4>
                 </HeaderMenuCart>
                 {winesOnCart.length !== 0 ?
                     <>
                         <ContentMenuCart>  
-                            {winesOnCart.map((wines)=>{
-                                return(
-                                    <CardWineShoppingCart key={wines.wine.id} wine={wines}/>
-                                )                  
-                            })} 
+                            {winesOnCart.map((wines)=>
+                                <CardWineShoppingCart key={wines.wine.id} wine={wines}/>
+                            )} 
                         </ContentMenuCart>
                         <FooterMenuCart>
                             <TopSideFooter>
@@ -86,7 +82,7 @@ export const ShoppingCart: FunctionComponent = () => {
                 }               
             </MenuCart>
             <ContainerCart amount={amount} id="shoppingCart" onClick={() => {setMenuMobile(!menuMobile)}}>
-                <img id="shoppingCart" src="/winebox.svg" alt="Icone do carrinho de compras" />
+                <img id="shoppingCart" src="/winebox.svg" alt="Shopping Cart Icon" />
             </ContainerCart>       
         </>          
     )

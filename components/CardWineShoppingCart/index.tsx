@@ -5,20 +5,20 @@ import { ContainerCard, LeftContent, RightContent, HeaderCardWine, FooterCardWin
 import { useDispatch } from 'react-redux'
 
 import { addToCart, removeToCart } from '../../utils/cartUtils'
-import { iItemCart } from '../../interfaces/cart'
+import { IItemCart } from '../../interfaces/cart'
 
-interface iwineCart{ 
-    wine: iItemCart,
+interface IwineCart{ 
+    wine: IItemCart,
 }
 
-export const CardWineShoppingCart: FunctionComponent<iwineCart> = ({wine}:iwineCart) => {
+export const CardWineShoppingCart: FunctionComponent<IwineCart> = ({wine}:IwineCart) => {
     const [priceTotal1, setPriceTotal1] = useState("")
     const [priceTotal2, setPriceTotal2] = useState("")
 
     const dispatch = useDispatch()
 
     function setPriceItemTotal(){
-        const total = wine.wine.priceMember*wine.qtdWine;
+        const total = wine.wine.priceMember * wine.qtdWine;
         const totalString = total.toString()
         const totalStringSplit = totalString.split(".")
         setPriceTotal1(totalStringSplit[0])
@@ -32,7 +32,7 @@ export const CardWineShoppingCart: FunctionComponent<iwineCart> = ({wine}:iwineC
     return(
         <ContainerCard>
             <LeftContent>
-                <img src={wine?.wine.image} alt="Foto do vinho" />
+                <img src={wine?.wine.image} alt={`${wine?.wine.name}`} />
             </LeftContent>
             <RightContent>
                 <HeaderCardWine>
@@ -41,7 +41,7 @@ export const CardWineShoppingCart: FunctionComponent<iwineCart> = ({wine}:iwineC
                         <span>{wine?.wine.country}</span>
                     </div>
                     <div>
-                        <img id={`removeItemId${wine?.wine.id}`} onClick={() => removeToCart(wine.qtdWine, dispatch, wine.wine)} src="/x-circle.svg" alt="excluir vinho"/>
+                        <img id={`removeItemId${wine?.wine.id}`} onClick={() => removeToCart(wine.qtdWine, dispatch, wine.wine)} src="/x-circle.svg" alt="delete wine"/>
                     </div>                  
                 </HeaderCardWine>
                 <FooterCardWine>
@@ -51,7 +51,7 @@ export const CardWineShoppingCart: FunctionComponent<iwineCart> = ({wine}:iwineC
                         <button id={`addOneItemId${wine?.wine.id}`} onClick={()=>addToCart(1, dispatch, wine.wine)}>+</button>                      
                     </AddMoreToCart>
                     <Price>
-                        <strong> R$ <span>{priceTotal1}</span>,{priceTotal2? priceTotal2[0] : 0}{priceTotal2? (priceTotal2[1] || 0) : 0}</strong>
+                        <strong> R$ <span>{priceTotal1}</span>,{priceTotal2[0]? priceTotal2[0] : 0}{priceTotal2[1]? (priceTotal2[1] || 0) : 0}</strong>
                     </Price>
                 </FooterCardWine>
             </RightContent>

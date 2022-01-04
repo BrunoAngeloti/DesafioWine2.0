@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { CardWine } from '../../components/CardWine'
 import { Pagination } from '../../components/Pagination'
 
 import { Search, Items, ContentHome, Wines } from '../../styles/pages/Home/style'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { ApplicationState } from '../../store'
+import { useDispatch } from 'react-redux'
+
 import { PriceFilter } from '../../components/PriceFilter'
 import { ItemsTypes } from '../../store/ducks/items/types'
 
@@ -16,6 +16,7 @@ import { selectorItems } from '../../store/ducks/items/selector'
 import { useRouter } from 'next/router'
 import { Loading } from '../../components/Loading'
 import { selectorPriceFilter } from '../../store/ducks/pricesFilter/selector'
+import { valueFilter1, valueFilter7 } from '../../utils/constants/filter'
 
 interface HomeProps {
   page: number;
@@ -31,7 +32,7 @@ export default function Home(props:HomeProps){
   const dispatch = useDispatch()
 
   useEffect(()=>{
-    if(min === 0 && max === 999999){
+    if(min === valueFilter1 && max === valueFilter7){
       dispatch({
         type: ItemsTypes.REQUEST_ITEMS, 
         payload: {
@@ -49,18 +50,13 @@ export default function Home(props:HomeProps){
               },           
           }
       }) 
-  }
-    
+    }  
   }, [router.query.pagina])
 
   const returnCardWines = () => {
     if(wines?.length === 0) return <h1>Não temos vinhos para mostrar :(</h1>
 
-    return wines[currentPage]?.map(wine => {
-      return (
-        <CardWine key={wine.id} wine={wine}/>
-      )
-    })
+    return wines[currentPage]?.map(wine => <CardWine key={wine.id} wine={wine}/>)
   }
 
   return (

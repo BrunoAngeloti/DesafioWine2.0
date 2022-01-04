@@ -1,4 +1,4 @@
-export interface iWines{ 
+export interface IWines{ 
     id: number,
     image: string,
     name: string,

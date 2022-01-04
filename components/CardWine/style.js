@@ -21,11 +21,11 @@ export const ContainerCard = styled.div`
     }
     button{
         background: #7EBC43;
-        box-shadow: 0px 0.973384px 1.94677px rgba(0, 0, 0, 0.2);
-        border-radius: 3.89354px;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
         border: none;
-        padding: 11.6806px 23.3612px;
-        color: #FFFFFF;
+        padding: 12px 24px;
+        color: #FFF;
         font-weight: bold;
         font-size: 0.9rem;
         cursor: pointer;
@@ -42,13 +42,13 @@ export const ContainerCard = styled.div`
 export const ContentCard = styled.div`
     display: flex;
     height: 100%;
-    background-color:white;
+    background-color: white;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 15px 5px;
     cursor: pointer;
-    box-shadow: 0px 9.73384px 14.6008px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
     img{
         max-width: 150px;
     }
@@ -81,7 +81,7 @@ export const Discount = styled.div`
     p{
         margin: 0;
         text-decoration: line-through;
-        color: #888888;
+        color: #888;
         font-weight: bold;
         @media(max-width: 400px){
             font-size: 0.8rem;
@@ -92,11 +92,11 @@ export const Discount = styled.div`
     }
     span{
         background: #F79552;
-        border-radius: 1.94677px;
+        border-radius: 2px;
         padding: 2px 5px;
         font-weight: bold;
         color: white;
-        font-size:0.8rem;
+        font-size: 0.8rem;
         @media(max-width: 400px){
             font-size: 0.7rem;
         }
@@ -147,9 +147,9 @@ export const Member = styled.p`
 `
 
 export const NotMember = styled.p`
-    color: #888888;
+    color: #888;
     font-weight: 600;
-    margin:0;
+    margin: 0;
     
     @media(max-width: 470px){
         font-size: 0.8rem;
