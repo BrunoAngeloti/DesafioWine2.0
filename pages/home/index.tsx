@@ -1,22 +1,21 @@
 import React, { useEffect } from 'react'
 import { CardWine } from '../../components/CardWine'
 import { Pagination } from '../../components/Pagination'
+import { Loading } from '../../components/Loading'
+import { PriceFilter } from '../../components/PriceFilter'
 
 import { Search, Items, ContentHome, Wines } from '../../styles/pages/Home/style'
 
 import { useDispatch } from 'react-redux'
 
-import { PriceFilter } from '../../components/PriceFilter'
 import { ItemsTypes } from '../../store/ducks/items/types'
-
-
 import { selectorPagination } from '../../store/ducks/pagination/selector'
 import { selectorItems } from '../../store/ducks/items/selector'
+import { selectorPriceFilter } from '../../store/ducks/pricesFilter/selector'
 
 import { useRouter } from 'next/router'
-import { Loading } from '../../components/Loading'
-import { selectorPriceFilter } from '../../store/ducks/pricesFilter/selector'
-import { valueFilter1, valueFilter7 } from '../../utils/constants/filter'
+
+import { valueFilter1, valueFilter7 } from '../../utils'
 
 interface HomeProps {
   page: number;

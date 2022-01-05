@@ -9,7 +9,7 @@ import { PriceFilterTypes } from '../../store/ducks/pricesFilter/types'
 
 import { Filter } from './style'
 
-import { valueFilter1, valueFilter2, valueFilter3, valueFilter4, valueFilter5, valueFilter6, valueFilter7} from '../../utils/constants/filter'
+import { valueFilter1, valueFilter2, valueFilter3, valueFilter4, valueFilter5, valueFilter6, valueFilter7} from '../../utils'
 
 const dataFilter = [
     { 

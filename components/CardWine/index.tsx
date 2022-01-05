@@ -5,9 +5,9 @@ import { ContainerCard, ContentCard, Discount, Member, NotMember } from './style
 
 import { useDispatch } from 'react-redux'
 
-import { addToCart } from '../../utils/cartUtils'
 import { IWines } from '../../interfaces/wines'
-import { convertPricesWine } from '../../utils/wineUtils'
+
+import { addToCart, convertPricesWine } from '../../utils'
 
 interface ICardWine { 
     wine: IWines

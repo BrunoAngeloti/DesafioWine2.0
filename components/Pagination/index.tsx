@@ -6,7 +6,8 @@ import { ItemsTypes } from '../../store/ducks/items/types'
 import { selectorPagination } from '../../store/ducks/pagination/selector'
 import { PaginationTypes } from '../../store/ducks/pagination/types'
 import { selectorPriceFilter } from '../../store/ducks/pricesFilter/selector'
-import { valueFilter1, valueFilter7 } from '../../utils/constants/filter'
+
+import { valueFilter1, valueFilter7 } from '../../utils'
 
 import { 
     ContainerPagination,

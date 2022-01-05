@@ -4,7 +4,8 @@ import { ContainerCard, LeftContent, RightContent, HeaderCardWine, FooterCardWin
 
 import { useDispatch } from 'react-redux'
 
-import { addToCart, removeToCart } from '../../utils/cartUtils'
+import { addToCart, removeToCart } from '../../utils'
+
 import { IItemCart } from '../../interfaces/cart'
 
 interface IwineCart{ 
