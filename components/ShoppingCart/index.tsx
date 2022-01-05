@@ -18,8 +18,7 @@ import { CardWineShoppingCart } from '../CardWineShoppingCart'
 
 import { IItemCart } from '../../interfaces/cart'
 
-import { AmountItemsTypes } from '../../store/ducks/amountItems/types'
-import { selectorAmountItems } from '../../store/ducks/amountItems/selector'
+import { AmountItemsTypes, selectorAmountItems } from '../../store/ducks'
 
 export const ShoppingCart: FunctionComponent = () => {
     const [menuMobile, setMenuMobile] = useState(false)

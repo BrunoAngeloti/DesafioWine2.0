@@ -7,7 +7,7 @@ import { GetServerSideProps } from "next";
 import Head from 'next/head'
 import Router from 'next/router'
 
-interface ProductsProps {
+interface IProductsProps {
     id: number;
 }
 
@@ -31,7 +31,7 @@ import { addToCart, convertPricesWine } from '../../utils';
 
 import { selectorItemsFiltreded } from '../../store/ducks/items/selector';
 
-export default function Products(props:ProductsProps){
+export default function Products(props:IProductsProps){
     const [qtd, setQtd] = useState(1);
     const [loading, setLoading] = useState(true)
 

@@ -2,11 +2,8 @@ import { useRouter } from 'next/router'
 import React, { FunctionComponent } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { ItemsTypes } from '../../store/ducks/items/types'
-import { selectorPagination } from '../../store/ducks/pagination/selector'
-import { PaginationTypes } from '../../store/ducks/pagination/types'
-import { selectorPriceFilter } from '../../store/ducks/pricesFilter/selector'
 
+import { ItemsTypes, selectorPagination, PaginationTypes, selectorPriceFilter } from '../../store/ducks'
 import { valueFilter1, valueFilter7 } from '../../utils'
 
 import { 
