@@ -19,11 +19,9 @@ export const CardWineShoppingCart: FunctionComponent<IwineCart> = ({wine}:IwineC
     const dispatch = useDispatch()
 
     function setPriceItemTotal(){
-        const total = wine.wine.priceMember * wine.qtdWine;
-        const totalString = total.toString()
-        const totalStringSplit = totalString.split(".")
-        setPriceTotal1(totalStringSplit[0])
-        setPriceTotal2(totalStringSplit[1])
+        const total = (wine.wine.priceMember * wine.qtdWine).toString().split(".");
+        setPriceTotal1(total[0])
+        setPriceTotal2(total[1])
     }
 
     useEffect(()=>{
