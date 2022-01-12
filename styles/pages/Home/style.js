@@ -1,9 +1,14 @@
 import styled from 'styled-components'
 
+const flexColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
 export const ContentHome = styled.div`
     max-width: 1281px;
-    display: flex;
     margin: 40px auto;
+    display: flex;
     width: 100%;
     padding: 0px 50px;
     height: 100%;
@@ -12,10 +17,8 @@ export const ContentHome = styled.div`
     }
 `
 
-export const Search = styled.div`
-    display: flex;
+export const Search = styled(flexColumn)`
     width: 20%;
-    flex-direction: column;
     height: 100%;
     padding: 0;
     h2{
@@ -32,11 +35,9 @@ export const Search = styled.div`
     }
 `
 
-export const Items = styled.div`
-    display: flex;
+export const Items = styled(flexColumn)`
     width: 80%;
     height: 100%;
-    flex-direction: column;
     padding: 0;
     padding: 0px 40px;
     h3{

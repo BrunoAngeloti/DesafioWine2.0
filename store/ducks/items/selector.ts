@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { IWines } from "../../../interfaces/wines";
+import { IWines } from "@/interfaces/wines";
 import { ApplicationState } from "../../index";
 import { ItemsState } from "./types";
 

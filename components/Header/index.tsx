@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState } from 'react'
+import Router from 'next/router'
 
 import { 
     Container, 
@@ -12,7 +13,6 @@ import {
 } from './style'
 
 import { ShoppingCart } from '../ShoppingCart'
-import Router from 'next/router'
 
 export const Header: FunctionComponent = () => {
     const [menuMobile, setMenuMobile] = useState(false)

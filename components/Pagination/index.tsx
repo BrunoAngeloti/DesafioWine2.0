@@ -2,10 +2,6 @@ import { useRouter } from 'next/router'
 import React, { FunctionComponent } from 'react'
 import { useDispatch } from 'react-redux'
 
-
-import { ItemsTypes, selectorPagination, PaginationTypes, selectorPriceFilter } from '../../store/ducks'
-import { valueFilter1, valueFilter7 } from '../../utils'
-
 import { 
     ContainerPagination,
     Buttons,
@@ -13,6 +9,8 @@ import {
     ButtonPass
 } from './style'
 
+import { ItemsTypes, selectorPagination, PaginationTypes, selectorPriceFilter } from '@/store/ducks'
+import { valueFilter1, valueFilter7 } from '@/utils/index'
 
 export const Pagination: FunctionComponent = () => {
 
@@ -28,6 +26,13 @@ export const Pagination: FunctionComponent = () => {
             behavior: 'smooth'
         })
     }
+
+    function handleDispatchItems(payload: Object){
+        dispatch({
+          type: ItemsTypes.REQUEST_ITEMS, 
+          payload
+        })
+      }
 
     function visible(idx:number){
         return (idx === 1 || (idx) === totalPages) || (idx > (currentPage - 2) && idx < (currentPage + 2));
@@ -46,23 +51,14 @@ export const Pagination: FunctionComponent = () => {
         scrollToTop()
         dispatch({ type: PaginationTypes.CHANGE_CURRENT_PAGE, payload: idx })
         if(min === valueFilter1 && max === valueFilter7){
-            dispatch({
-                type: ItemsTypes.REQUEST_ITEMS, 
-                payload: {
-                  pageAtual: idx,              
-                }
-            }) 
+            handleDispatchItems({
+                pageAtual: idx,
+            })
         }else{
-            dispatch({
-                type: ItemsTypes.REQUEST_ITEMS, 
-                payload: {
-                    pageAtual: idx,
-                    filter:{
-                        min: min,
-                        max: max
-                    },                   
-                }
-            }) 
+            handleDispatchItems({
+                pageAtual: idx,
+                filter:{ min, max } 
+            })
         }
         router.push(`/?pagina=${idx}`)
     }

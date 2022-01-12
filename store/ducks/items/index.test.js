@@ -34,10 +34,11 @@ test('deve retornar o loading como verdadeiro', () => {
 })
 
 test('deve setar o vetor de vinhos', () => {
-    expect(reducer(undefined, {type: ItemsTypes.SET_ITEMS, payload: [
-        [{name: "Vinho1"},{name: "Vinho2"}], [{name: "Vinho3"},{name: "Vinho4"}]
-    ]})).toEqual({
-        wines: [[{name: "Vinho1"},{name: "Vinho2"}], [{name: "Vinho3"},{name: "Vinho4"}]],
+    expect(reducer(undefined, {type: ItemsTypes.SET_ITEMS, payload:{ 
+        pageAtual: 1,
+        wines: []
+    }})).toEqual({
+        wines: [],
         loading: false,
         error: false
     })

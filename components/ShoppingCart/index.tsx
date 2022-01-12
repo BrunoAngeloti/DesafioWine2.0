@@ -16,9 +16,9 @@ import { useDispatch } from "react-redux"
 
 import { CardWineShoppingCart } from '../CardWineShoppingCart'
 
-import { IItemCart } from '../../interfaces/cart'
-
-import { AmountItemsTypes, selectorAmountItems } from '../../store/ducks'
+import { IItemCart } from '@/interfaces/cart'
+import { getLocalStorage } from '@/utils/index'
+import { AmountItemsTypes, selectorAmountItems } from '@/store/ducks'
 
 export const ShoppingCart: FunctionComponent = () => {
     const [menuMobile, setMenuMobile] = useState(false)
@@ -33,9 +33,20 @@ export const ShoppingCart: FunctionComponent = () => {
     },[])
 
     useEffect(()=>{
-        setWinesOnCart(JSON.parse(localStorage.getItem('itemsOnCart') || "[]"))
-
+        setWinesOnCart(getLocalStorage())
+        
     }, [amount])
+
+    function returnCartTotalPrice(){
+        return (
+            winesOnCart
+                .map(wine => {return wine.qtdWine * wine.wine.priceMember})
+                .reduce(function (total, currentValue){
+                    return total + currentValue
+                }, 0)
+                .toFixed(2).replace(".", ",")
+        )
+    }
 
     return(       
         <>
@@ -57,11 +68,7 @@ export const ShoppingCart: FunctionComponent = () => {
                                 <div>
                                     <h4>Total</h4>
                                     <span>
-                                        {
-                                            winesOnCart.reduce(function (total, currentValue){
-                                                return total + (currentValue.qtdWine * currentValue.wine.priceMember)
-                                            }, 0).toFixed(2).replace(".", ",")
-                                        }
+                                        {returnCartTotalPrice()}                                     
                                     </span>
                                 </div>
                                 <p>Ganhe até <strong> R$6,39 </strong> de cashback nesta compra</p>
@@ -81,7 +88,8 @@ export const ShoppingCart: FunctionComponent = () => {
                 }               
             </MenuCart>
             <ContainerCart amount={amount} id="shoppingCart" onClick={() => {setMenuMobile(!menuMobile)}}>
-                <img id="shoppingCart" src="/winebox.svg" alt="Shopping Cart Icon" />
+                <img id="shoppingCartImg" src="/winebox.svg" alt="Shopping Cart Icon" />
+                <span id="qtdItemsCart">{amount}</span>
             </ContainerCart>       
         </>          
     )

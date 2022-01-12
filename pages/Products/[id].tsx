@@ -27,15 +27,14 @@ import {
 
 import { useDispatch } from 'react-redux';
 
-import { addToCart, convertPricesWine } from '../../utils';
-
-import { selectorItemsFiltreded } from '../../store/ducks/items/selector';
+import { addToCart, convertPricesWine } from '@/utils/index';
+import { selectorItemsFiltreded } from '@/store/ducks/items/selector';
 
 export default function Products(props:IProductsProps){
     const [qtd, setQtd] = useState(1);
     const [loading, setLoading] = useState(true)
 
-    const wine  = selectorItemsFiltreded(props.id)
+    let wine = selectorItemsFiltreded(props.id)
 
     const { price, priceMember, priceNonMember, priceMemberToString } = convertPricesWine(wine);
 
@@ -43,7 +42,7 @@ export default function Products(props:IProductsProps){
     
     useEffect(()=>{
        if(!wine) Router.push(`/`)
-       else setLoading(false)
+       setLoading(false)
     }, [])
 
     return (

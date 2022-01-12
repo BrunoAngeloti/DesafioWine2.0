@@ -25,7 +25,6 @@ describe("Items API funcionando", ()=>{
         const action = {
             payload: {
                 pageAtual: 1,
-                wines: []
             }
         };
 
@@ -46,31 +45,26 @@ describe("Items API funcionando", ()=>{
             },
             {
                 type: ItemsTypes.SET_ITEMS,
-                payload: [,data.items]
+                payload: {pageAtual: 1, wines: data.items}
             },
             {
-                type: PaginationTypes.CHANGE_NUM_ITEMS,
-                payload: data.totalItems
+                type: PaginationTypes.CHANGE_STATE_PAGES,
+                payload: {itemsPerPage: data.itemsPerPage, numItems: data.totalItems, totalPages: data.totalPages }
             },
             {
-                type: PaginationTypes.CHANGE_ITEMS_PER_PAGE,
-                payload: data.itemsPerPage
-            },
-            {
-                type: PaginationTypes.CHANGE_TOTAL_PAGES,
-                payload: data.totalPages
+                type: PaginationTypes.CHANGE_CURRENT_PAGE,
+                payload: 1
             },
             {
                 type: ItemsTypes.REQUEST_SUCCESS_ITEMS
             }
         ])
     })
-    it('deve retornar os itens certos solicitados pagina 2', async()=>{
+     it('deve retornar os itens certos solicitados pagina 2', async()=>{
         const dispatchedActions = [];
         const action = {
             payload: {
                 pageAtual: 2,
-                wines: []
             }
         };
         const fakeStore = {
@@ -88,84 +82,20 @@ describe("Items API funcionando", ()=>{
             },
             {
                 type: ItemsTypes.SET_ITEMS,
-                payload: [,,data.items]
+                payload: {pageAtual: 2, wines: data.items}
             },
             {
-                type: PaginationTypes.CHANGE_NUM_ITEMS,
-                payload: data.totalItems
+                type: PaginationTypes.CHANGE_STATE_PAGES,
+                payload: {itemsPerPage: data.itemsPerPage, numItems: data.totalItems, totalPages: data.totalPages }
             },
             {
-                type: PaginationTypes.CHANGE_ITEMS_PER_PAGE,
-                payload: data.itemsPerPage
-            },
-            {
-                type: PaginationTypes.CHANGE_TOTAL_PAGES,
-                payload: data.totalPages
+                type: PaginationTypes.CHANGE_CURRENT_PAGE,
+                payload: 2
             },
             {
                 type: ItemsTypes.REQUEST_SUCCESS_ITEMS
             }
         ])
-    })
-    it('deve retornar a pagina na posicao certa mantendo o que ja existia', async()=>{
-        const dispatchedActions = [];
-        const action = {
-            payload: {
-                pageAtual: 3,
-                wines: [,[{vinho: "tal"}],[{vinho: "fulano"}]]
-            }
-        };
-        const fakeStore = {
-            getState: () => ({}),
-            dispatch: action => dispatchedActions.push(action),
-        };
-
-        await runSaga(fakeStore, loadingWines, action).done;
-
-        expect(api.get.mock.calls.length).toBe(1);
-        expect(dispatchedActions).toEqual([
-            {
-                type: ItemsTypes.REQUEST_LOADING_ITEMS,
-            },
-            {
-                type: ItemsTypes.SET_ITEMS,
-                payload: [,[{vinho: "tal"}],[{vinho: "fulano"}], data.items]
-            },
-            {
-                type: PaginationTypes.CHANGE_NUM_ITEMS,
-                payload: data.totalItems
-            },
-            {
-                type: PaginationTypes.CHANGE_ITEMS_PER_PAGE,
-                payload: data.itemsPerPage
-            },
-            {
-                type: PaginationTypes.CHANGE_TOTAL_PAGES,
-                payload: data.totalPages
-            },
-            {
-                type: ItemsTypes.REQUEST_SUCCESS_ITEMS
-            }
-        ])
-    })
-    it('deve retornar nada pois ja foi feita a requisicao para aquela posicao', async()=>{
-        const dispatchedActions = [];
-        const action = {
-            payload: {
-                pageAtual: 1,
-                wines: [,[{vinho: "tal"}]]
-            }
-        };
-        const fakeStore = {
-            getState: () => ({}),
-            dispatch: action => dispatchedActions.push(action),
-        };
-
-        await runSaga(fakeStore, loadingWines, action).done;
-
-        expect(api.get.mock.calls.length).toBe(0);
-
-        expect(dispatchedActions).toEqual([])
     })
 })
 
@@ -186,7 +116,6 @@ describe("Items API erro", ()=>{
         const action = {
             payload: {
                 pageAtual: 1,
-                wines: []
             }
         };
 
@@ -220,8 +149,8 @@ test('deve retornar se ocorreu uma falha', () => {
 })
 
 test('deve retornar os itens corretamente', () => {
-    expect(setItems([[{name: "Vinho1"},{name: "Vinho2"}], [{name: "Vinho3"},{name: "Vinho4"}]])).toEqual({
-        payload: [[{name: "Vinho1"},{name: "Vinho2"}], [{name: "Vinho3"},{name: "Vinho4"}]],
+    expect(setItems({wines: [{name: "Vinho1"},{name: "Vinho2"}], pageAtual: 1})).toEqual({
+        payload: {wines: [{name: "Vinho1"},{name: "Vinho2"}], pageAtual: 1},
         type: ItemsTypes.SET_ITEMS,
     })
 })

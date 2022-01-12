@@ -57,5 +57,3 @@ test('deve retornar o numero total de paginas', () => {
         totalPages: 10 
     })
 })
-
-

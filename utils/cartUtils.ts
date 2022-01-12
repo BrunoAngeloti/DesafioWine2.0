@@ -1,7 +1,7 @@
 import { Dispatch } from '@reduxjs/toolkit'
 
-import { IItemCart } from '../interfaces/cart';
-import { IWines } from '../interfaces/wines';
+import { IItemCart } from '@/interfaces/cart';
+import { IWines } from '@/interfaces/wines';
 
 import { AmountItemsTypes } from '../store/ducks/amountItems/types';
 import { getLocalStorage, setLocalStorage } from './localStorageUtils';

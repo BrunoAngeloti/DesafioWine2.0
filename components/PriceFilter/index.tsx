@@ -2,11 +2,11 @@ import { useRouter } from 'next/router'
 import React, { FunctionComponent } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { ItemsTypes, PaginationTypes, selectorPriceFilter, PriceFilterTypes } from '../../store/ducks'
+import { ItemsTypes, PaginationTypes, selectorPriceFilter, PriceFilterTypes } from '@/store/ducks'
+import { valueFilter1, valueFilter7} from '@/utils/index'
 
 import { Filter } from './style'
 
-import { valueFilter1, valueFilter7} from '../../utils'
 import { dataFilter } from '../../helper/filter'
 
 

@@ -10,10 +10,10 @@ const INITIAL_STATE: ItemsState ={
 const reducer: Reducer<ItemsState> = (state = INITIAL_STATE, action) => {
     switch(action.type){
         case ItemsTypes.SET_ITEMS:
-            if(action.payload.wines.length === 0){ 
+            if(action.payload.wines.length == 0){ 
                 return { ...state, wines: []}
             }
-            else{
+            else{              
                 let arrayAux = [...state.wines]
                 arrayAux[action.payload.pageAtual] = action.payload.wines;
                 return { ...state, wines: arrayAux}

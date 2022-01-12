@@ -1,7 +1,7 @@
 import { call, put, select } from 'redux-saga/effects'
 import { action } from 'typesafe-actions'
 import { ApplicationState } from '../..'
-import { IWines } from '../../../interfaces/wines'
+import { IWines } from '@/interfaces/wines'
 
 import api from '../../../services/api'
 
@@ -9,7 +9,7 @@ import { changeStatePages,changeCurrentPage } from '../pagination/sagas'
 import { PriceFilterTypes } from '../pricesFilter/types'
 import { ItemsTypes } from './types'
 
-const getItems = (state:ApplicationState) => state.items;
+const getItems = (state:ApplicationState) => state.items || {wines: []};
 
 export function* loadingWines({payload}:any): any{  
     const { filter, pageAtual } = payload

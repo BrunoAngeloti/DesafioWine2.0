@@ -1,12 +1,18 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
-
-import { ContainerCard, LeftContent, RightContent, HeaderCardWine, FooterCardWine, AddMoreToCart, Price } from './style'
-
 import { useDispatch } from 'react-redux'
 
-import { addToCart, removeToCart } from '../../utils'
+import { 
+    ContainerCard, 
+    LeftContent, 
+    RightContent, 
+    HeaderCardWine, 
+    FooterCardWine, 
+    AddMoreToCart, 
+    Price 
+} from './style'
 
-import { IItemCart } from '../../interfaces/cart'
+import { addToCart, removeToCart } from '@/utils/index'
+import { IItemCart } from '@/interfaces/cart'
 
 interface IwineCart{ 
     wine: IItemCart,
@@ -50,7 +56,11 @@ export const CardWineShoppingCart: FunctionComponent<IwineCart> = ({wine}:IwineC
                         <button id={`addOneItemId${wine?.wine.id}`} onClick={()=>addToCart(1, dispatch, wine.wine)}>+</button>                      
                     </AddMoreToCart>
                     <Price>
-                        <strong> R$ <span>{priceTotal1}</span>,{priceTotal2[0]? priceTotal2[0] : 0}{priceTotal2[1]? (priceTotal2[1] || 0) : 0}</strong>
+                        <strong> 
+                            R$ <span>{priceTotal1}</span>,
+                            {priceTotal2? (priceTotal2[0] || 0) : 0}
+                            {priceTotal2? (priceTotal2[1] || 0) : 0}
+                        </strong>
                     </Price>
                 </FooterCardWine>
             </RightContent>

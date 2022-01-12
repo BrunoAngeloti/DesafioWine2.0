@@ -1,13 +1,17 @@
 import Router from 'next/router'
 import React, { FunctionComponent } from 'react'
-
-import { ContainerCard, ContentCard, Discount, Member, NotMember } from './style'
-
 import { useDispatch } from 'react-redux'
 
-import { IWines } from '../../interfaces/wines'
+import { 
+    ContainerCard, 
+    ContentCard, 
+    Discount, 
+    Member, 
+    NotMember 
+} from './style'
 
-import { addToCart, convertPricesWine } from '../../utils'
+import { IWines } from '@/interfaces/wines'
+import { addToCart, convertPricesWine } from '@/utils/index'
 
 interface ICardWine { 
     wine: IWines
@@ -34,7 +38,10 @@ export const CardWine: FunctionComponent<ICardWine> = ({wine}:ICardWine) => {
                 </Discount>
                 <Member>
                     SÓCIO WINE
-                    <strong> R$ <span>{priceMemberToString ? priceMemberToString[0] : 0},</span>{priceMemberToString ? priceMemberToString[1] : 0}</strong>
+                    <strong> R$ 
+                        <span>{priceMemberToString && priceMemberToString[0]? priceMemberToString[0] : 0},</span>
+                        {priceMemberToString && priceMemberToString[1] ? priceMemberToString[1] : 0}
+                    </strong>
                 </Member>  
                 <NotMember>
                     NÃO SÓCIO <span>{priceNonMember}</span>

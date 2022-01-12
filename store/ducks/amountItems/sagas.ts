@@ -1,5 +1,5 @@
 import { put } from 'redux-saga/effects'
-import { IItemCart } from '../../../interfaces/cart'
+import { IItemCart } from '@/interfaces/cart'
 
 import { AmountItemsTypes } from './types'
 

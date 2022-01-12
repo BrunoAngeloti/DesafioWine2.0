@@ -46,12 +46,12 @@ describe('Wine', ()=>{
     it('devem poder fazer a filtragem pelo preço', ()=>{
         cy.get('#filter40').click()
         cy.get('#filter60').click()
-        cy.get('#filter80').click()
         cy.get('#filter100').click()
         cy.get('#filter200').click()
         cy.get('#filter500').click()
+        cy.get('#filter999999').click()
 
-        cy.get('#filter500').click()
+        cy.get('#filter999999').click()
     })
 
 

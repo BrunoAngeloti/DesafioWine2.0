@@ -1,15 +1,17 @@
 import styled from 'styled-components'
 
-export const ContainerWineInfo = styled.div`
+const flexColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const ContainerWineInfo = styled(flexColumn)`
     max-width: 1281px;
-    display: flex;
     margin: 40px auto;
     width: 100%;
     padding: 0px 50px;
     height: 100%;
-    flex-direction: column;
     
-
     header{
         display: flex;
         flex-direction: row;
@@ -62,9 +64,7 @@ export const LeftContent = styled.div`
     }
 `
 
-export const RightContent = styled.div`
-    display: flex;
-    flex-direction: column;
+export const RightContent = styled(flexColumn)`
     width: 50%;
     
     h4{
@@ -102,10 +102,7 @@ export const LocationWine = styled.span`
     gap: 8px;
 `
 
-export const DetailsWine = styled.div`
-    display: flex;
-    flex-direction: column;
-    
+export const DetailsWine = styled(flexColumn)` 
     h1{
         color: #111111;
         font-size: 2rem;
@@ -146,9 +143,7 @@ export const DetailsWine = styled.div`
     
 `
 
-export const PriceWine = styled.div`
-    display: flex;
-    flex-direction: column;
+export const PriceWine = styled(flexColumn)`
     margin-top: 50px;
     h2{
         margin:0;
@@ -175,9 +170,7 @@ export const PriceWine = styled.div`
 
 `
 
-export const CommentsWine = styled.div`
-    display: flex;
-    flex-direction: column;
+export const CommentsWine = styled(flexColumn)`
     gap: 15px;
     margin-top: 50px;
 
@@ -252,7 +245,7 @@ export const Button = styled.button`
 `
 export const FooterMobile = styled.footer`
     display: none;
-    position: fixed;
+    position: fixed;    
     background: #FFF;
     box-shadow: 0px -5px 5px rgba(0, 0, 0, 0.0627185);
     bottom: 0;

@@ -1,4 +1,4 @@
-import { IWines } from "../../../interfaces/wines";
+import { IWines } from "@/interfaces/wines";
 
 export enum ItemsTypes{
     SET_ITEMS = '@items/SET_ITEMS',
