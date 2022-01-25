@@ -19,7 +19,7 @@ export const ContainerCart = styled.div`
     }
 `
 
-export const MenuCart = styled.div`
+export const MenuCart = styled.div<{ show?: boolean }>`
     height: 100%;
     width: 350px;
     background-color: white;
@@ -132,7 +132,7 @@ export const BotSideFooter = styled.div`
     }
 `
 
-export const BackgroundCart = styled.div`
+export const BackgroundCart = styled.div<{ show?: boolean }>`
     display: none;
     width: 100vw;
     height: 100vh;

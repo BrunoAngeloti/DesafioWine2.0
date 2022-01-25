@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, memo } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import Router from 'next/router'
 
 import { 

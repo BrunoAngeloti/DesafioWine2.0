@@ -61,7 +61,7 @@ export const LeftContent = styled.div`
     }
 `
 
-export const Button = styled.button`
+export const Button = styled.button<{ selected?: boolean }>`
     display: flex ;
     background-color: transparent;
     border: none;
@@ -104,7 +104,7 @@ export const Profile = styled.img`
     }
 `
 
-export const MenuMobile = styled.div`
+export const MenuMobile = styled.div<{ show?: boolean}>`
     height: 100%;
     width: 320px;
     background-color: white;
@@ -141,7 +141,7 @@ export const MenuMobile = styled.div`
     `}
 `
 
-export const BackgroundMobile = styled.div`
+export const BackgroundMobile = styled.div<{ show: boolean }>`
     display: none;
     width: 100vw;
     height: 100vh;

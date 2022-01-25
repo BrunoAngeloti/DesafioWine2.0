@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const ContainerPagination = styled.div`
+export const ContainerPagination = styled.div<{ numberItems?: number }>`
     display: ${props => props.numberItems === 0 ? "none" : "flex"};;
     align-items: center;
     justify-content: center;
@@ -24,7 +24,7 @@ export const Buttons = styled.div`
     
 `
 
-export const ButtonPag = styled.button`
+export const ButtonPag = styled.button<{ next?: boolean, selected?: boolean }>`
     width: ${props => props.next ? "80px" : "40px"};
     height: 40px;
     border: 2px solid #B6116E;

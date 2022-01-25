@@ -44,17 +44,7 @@ export const ShoppingCart: FunctionComponent = () => {
                 .toFixed(2).replace(".", ",")
         )
     }
-    /*const totalPriceCart = useMemo(()=>{
-        return (
-            winesOnCart
-                .map(wine => { return wine.qtdWine * wine.wine.priceMember })
-                .reduce(function (total, currentValue){
-                    return total + currentValue
-                }, 0)
-                .toFixed(2).replace(".", ",")
-        )  
-    }, [amount])*/
-
+    
     return(       
         <>
             <BackgroundCart onClick={() => {setMenuMobile(!menuMobile)}} show={menuMobile}/>
@@ -94,7 +84,7 @@ export const ShoppingCart: FunctionComponent = () => {
                     </NotBuyYet>
                 }               
             </MenuCart>
-            <ContainerCart amount={amount} id="shoppingCart" onClick={() => { setMenuMobile(!menuMobile) }}>
+            <ContainerCart id="shoppingCart" onClick={() => { setMenuMobile(!menuMobile) }}>
                 <img id="shoppingCartImg" src="/winebox.svg" alt="Shopping Cart Icon" />
                 <span id="qtdItemsCart">{amount}</span>
             </ContainerCart>       
