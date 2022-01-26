@@ -74,19 +74,6 @@ export const RightContent = styled(flexColumn)`
     h4:last-child{
         color: #888888;
     }
-
-    > img{
-        display: none;
-        @media(max-width: 1020px){
-            display: flex;
-            width: 300px;
-            margin: 20px 0px 20px 0px;
-        }
-        @media(max-width: 560px){
-            width: 200px;
-            margin: 20px 0px 5px 0px;
-        }
-    }
     @media(max-width: 1210px){
         width: 60%;
     }
@@ -102,6 +89,17 @@ export const LocationWine = styled.span`
     gap: 8px;
 `
 
+export const ImageWineMobile = styled.span`
+    display: none;
+    @media(max-width: 1020px){
+        display: flex;
+        margin: 20px 0px 20px 0px;
+    }
+    @media(max-width: 560px){
+        margin: 20px 0px 5px 0px;
+    }
+`
+
 export const DetailsWine = styled(flexColumn)` 
     h1{
         color: #111111;
@@ -112,7 +110,6 @@ export const DetailsWine = styled(flexColumn)`
             text-align: center;
         }  
     }
-
     div{
         color: #555555;
         display: flex;
@@ -139,7 +136,6 @@ export const DetailsWine = styled(flexColumn)`
             justify-content: center;
         }
     }
-
     
 `
 
@@ -152,13 +148,11 @@ export const PriceWine = styled(flexColumn)`
         font-size: 2.5rem;
         span{
             font-size: 1.4rem;
-
             &:last-child{
                 font-size:1.8rem;
             }
         }
     }
-
     h3{
         color: #888;
         margin: 0;
@@ -167,13 +161,11 @@ export const PriceWine = styled(flexColumn)`
     @media(max-width: 1020px){
         display: none;
     }
-
 `
 
 export const CommentsWine = styled(flexColumn)`
     gap: 15px;
     margin-top: 50px;
-
     h3{
         margin: 0;
         color: #111111;
@@ -181,7 +173,6 @@ export const CommentsWine = styled(flexColumn)`
             content: '';
         }
     }
-
     p{
         margin: 0;
         color: #666666;
@@ -272,7 +263,6 @@ export const FooterMobile = styled.footer`
             margin: 0;
             color: #C81A78;
             font-size: 1.2rem;
-
             strong{
                 font-size: 1.8rem;
                 @media(max-width: 435px){
@@ -308,7 +298,6 @@ export const FooterMobile = styled.footer`
             justify-content: center;
         }
     }
-
     @media(max-width: 1020px){
         display: flex;
     } 

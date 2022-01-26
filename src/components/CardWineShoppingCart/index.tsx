@@ -1,6 +1,8 @@
 import React, { FunctionComponent, useMemo } from 'react'
 import { useDispatch } from 'react-redux'
 
+import Image from 'next/image'
+
 import { 
     ContainerCard, 
     LeftContent, 
@@ -29,7 +31,7 @@ export const CardWineShoppingCart: FunctionComponent<IwineCart> = ({wine}:IwineC
     return(
         <ContainerCard>
             <LeftContent>
-                <img width="100%" height="100%" src={wine?.wine.image} alt={`${wine?.wine.name}`} />
+                <Image objectFit='contain' width="100%" height="100%" src={wine?.wine.image} alt={`${wine?.wine.name}`} />
             </LeftContent>
             <RightContent>
                 <HeaderCardWine>
@@ -38,8 +40,10 @@ export const CardWineShoppingCart: FunctionComponent<IwineCart> = ({wine}:IwineC
                         <span>{wine?.wine.country}</span>
                     </div>
                     <div>
-                        <img 
-                            width="100%" height="100%"
+                        <Image 
+                            objectFit='contain'
+                            width={22} 
+                            height={22} 
                             id={`removeItemId${wine?.wine.id}`} 
                             onClick={() => removeToCart({ qtdRequested: wine.qtdWine, dispatch, wine: wine.wine })} 
                             src="/x-circle.svg" alt="delete wine"

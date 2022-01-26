@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Image from 'next/image'
 
 export const Container = styled.header`
     width: 100%;
@@ -21,6 +22,22 @@ export const ContentHeader = styled.div`
     }
 `
 
+export const ImageHamburger = styled.span`
+     
+    display: none;
+    @media(max-width: 1020px){
+        display: flex;
+    }
+  
+`
+
+export const ImageProfile = styled.span`  
+    display: flex;
+    @media(max-width: 1020px){
+        display: none;
+    }
+`
+
 export const LeftContent = styled.div`
     display: flex;
     flex-direction: row;
@@ -30,18 +47,8 @@ export const LeftContent = styled.div`
     
     img {
         width: 100px;
-        @media(max-width: 420px){
+        @media(max-width: 450px){
              width: 60px;  
-        }
-        &:first-child{
-            width: 30px;
-            display: none;
-            @media(max-width: 1020px){
-                display: flex;
-            }
-            @media(max-width: 420px){
-                width: 20px;  
-            }
         }
     }
     @media(max-width: 1020px){
@@ -97,11 +104,6 @@ export const RightContent = styled.div`
     }
    
     
-`
-export const Profile = styled.img`
-    @media(max-width: 1020px){
-        display: none;
-    }
 `
 
 export const MenuMobile = styled.div<{ show?: boolean}>`
