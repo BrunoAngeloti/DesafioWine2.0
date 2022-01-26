@@ -25,7 +25,7 @@ const Navbar: FunctionComponent = () => {
     const returnButtonsMenu = (img: boolean) => { 
         return (
             <div>
-                {img && <img src="/conta.svg" alt="Icon Search" />}
+                {img && <img width={64} height={64} src="/conta.svg" alt="Icon Search" />}
                 <Button>Clube</Button>
                 <Button id="BackToMenu" onClick={()=>changePage()} selected>Loja</Button>
                 <Button>Produtores</Button>
@@ -39,19 +39,19 @@ const Navbar: FunctionComponent = () => {
         <>
             <BackgroundMobile onClick={() => {setMenuMobile(!menuMobile)}} show={menuMobile}/>
             <MenuMobile show={menuMobile}>
-                <img onClick={() => {setMenuMobile(!menuMobile)}} src="/x.svg" alt="close tab" />  
+                <img width={32} height={32} onClick={() => {setMenuMobile(!menuMobile)}} src="/x.svg" alt="close tab" />  
                 {returnButtonsMenu(true)}            
             </MenuMobile>
             <Container>
                 <ContentHeader>
                     <LeftContent>
-                        <img id="LogoMenuMobile" onClick={() => {setMenuMobile(!menuMobile)}} src="/ic-line.svg" alt="Icon to the menu" />
-                        <img src="/LogoWine.svg" alt="Wine" />   
+                        <img width="100%" height="100%" id="LogoMenuMobile" onClick={() => {setMenuMobile(!menuMobile)}} src="/ic-line.svg" alt="Icon to the menu" />
+                        <img width="100%" height="100%" src="/LogoWine.svg" alt="Wine" />   
                         {returnButtonsMenu(false)}   
                     </LeftContent>
                     
                     <RightContent>
-                        <img src="/Busca.svg" alt="Icon Search" />
+                        <img width="100%" height="100%" src="/Busca.svg" alt="Icon Search" />
                         <Profile src="/conta.svg" alt="Icon profile" />
                         <ShoppingCart /> 
                     </RightContent>
