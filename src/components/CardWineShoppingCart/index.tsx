@@ -29,7 +29,7 @@ export const CardWineShoppingCart: FunctionComponent<IwineCart> = ({wine}:IwineC
     return(
         <ContainerCard>
             <LeftContent>
-                <img src={wine?.wine.image} alt={`${wine?.wine.name}`} />
+                <img width="100%" height="100%" src={wine?.wine.image} alt={`${wine?.wine.name}`} />
             </LeftContent>
             <RightContent>
                 <HeaderCardWine>
@@ -39,6 +39,7 @@ export const CardWineShoppingCart: FunctionComponent<IwineCart> = ({wine}:IwineC
                     </div>
                     <div>
                         <img 
+                            width="100%" height="100%"
                             id={`removeItemId${wine?.wine.id}`} 
                             onClick={() => removeToCart({ qtdRequested: wine.qtdWine, dispatch, wine: wine.wine })} 
                             src="/x-circle.svg" alt="delete wine"

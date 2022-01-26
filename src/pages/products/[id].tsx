@@ -55,25 +55,25 @@ export default function Products(props:IProductsProps){
 					<title>Wine | {wine?.name}</title>
 				</Head>
 				<header onClick={()=> {Router.back()}} >
-					<img src="/back.svg" alt="back arrow"/>
+					<img width="100%" height="100%" src="/back.svg" alt="back arrow"/>
 					<span>Voltar</span>
 				</header>
 				<ContentWineInfo>
 					<LeftContent>
-						<img src={wine?.image} alt={`wine bottle ${wine?.image}`} />
+						<img width="100%" height="100%" src={wine?.image} alt={`wine bottle ${wine?.image}`} />
 					</LeftContent>
 					<RightContent>
 						<LocationWine>
 							<h4>Vinhos</h4>
-							<img src="/arrowRight.svg" alt="right arrow" />
+							<img width="100%" height="100%" src="/arrowRight.svg" alt="right arrow" />
 							<h4>{wine?.country}</h4>
-							<img src="/arrowRight.svg" alt="right arrow" />
+							<img width="100%" height="100%" src="/arrowRight.svg" alt="right arrow" />
 							<h4>{wine?.region}</h4>
 						</LocationWine>
 						<DetailsWine>
 							<h1>{wine?.name}</h1>
 							<div>
-								<img src={wine?.flag} alt="country flag" />
+								<img width="100%" height="100%" src={wine?.flag} alt="country flag" />
 								<p>{wine?.country}</p> 
 								<p>{wine?.type}</p> 
 								<p>{wine?.classification}</p>
@@ -91,7 +91,7 @@ export default function Products(props:IProductsProps){
 								<p>({wine?.avaliations})</p>
 							</div>
 						</DetailsWine>
-						<img src={wine?.image} alt={`wine bottle ${wine?.image}`} />
+						<img width="100%" height="100%" src={wine?.image} alt={`wine bottle ${wine?.image}`} />
 						<PriceWine>
 							{                    
 								<h2>
