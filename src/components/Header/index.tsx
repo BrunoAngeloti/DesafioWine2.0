@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useState } from 'react'
 import Router from 'next/router'
+import Image from 'next/image'
 
 import { 
     Container, 
@@ -7,9 +8,10 @@ import {
     LeftContent, 
     RightContent, 
     Button, 
-    Profile,
     MenuMobile,
-    BackgroundMobile
+    BackgroundMobile,
+    ImageHamburger,
+    ImageProfile
 } from './style'
 
 import { ShoppingCart } from '../ShoppingCart'
@@ -25,8 +27,8 @@ const Navbar: FunctionComponent = () => {
     const returnButtonsMenu = (img: boolean) => { 
         return (
             <div>
-                {img && <img width={64} height={64} src="/conta.svg" alt="Icon Search" />}
-                <Button>Clube</Button>
+                {img && <Image width={64} height={64} src="/conta.svg" alt="Icon Search" />}
+                <Button>Clube</Button>  
                 <Button id="BackToMenu" onClick={()=>changePage()} selected>Loja</Button>
                 <Button>Produtores</Button>
                 <Button>Ofertas</Button>
@@ -39,20 +41,24 @@ const Navbar: FunctionComponent = () => {
         <>
             <BackgroundMobile onClick={() => {setMenuMobile(!menuMobile)}} show={menuMobile}/>
             <MenuMobile show={menuMobile}>
-                <img width={32} height={32} onClick={() => {setMenuMobile(!menuMobile)}} src="/x.svg" alt="close tab" />  
+                <Image width={32} height={32} onClick={() => {setMenuMobile(!menuMobile)}} src="/x.svg" alt="close tab" />  
                 {returnButtonsMenu(true)}            
             </MenuMobile>
             <Container>
                 <ContentHeader>
                     <LeftContent>
-                        <img width="100%" height="100%" id="LogoMenuMobile" onClick={() => {setMenuMobile(!menuMobile)}} src="/ic-line.svg" alt="Icon to the menu" />
-                        <img width="100%" height="100%" src="/LogoWine.svg" alt="Wine" />   
+                        <ImageHamburger>
+                            <Image width={30} height={30} id="LogoMenuMobile" onClick={() => {setMenuMobile(!menuMobile)}} src="/ic-line.svg" alt="Icon to the menu" />
+                        </ImageHamburger>
+                        <Image width={100} height={100} src="/LogoWine.svg" alt="Wine" />   
                         {returnButtonsMenu(false)}   
                     </LeftContent>
                     
                     <RightContent>
-                        <img width="100%" height="100%" src="/Busca.svg" alt="Icon Search" />
-                        <Profile src="/conta.svg" alt="Icon profile" />
+                        <Image width={64} height={64} src="/Busca.svg" alt="Icon Search" />
+                        <ImageProfile>
+                            <Image width={64} height={64} src="/conta.svg" alt="Icon profile" />
+                        </ImageProfile>
                         <ShoppingCart /> 
                     </RightContent>
                 </ContentHeader>             

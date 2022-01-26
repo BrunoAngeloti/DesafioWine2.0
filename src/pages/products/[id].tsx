@@ -6,6 +6,7 @@ import { GetServerSideProps } from "next";
 
 import Head from 'next/head'
 import Router from 'next/router'
+import Image from 'next/image'
 
 import { useDispatch } from 'react-redux';
 
@@ -24,6 +25,7 @@ import {
 	Button,
 	AddOnCart,
 	FooterMobile,
+	ImageWineMobile
 } from '../../Shared/styles/pages/Products/style'
 
 interface IProductsProps {
@@ -55,25 +57,25 @@ export default function Products(props:IProductsProps){
 					<title>Wine | {wine?.name}</title>
 				</Head>
 				<header onClick={()=> {Router.back()}} >
-					<img width="100%" height="100%" src="/back.svg" alt="back arrow"/>
+					<Image width={28} height={28} src="/back.svg" alt="back arrow"/>
 					<span>Voltar</span>
 				</header>
 				<ContentWineInfo>
 					<LeftContent>
-						<img width="100%" height="100%" src={wine?.image} alt={`wine bottle ${wine?.image}`} />
+						<Image objectFit='contain' width={1000} height={1000} src={wine?.image} alt={`wine bottle ${wine?.image}`} />
 					</LeftContent>
 					<RightContent>
 						<LocationWine>
 							<h4>Vinhos</h4>
-							<img width="100%" height="100%" src="/arrowRight.svg" alt="right arrow" />
+							<Image width={10} height={6} src="/arrowRight.svg" alt="right arrow" />
 							<h4>{wine?.country}</h4>
-							<img width="100%" height="100%" src="/arrowRight.svg" alt="right arrow" />
+							<Image width={10} height={6} src="/arrowRight.svg" alt="right arrow" />
 							<h4>{wine?.region}</h4>
 						</LocationWine>
 						<DetailsWine>
 							<h1>{wine?.name}</h1>
 							<div>
-								<img width="100%" height="100%" src={wine?.flag} alt="country flag" />
+								<Image objectFit='contain' width={20} height={20} src={wine?.flag} alt="country flag" />
 								<p>{wine?.country}</p> 
 								<p>{wine?.type}</p> 
 								<p>{wine?.classification}</p>
@@ -91,7 +93,9 @@ export default function Products(props:IProductsProps){
 								<p>({wine?.avaliations})</p>
 							</div>
 						</DetailsWine>
-						<img width="100%" height="100%" src={wine?.image} alt={`wine bottle ${wine?.image}`} />
+						<ImageWineMobile>
+							<Image objectFit='contain' width={500} height={500} src={wine?.image} alt={`wine bottle ${wine?.image}`} />
+						</ImageWineMobile>
 						<PriceWine>
 							{                    
 								<h2>
