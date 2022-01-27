@@ -75,18 +75,6 @@ export const RightContent = styled(flexColumn)`
         color: #888888;
     }
 
-    > img{
-        display: none;
-        @media(max-width: 1020px){
-            display: flex;
-            width: 300px;
-            margin: 20px 0px 20px 0px;
-        }
-        @media(max-width: 560px){
-            width: 200px;
-            margin: 20px 0px 5px 0px;
-        }
-    }
     @media(max-width: 1210px){
         width: 60%;
     }
@@ -100,6 +88,17 @@ export const LocationWine = styled.span`
     display: flex;
     flex-direction: row;
     gap: 8px;
+`
+
+export const ImageWineMobile = styled.span`
+    display: none;
+    @media(max-width: 1020px){
+        display: flex;
+        margin: 20px 0px 20px 0px;
+    }
+    @media(max-width: 560px){
+        margin: 20px 0px 5px 0px;
+    }
 `
 
 export const DetailsWine = styled(flexColumn)` 
