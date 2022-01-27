@@ -20,8 +20,8 @@ export const ContainerWineInfo = styled(flexColumn)`
         align-self: flex-start;
         cursor: pointer;
         span{
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 20px;
+            font-family: 'NeoSansStd-Regular';
             align-items: center;
         }
         @media(max-width: 1020px){
@@ -69,10 +69,13 @@ export const RightContent = styled(flexColumn)`
     
     h4{
         color: #C81A78;
-        font-weight: 600;
+        font-size: 14px;
+        font-family: 'Lato-Bold';
     }
     h4:last-child{
         color: #888888;
+        font-family: 'Lato-Regular';
+        font-weight: 400;
     }
 
     @media(max-width: 1210px){
@@ -104,9 +107,10 @@ export const ImageWineMobile = styled.span`
 export const DetailsWine = styled(flexColumn)` 
     h1{
         color: #111111;
-        font-size: 2rem;
-        font-weight: bold;
+        font-size: 28px;
+        font-family: 'NeoSansStd-Bold';
         margin: 0;
+        margin-bottom: 8px;
         @media(max-width: 1020px){
             text-align: center;
         }  
@@ -115,9 +119,10 @@ export const DetailsWine = styled(flexColumn)`
     div{
         color: #555555;
         display: flex;
+        
         align-items: center;
         flex-direction: row;
-        font-weight: 400;
+        font-family: 'Lato-Regular';
         img{
             width: 20px;
         }
@@ -144,16 +149,17 @@ export const DetailsWine = styled(flexColumn)`
 
 export const PriceWine = styled(flexColumn)`
     margin-top: 50px;
+    gap:8px;
     h2{
         margin:0;
         color: #C81A78;
-        font-weight: 700;
-        font-size: 2.5rem;
+        font-family: 'Lato-Black';
+        font-size: 40px;
         span{
-            font-size: 1.4rem;
+            font-size: 24px;
 
             &:last-child{
-                font-size:1.8rem;
+                font-size:32px;
             }
         }
     }
@@ -161,7 +167,7 @@ export const PriceWine = styled(flexColumn)`
     h3{
         color: #888;
         margin: 0;
-        font-weight: 500;
+        font-family: 'Lato-Bold';
     }
     @media(max-width: 1020px){
         display: none;
@@ -170,12 +176,14 @@ export const PriceWine = styled(flexColumn)`
 `
 
 export const CommentsWine = styled(flexColumn)`
-    gap: 15px;
+    gap: 8px;
     margin-top: 50px;
 
     h3{
         margin: 0;
         color: #111111;
+        font-family: 'NeoSansStd-Regular';
+        font-size: 16px;
         @media(max-width: 1020px){
             content: '';
         }
@@ -185,6 +193,8 @@ export const CommentsWine = styled(flexColumn)`
         margin: 0;
         color: #666666;
         text-align: justify;
+        font-family: 'NeoSansStd-Regular';
+        font-size: 16px;
     }
 `
 
@@ -197,13 +207,13 @@ export const AddOnCart = styled.div`
     background: #7EBC43;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.35);
     border-radius: 4px;
-    width: 300px;
-    height: 55px;
+    width: 330px;
+    height: 56px;
     justify-content: space-evenly;
     div{
         display: flex;
         flex-direction: row;
-        gap: 15px;
+        gap: 17px;
         color: white;
         align-items: center;
         justify-content: center;
@@ -211,10 +221,12 @@ export const AddOnCart = styled.div`
         width: 50%;
         button{
             border: 1px solid rgba(255, 255, 255, 0.4);
-            width: 20px;
+            width: 24px;
+            height: 24px;
             color: white;
+            
             background-color: transparent;
-            height: 20px;
+            font-size: 16px;
             align-items: center;
             justify-content: center;
             display: flex;
@@ -222,7 +234,12 @@ export const AddOnCart = styled.div`
             cursor: pointer;
         }
         span{
-            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width:40px;
+            font-size: 24px;
+            font-family: 'Lato-Regular';
         }
     }
     @media(max-width: 1020px){
@@ -234,8 +251,10 @@ export const AddOnCart = styled.div`
 export const Button = styled.button`
     background: #7EBC43;
     border: none;
+    font-family: 'Lato-Bold';
+    line-height: 19px;
     color: white;
-    font-size:1.2rem;
+    font-size: 16px;
     height: 80%;
     cursor: pointer;
     border-left: 0.5px solid rgba(255,255,255,0.1);
@@ -256,6 +275,7 @@ export const FooterMobile = styled.footer`
     justify-content: center;
     padding: 10px;
     section{
+        font-family: 'Lato-Bold';
         margin-right: 15px;
         h2{
             margin: 0;
@@ -298,13 +318,16 @@ export const FooterMobile = styled.footer`
             transform: translateY(-30px);
             border-radius: 2px;
             padding: 2px 5px;
-            font-weight: bold;
+            
             color: white;
-            font-size:0.8rem;
+            font-size:14px;
             display: flex;
             margin: 0;
             align-items: center;
             justify-content: center;
+            @media(max-width: 435px){
+                transform: translateY(-40px);
+            }  
         }
     }
 

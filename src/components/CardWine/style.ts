@@ -4,7 +4,7 @@ export const ContainerCard = styled.div`
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 260px;
+    width: 256px;
     margin-bottom: 5px;
     
     @media(max-width: 730px){
@@ -20,14 +20,15 @@ export const ContainerCard = styled.div`
         width: 115px;
     }
     button{
+        height: 40px;
         background: #7EBC43;
         box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
         border-radius: 4px;
         border: none;
         padding: 12px 24px;
         color: #FFF;
-        font-weight: bold;
-        font-size: 0.9rem;
+        font-family: 'Lato-Bold';
+        font-size: 14px;
         cursor: pointer;
         transition: 0.4s;
         align-items: center;
@@ -46,22 +47,15 @@ export const ContentCard = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 15px 5px;
+    padding: 10px 10px 20px 10px;
     cursor: pointer;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
-    img{
-        max-width: 150px;
-
-    }
-    @media(max-width: 470px){
-        img{
-            width: 100%;
-        }
-    }
+ 
     h1{
         font-size: 1rem;
         color: #1D1D1B;
         text-align: center;
+        font-family: 'Lato-Bold';
         @media(max-width: 470px){
             font-size: 0.8rem;
         }
@@ -78,15 +72,14 @@ export const Discount = styled.div`
     flex-direction: row;
     padding: 0;
     gap: 10px;
+    margin: 0;
     align-items: center;
     p{
         margin: 0;
         text-decoration: line-through;
+        font-family: 'Lato-Bold';
+        font-size: 0.8rem;
         color: #888;
-        font-weight: bold;
-        @media(max-width: 400px){
-            font-size: 0.8rem;
-        }
         @media(max-width: 350px){
             font-size: 0.7rem;
         }
@@ -95,7 +88,7 @@ export const Discount = styled.div`
         background: #F79552;
         border-radius: 2px;
         padding: 2px 5px;
-        font-weight: bold;
+        font-family: 'Lato-Bold';
         color: white;
         font-size: 0.8rem;
         @media(max-width: 400px){
@@ -115,19 +108,24 @@ export const Discount = styled.div`
 `
 
 export const Member = styled.p`
+    margin: 15px 0px 2px 0px;
     color: #1D1D1B;
-    font-weight: bold;
-    font-size: 0.9rem;
-    
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    h2{
+        font-family: 'Lato-Bold';
+        font-size: 11px;
+    }
     strong{
+        font-family: 'Lato-Bold';
+        font-size: 11px;
         color: #B6116E;
+        line-height: 27px;
         span{
-            font-size: 1.8rem;
+            font-size: 23px;
             @media(max-width: 470px){
-                font-size: 1.6rem;
-            }
-            @media(max-width: 400px){
-                font-size: 1.4rem;
+                font-size: 20px;
             }
             @media(max-width: 350px){
                 font-size: 1.2rem;
@@ -135,7 +133,7 @@ export const Member = styled.p`
         }
     }
     @media(max-width: 470px){
-        font-size: 0.7rem;
+        font-size: 0.6rem;
     }
     @media(max-width: 400px){
         font-size: 0.6rem;
@@ -149,12 +147,10 @@ export const Member = styled.p`
 
 export const NotMember = styled.p`
     color: #888;
-    font-weight: 600;
+    font-family: 'Lato-Bold';
     margin: 0;
+    font-size: 12px;
     
-    @media(max-width: 470px){
-        font-size: 0.8rem;
-    }
     @media(max-width: 400px){
         display: flex;
         align-items: center;

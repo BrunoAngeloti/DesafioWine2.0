@@ -8,8 +8,8 @@ export const ContainerCart = styled.div`
 
 export const SpanAmountCartItem = styled.span`
     background-color: white;
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -19,7 +19,9 @@ export const SpanAmountCartItem = styled.span`
     position: absolute;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.5);
     color: rgba(79, 191, 165, 1);
-    font-weight: 700;
+
+    font-size: 14px;
+    font-family: 'Lato-Bold';
 `
 
 export const MenuCart = styled.div<{ show?: boolean }>`

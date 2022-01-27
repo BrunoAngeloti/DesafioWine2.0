@@ -28,6 +28,7 @@ export const ButtonPag = styled.button<{ next?: boolean, selected?: boolean }>`
     width: ${props => props.next ? "80px" : "40px"};
     height: 40px;
     border: 2px solid #B6116E;
+    font-family: 'Lato-Regular';
     color: ${props => props.selected ? "white" : "#B6116E"};
     border-radius: 3px;
     background-color: ${props => props.selected ? "#B6116E" : "transparent"};
@@ -48,6 +49,7 @@ export const ButtonPass = styled.button`
     border: none;
     background-color: transparent;
     cursor: pointer;
+    font-family: 'Lato-Bold';
     display: flex;
     align-items: center;
     justify-content: center;

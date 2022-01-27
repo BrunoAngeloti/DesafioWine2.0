@@ -52,18 +52,16 @@ const Navbar: FunctionComponent = () => {
                         <ImageHamburger>
                             <Image width={30} height={30} id="LogoMenuMobile" onClick={() => {setMenuMobile(!menuMobile)}} src="/ic-line.svg" alt="Icon to the menu" />
                         </ImageHamburger>
-                        <Image width={100} height={100} src="/LogoWine.svg" alt="Wine" />   
+                        <Image width={100} height={28} src="/LogoWine.svg" alt="Wine" />   
 
                         {returnButtonsMenu(false)}   
                     </LeftContent>
                     
                     <RightContent>
-
-                        <Image width={64} height={64} src="/Busca.svg" alt="Icon Search" />
+                        <Image width={56} height={56} src="/Busca.svg" alt="Icon Search" />
                         <ImageProfile>
-                            <Image width={64} height={64} src="/conta.svg" alt="Icon profile" />
+                            <Image width={56} height={56} src="/conta.svg" alt="Icon profile" />
                         </ImageProfile>
-
                         <ShoppingCart /> 
                     </RightContent>
                 </ContentHeader>             

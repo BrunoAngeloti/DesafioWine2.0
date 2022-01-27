@@ -93,7 +93,7 @@ export const ShoppingCart: FunctionComponent = () => {
             </MenuCart>
 
             <ContainerCart id="shoppingCart" onClick={() => { setMenuMobile(!menuMobile) }}>               
-                <Image width={64} height={64} id="shoppingCartImg" src="/winebox.svg" alt="Shopping Cart Icon" />            
+                <Image width={56} height={56} id="shoppingCartImg" src="/winebox.svg" alt="Shopping Cart Icon" />            
                 <SpanAmountCartItem id="qtdItemsCart">{amount}</SpanAmountCartItem>
 
             </ContainerCart>       
