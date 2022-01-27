@@ -53,9 +53,11 @@ export const ShoppingCart: FunctionComponent = () => {
             <BackgroundCart onClick={() => {setMenuMobile(!menuMobile)}} show={menuMobile}/>
             <MenuCart show={menuMobile}>
                 <HeaderMenuCart>
+
                     <ImageClose>
                         <Image width={32} height={32} id="closeShoppingCart" onClick={() => {setMenuMobile(!menuMobile)}} src="/x.svg" alt="close tab" />
                     </ImageClose>
+
                     <h4 id="qtdItemsShoppingCart">WineBox({amount})</h4>
                 </HeaderMenuCart>
                 {winesOnCart.length !== 0 ?
@@ -89,9 +91,11 @@ export const ShoppingCart: FunctionComponent = () => {
                     </NotBuyYet>
                 }               
             </MenuCart>
+
             <ContainerCart id="shoppingCart" onClick={() => { setMenuMobile(!menuMobile) }}>               
-                <Image width={64} height={64} id="shoppingCartImg" src="/winebox.svg" alt="Shopping Cart Icon" />            
+                <Image width={56} height={56} id="shoppingCartImg" src="/winebox.svg" alt="Shopping Cart Icon" />            
                 <SpanAmountCartItem id="qtdItemsCart">{amount}</SpanAmountCartItem>
+
             </ContainerCart>       
         </>          
     )

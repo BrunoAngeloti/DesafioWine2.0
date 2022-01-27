@@ -5,3 +5,4 @@ module.exports = {
     domains: ['www.wine.com.br', 'img.wine.com.br'],
   },
 }
+

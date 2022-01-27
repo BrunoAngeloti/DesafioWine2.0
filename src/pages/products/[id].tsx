@@ -62,7 +62,7 @@ export default function Products(props:IProductsProps){
 				</header>
 				<ContentWineInfo>
 					<LeftContent>
-						<Image objectFit='contain' width={1000} height={1000} src={wine?.image} alt={`wine bottle ${wine?.image}`} />
+						<Image objectFit='contain' width={500} height={500} src={wine?.image} alt={`wine bottle ${wine?.image}`} />
 					</LeftContent>
 					<RightContent>
 						<LocationWine>
@@ -75,16 +75,16 @@ export default function Products(props:IProductsProps){
 						<DetailsWine>
 							<h1>{wine?.name}</h1>
 							<div>
-								<Image objectFit='contain' width={20} height={20} src={wine?.flag} alt="country flag" />
+								<Image objectFit='contain' width={16} height={16} src={wine?.flag} alt="country flag" />
 								<p>{wine?.country}</p> 
 								<p>{wine?.type}</p> 
 								<p>{wine?.classification}</p>
-								<p>{wine?.volume}</p>
+								<p>{wine?.size}</p>
 								<div>
 									<ReactStars
 										count={5}
 										value={wine?.rating}
-										size={20}                          
+										size={15}                          
 										color2={'#ffd700'} 
 										edit={false}
 									/>
@@ -93,9 +93,11 @@ export default function Products(props:IProductsProps){
 								<p>({wine?.avaliations})</p>
 							</div>
 						</DetailsWine>
+
 						<ImageWineMobile>
 							<Image objectFit='contain' width={500} height={500} src={wine?.image} alt={`wine bottle ${wine?.image}`} />
 						</ImageWineMobile>
+
 						<PriceWine>
 							{                    
 								<h2>
@@ -126,8 +128,7 @@ export default function Products(props:IProductsProps){
 						<h2>{price}</h2>
 						<h1><strong>{priceMember}</strong></h1>
 						<h3>PREÇO NÃO-SÓCIO {priceNonMember}</h3>
-					</section>
-					
+					</section>					
 					<Button id="ButtonMobileAddWineOnCart" onClick={() => addToCart({ qtdRequested: 1, dispatch, wine: wine })}>Adicionar</Button>
 				</FooterMobile>
 			</>

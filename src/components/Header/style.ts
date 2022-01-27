@@ -41,7 +41,7 @@ export const ImageProfile = styled.span`
 export const LeftContent = styled.div`
     display: flex;
     flex-direction: row;
-    gap: 80px;
+    gap: 83px;
     height: 100%;
     margin: 0;
     
@@ -60,7 +60,7 @@ export const LeftContent = styled.div`
     div {
         display: flex;
         flex-direction: row;
-        gap: 40px;
+        gap: 48px;
         height: 100% !important;
         @media(max-width: 1020px){
             display: none;
@@ -73,6 +73,10 @@ export const Button = styled.button<{ selected?: boolean }>`
     background-color: transparent;
     border: none;
     height: 100% !important;
+
+    font-size:18px;
+    font-family: 'NeoSansStd-Regular';
+
     align-items: center;
     color: rgba(85, 85, 85, 1);
     ${props => props.selected &&`
@@ -90,20 +94,12 @@ export const Button = styled.button<{ selected?: boolean }>`
 export const RightContent = styled.div`
     display: flex;
     flex-direction: row;
-    gap: 40px;
-    
-    img{
-        width: 60px;   
-        @media(max-width: 420px){
-            width: 50px;  
-        }
-    }
+    gap: 42px;
+       
     @media(max-width: 1020px){
         gap: 20px;
         margin-left: 20px;
-    }
-   
-    
+    }  
 `
 
 export const MenuMobile = styled.div<{ show?: boolean}>`
