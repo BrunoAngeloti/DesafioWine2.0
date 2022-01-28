@@ -11,7 +11,7 @@ import { CardWine, Pagination, Loading, PriceFilter } from '../../components/ind
 import { ItemsTypes, selectorPagination, selectorItems, selectorPriceFilter } from '../../Data/Redux/ducks/index'
 import { valueFilter1, valueFilter7 } from '../../Shared/utils/index'
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 
 interface IPayload{

@@ -1,6 +1,9 @@
 import React, { FunctionComponent, useState } from 'react'
 import Router from 'next/router'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
+
+const ShoppingCart = dynamic(() => import('../ShoppingCart').then((mod) => mod.ShoppingCart))
 
 import { 
     Container, 
@@ -13,8 +16,6 @@ import {
     ImageHamburger,
     ImageProfile
 } from './style'
-
-import { ShoppingCart } from '../ShoppingCart'
 
 const Navbar: FunctionComponent = () => {
     const [menuMobile, setMenuMobile] = useState(false)

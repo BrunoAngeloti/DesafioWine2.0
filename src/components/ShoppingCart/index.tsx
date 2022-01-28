@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
 
 import { 
     ContainerCart, 
@@ -17,11 +18,12 @@ import {
 
 import { useDispatch } from "react-redux"
 
-import { CardWineShoppingCart } from '../CardWineShoppingCart'
+const CardWineShoppingCart = dynamic(() => import('../CardWineShoppingCart').then((mod) => mod.CardWineShoppingCart))
 
 import { IItemCart } from '../../Shared/interfaces/cart'
 import { getLocalStorage } from '../../Shared/utils/index'
 import { AmountItemsTypes, selectorAmountItems } from '../../Data/Redux/ducks'
+
 
 export const ShoppingCart: FunctionComponent = () => {
     const [menuMobile, setMenuMobile] = useState(false)
