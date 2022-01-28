@@ -69,7 +69,7 @@ export default function Home(){
           <Loading />
         :
           <>
-            <h3><strong>{numItems}</strong> produtos encontrados</h3>
+            <h3><span>{numItems}</span> produtos encontrados</h3>
             <Wines>
               {returnCardWines()}
             </Wines>

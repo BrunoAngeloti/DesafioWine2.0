@@ -57,42 +57,34 @@ export default function Products(props:IProductsProps){
 					<title>Wine | {wine?.name}</title>
 				</Head>
 				<header onClick={()=> {Router.back()}} >
-
 					<Image width={28} height={28} src="/back.svg" alt="back arrow"/>
-
 					<span>Voltar</span>
 				</header>
 				<ContentWineInfo>
 					<LeftContent>
-
-						<Image objectFit='contain' width={1000} height={1000} src={wine?.image} alt={`wine bottle ${wine?.image}`} />
-
+						<Image objectFit='contain' width={500} height={500} src={wine?.image} alt={`wine bottle ${wine?.image}`} />
 					</LeftContent>
 					<RightContent>
 						<LocationWine>
 							<h4>Vinhos</h4>
-
 							<Image width={10} height={6} src="/arrowRight.svg" alt="right arrow" />
 							<h4>{wine?.country}</h4>
 							<Image width={10} height={6} src="/arrowRight.svg" alt="right arrow" />
-
 							<h4>{wine?.region}</h4>
 						</LocationWine>
 						<DetailsWine>
 							<h1>{wine?.name}</h1>
 							<div>
-
-								<Image objectFit='contain' width={20} height={20} src={wine?.flag} alt="country flag" />
-
+								<Image objectFit='contain' width={16} height={16} src={wine?.flag} alt="country flag" />
 								<p>{wine?.country}</p> 
 								<p>{wine?.type}</p> 
 								<p>{wine?.classification}</p>
-								<p>{wine?.volume}</p>
+								<p>{wine?.size}</p>
 								<div>
 									<ReactStars
 										count={5}
 										value={wine?.rating}
-										size={20}                          
+										size={15}                          
 										color2={'#ffd700'} 
 										edit={false}
 									/>
@@ -136,8 +128,7 @@ export default function Products(props:IProductsProps){
 						<h2>{price}</h2>
 						<h1><strong>{priceMember}</strong></h1>
 						<h3>PREÇO NÃO-SÓCIO {priceNonMember}</h3>
-					</section>
-					
+					</section>					
 					<Button id="ButtonMobileAddWineOnCart" onClick={() => addToCart({ qtdRequested: 1, dispatch, wine: wine })}>Adicionar</Button>
 				</FooterMobile>
 			</>

@@ -32,7 +32,7 @@ export const CardWine: FunctionComponent<ICardWine> = ({ wine }:ICardWine) => {
         <ContainerCard>
             <ContentCard id={`Vinho${wine.id}`} onClick={handleInfoPage}>
 
-                <Image objectFit='contain' width={250} height={250} src={wine.image} alt={`${wine.name}`} />
+                <Image objectFit='contain' width={200} height={200} src={wine.image} alt={`${wine.name}`} />
 
                 <h1>{wine.name}</h1>
                 <Discount>
@@ -40,7 +40,7 @@ export const CardWine: FunctionComponent<ICardWine> = ({ wine }:ICardWine) => {
                     <span>{wine.discount}% OFF</span>
                 </Discount>
                 <Member>
-                    SÓCIO WINE
+                    <h2>SÓCIO WINE</h2>
                     <strong> R$ 
                         <span>{priceMemberToString && priceMemberToString[0] ? priceMemberToString[0] : 0},</span>
                         {priceMemberToString && priceMemberToString[1] ? priceMemberToString[1] : 0}

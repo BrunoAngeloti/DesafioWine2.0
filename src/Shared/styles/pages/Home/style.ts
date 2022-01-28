@@ -23,12 +23,16 @@ export const Search = styled(flexColumn)`
     padding: 0;
     h2{
         color: #000000;
-        font-weight: 700;
+        font-family: 'NeoSansStd-Bold';
+        font-size: 20px;
+        line-height: 24px;
         margin: 0;
     }
     h3{
+        margin-top: 32px;
+        margin-bottom: 16px;
         color: #333333;
-        font-weight: 600;
+        font-family: 'Lato-Bold';
     }
     @media(max-width: 900px){
         display: none;
@@ -42,8 +46,19 @@ export const Items = styled(flexColumn)`
     padding: 0px 40px;
     h3{
         color: #262626;
-        font-weight: 600;
-        margin: 5px 10px 25px 10px;
+        margin: 0px 10px 25px 10px;
+        font-family: 'Lato-Regular';
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 22px;
+
+        span{
+            font-family: 'Lato-Bold';
+            
+            color: #262626;
+            font-size: 18px;
+        }
+
         @media(max-width: 900px){
             padding: 10px 0px 10px 0px;
             border-bottom: 1px solid #D5D5D5;

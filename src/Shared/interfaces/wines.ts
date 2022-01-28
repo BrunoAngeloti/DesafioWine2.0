@@ -8,7 +8,7 @@ export interface IWines{
     priceNonMember: number;
     type: string;
     classification: string;
-    volume: string;
+    size: string;
     rating: number;
     avaliations: number;
     country: string;
